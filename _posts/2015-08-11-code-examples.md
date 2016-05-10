@@ -1,3 +1,9 @@
+---
+layout: post
+title:  Code Examples for Scientific Computing
+---
+
+
 #Learn Scientific Programming by Examples:
 
 As far as my experience, learning  a new programming/scripting language 
