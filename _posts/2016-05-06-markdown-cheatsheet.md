@@ -69,8 +69,7 @@ Here are some icon's from [font awesome](https://fortawesome.github.io/Font-Awes
 <i class="fa fa-instagram"></i>
 <i class="fa fa-github"></i>
 
-
-<div class="divider"></div>
+***
 
 ## List Items
 
@@ -108,12 +107,36 @@ def run_some_function():
 }
 {% endhighlight %}
 
+
+Another way of highlighting
+
+```C
+#include<iostream>
+#include<vector>
+
+int main()
+/* Multiple
+   line comment
+ */
+try {
+    std::vector<int> vec{3,4,3,1};
+    int i{vec.at(4)};
+}
+//An exception handler, catches std::out_of_range
+catch(std::out_of_range& e) {
+    std::cerr<<"Accessing a non-existent element: "<<e.what()<<'\n';
+}
+catch(std::exception& e) {
+    std::cerr<<"Exception thrown: "<<e.what()<<'\n';
+}
+```
+
 ```
 No language indicated, so no syntax highlighting.
 But let's throw in a <b>tag</b>.
 ```
 
-<div class="divider"></div>
+***
 
 ## Table
 
