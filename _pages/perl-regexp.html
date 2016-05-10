@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="description" />
+<meta name="keywords" content="keywords" />
+<meta name="author" content="author" />
+<link rel="stylesheet" type="text/css" href="pagestyle.css" />
+<title>Arman Akbarian's Homepage</title>
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+
+<body>
+<div class="page">
+  <div class="page2">
+     <div style="width:100%;height:1px;font-family: Tahoma; font-size: 1pt;"></div>
+     <div  class ="header">
+		
+	     <div class="title">
+
+			Arman Akbarian
+			<div class="subtitle">UNIVERSITY OF BRITISH COLUMBIA <br /> PHYSICS &amp; ASTRONOMY DEPT. </div>
+	</div> <!-- End of title -->
+		<div class="sidebar">
+         	<div class="sider">
+               <p><a href="Home.html">Home <img src="img/home.svg" width="11px" /></a>
+<a href="Research.html">Research <img src="img/beaker.svg" width="11px" /></a>
+<a href="Publications.html">Publications <img src="img/pencil.svg" width="11px" /></a>
+<a target="_blank" href="http://laplace.phas.ubc.ca/">Group Page <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/people.svg" width="11px" /></a>
+<a href="Contact.html">Contact <img src="img/envelope-closed.svg" width="11px" /></a>
+<a href="CV.html">CV <img src="img/person.svg" width="11px" /></a></p>
+
+<hr />
+
+<p><a href="Links.html">Links <img src="img/link.svg" width="11px" /></a>
+<a href="Learn-By-Examples.html">Programming <img src="img/code.svg" width="11px"/></a>
+<a target="_blank" href="FD_doc">FD Toolkit <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/graph.svg" width="11px" /></a>
+<a target="_blank" href="sg">Web Template <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/globe.svg" width="11px" /></a>
+<a href="http://rmanak.github.io/notes">Miscellany <img src="img/layers.svg" width="11px" /></a></p>
+
+             </div>
+         </div> <!--End of Sidebar -->
+
+
+     </div> <!-- end header -->
+	
+     <!--This line is for future use -->   <div style="text-align:center; padding-top:10px; padding-bottom:10px;"></div>
+	      
+     <!--This line is for compatibility issues --> <div style="width:100%;height:5px;font-family: Tahoma; font-size: 1pt;"></div>
+     <!--in class page2 -->
+     <div class="postandside">
+		        <div class="content">
+            <div class="post">
+              <style type="text/css">
+<!--
+.Constant { color: #ff00ff; }
+.Special { color: #6a5acd; }
+pre {  color: #000000; background-color: #ffffff; }
+body {  color: #000000; background-color: #ffffff; }
+.PreProc { color: #a020f0; }
+.Comment { color: #0000ff; }
+.Statement { color: #a52a2a; font-weight: bold; }
+.Identifier { color: #008b8b; }
+-->
+</style>
+<pre>
+<span class="PreProc">#!/usr/bin/perl -w</span>
+<span class="Comment">#--------------------------------------------------</span>
+<span class="Comment"># AAK: This documents explains regular expressions</span>
+<span class="Comment"># in perl, though I am not sure how clear the whole </span>
+<span class="Comment"># thing might be!</span>
+<span class="Comment"># Last update:</span>
+<span class="Comment"># Tue Sep 11 22:19:36 PDT 2012</span>
+<span class="Comment"># --------------------------------------------------</span>
+<span class="Comment">#Convention: </span>
+<span class="Comment"># [] means optional pattern match</span>
+<span class="Comment"># &lt;&gt; means necessary pattern match</span>
+<span class="Comment"># WS = tab or space</span>
+<span class="Comment"># AWS = tab space or endofline character</span>
+<span class="Comment">#----------------------------------------</span>
+
+<span class="Comment">#use 5.010;</span>
+
+<span class="Comment">#-------------------------------</span>
+<span class="Comment">#Checks to see if string has pattern: </span>
+<span class="Comment">#  [WS]&lt;realnumber&gt;[WS]</span>
+<span class="Comment">#-------------------------------</span>
+<span class="Statement">sub</span><span class="Identifier"> </span><span class="Identifier">real_num_match</span><span class="Identifier"> </span>{
+   <span class="Statement">my</span> <span class="Identifier">$string</span>;
+   <span class="Identifier">$string</span> = <span class="Identifier">$_</span>[<span class="Constant">0</span>];
+   <span class="Statement">if</span> ( <span class="Identifier">$string</span> =~<span class="Statement"> /</span><span class="Constant">^</span><span class="Special">(</span><span class="Constant">[</span><span class="Special">\t</span><span class="Constant"> ]</span><span class="Special">*)(</span><span class="Constant">-</span><span class="Special">\d</span><span class="Special">+)?(</span><span class="Special">\d</span><span class="Special">*</span><span class="Special">\.</span><span class="Special">?</span><span class="Special">\d</span><span class="Special">+)?(</span><span class="Constant">e-</span><span class="Special">?</span><span class="Special">\d</span><span class="Special">+)?</span><span class="Constant">[</span><span class="Special">\t</span><span class="Constant"> ]</span><span class="Special">*</span><span class="Constant">$</span><span class="Statement">/i</span> )
+        { <span class="Statement">return</span> <span class="Constant">1</span>; }
+   <span class="Statement">else</span> { <span class="Statement">return</span> <span class="Constant">-1</span>; }
+
+}
+
+<span class="Comment">#-------------------------------------------</span>
+<span class="Comment">#Checks to see if string has pattern:</span>
+<span class="Comment"># [AWS] &lt;string [AWS] = [AWS] string&gt; [AWS]</span>
+<span class="Comment"># This is useful for reading parameter file</span>
+<span class="Comment">#-------------------------------------------</span>
+
+<span class="Statement">sub</span><span class="Identifier"> </span><span class="Identifier">str_eq_match</span><span class="Identifier"> </span>{
+   <span class="Statement">my</span> <span class="Identifier">$string</span>;
+   <span class="Identifier">$string</span> = <span class="Identifier">$_</span>[<span class="Constant">0</span>];
+   <span class="Statement">if</span> ( <span class="Identifier">$string</span> =~<span class="Statement"> /</span><span class="Special">(</span><span class="Special">\s</span><span class="Special">*</span><span class="Special">\b\w\b\s</span><span class="Special">*</span><span class="Constant">=</span><span class="Special">\s</span><span class="Special">*</span><span class="Special">\b\w\b\s</span><span class="Special">*)</span><span class="Statement">/</span> )
+      {<span class="Statement">return</span> <span class="Constant">1</span>; }
+   <span class="Statement">else</span>    {<span class="Statement">return</span> <span class="Constant">-1</span>; }
+}
+
+<span class="Comment">#----------------------</span>
+<span class="Comment"># Matches to pattern:</span>
+<span class="Comment"># [sth] {sth} </span>
+<span class="Comment"># ---------------------</span>
+<span class="Statement">sub</span><span class="Identifier"> </span><span class="Identifier">link_match</span><span class="Identifier"> </span>{
+   <span class="Statement">my</span> <span class="Identifier">$string</span>;
+   <span class="Identifier">$string</span> = <span class="Identifier">$_</span>[<span class="Constant">0</span>];
+   <span class="Statement">if</span> ( <span class="Identifier">$string</span> =~<span class="Statement"> /</span><span class="Special">\[</span><span class="Special">(.+)</span><span class="Special">\]\s</span><span class="Special">*</span><span class="Special">\{</span><span class="Special">(.*)</span><span class="Special">\}</span><span class="Statement">/</span> )
+   { }
+   <span class="Statement">else</span>
+   { <span class="Statement">return</span> <span class="Constant">-1</span>;}
+}
+<span class="Identifier">$tmp</span>=<span class="Constant">''</span>;
+
+<span class="Statement">while</span> ( &lt;&gt; ) {
+<span class="Identifier">$tmp</span> = <span class="Identifier">$tmp</span> . <span class="Identifier">$_</span>;
+}
+
+<span class="Identifier">$res</span>=<span class="Identifier">&amp;str_eq_match</span>(<span class="Identifier">$tmp</span>);
+<span class="Statement">print</span> <span class="Constant">&quot;</span><span class="Constant">Result of Test is: </span><span class="Identifier">$res</span><span class="Special">\n</span><span class="Constant">&quot;</span>;
+</pre>
+
+		      <div style="clear: both;"></div>
+	         </div>
+		      <hr />
+	         <div class ="date">last update:   , </div>
+	    <div class="footer">
+           <p><a href="Home.html">Home</a>|<a href="Research.html">Research</a>|<a href="Contact.html">Contact</a>|<a href="Links.html">Links</a>|<a href="Misc.html">Misc</a>|<a href="sg">Template</a></p>
+
+      </div>  
+	    <div style="clear: both;">&nbsp;</div>
+        </div> <!-- end content -->
+	<!-- in class postandside -->
+
+                 <!--in class postandside-->   
+         <!--this line is for compatibility issues --><div style="clear: both;">&#160;</div> <!--Displacement --> 
+     </div> <!--End of post and side -->
+
+     <!-- in class page2 -->
+     <div style="clear: both;">&nbsp;</div>
+  </div> <!--End of Page2 -->
+     <div style="clear: both;">&nbsp;</div>
+
+</div> <!-- End of page -->
+<!--this is end of the file -->
+<!-- ~~~ This content is generated using sg web template ~~-->
+<!-- ~~~ For more information visit: http://laplace.physics.ubc.ca/People/arman/sg ~~ -->
+</body>
+</html>

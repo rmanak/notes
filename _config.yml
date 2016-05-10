@@ -35,4 +35,4 @@ country: Canada
 
 # needed for travis-ci build
 exclude: [vendor]
-#include: ['_pages']
+include: ['_pages', '_codes']

@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="description" />
+<meta name="keywords" content="keywords" />
+<meta name="author" content="author" />
+<link rel="stylesheet" type="text/css" href="pagestyle.css" />
+<title>Arman Akbarian's Homepage</title>
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+
+<body>
+<div class="page">
+  <div class="page2">
+     <div style="width:100%;height:1px;font-family: Tahoma; font-size: 1pt;"></div>
+     <div  class ="header">
+		
+	     <div class="title">
+
+			Arman Akbarian
+			<div class="subtitle">UNIVERSITY OF BRITISH COLUMBIA <br /> PHYSICS &amp; ASTRONOMY DEPT. </div>
+	</div> <!-- End of title -->
+		<div class="sidebar">
+         	<div class="sider">
+               <p><a href="Home.html">Home <img src="img/home.svg" width="11px" /></a>
+<a href="Research.html">Research <img src="img/beaker.svg" width="11px" /></a>
+<a href="Publications.html">Publications <img src="img/pencil.svg" width="11px" /></a>
+<a target="_blank" href="http://laplace.phas.ubc.ca/">Group Page <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/people.svg" width="11px" /></a>
+<a href="Contact.html">Contact <img src="img/envelope-closed.svg" width="11px" /></a>
+<a href="CV.html">CV <img src="img/person.svg" width="11px" /></a></p>
+
+<hr />
+
+<p><a href="Links.html">Links <img src="img/link.svg" width="11px" /></a>
+<a href="Learn-By-Examples.html">Programming <img src="img/code.svg" width="11px"/></a>
+<a target="_blank" href="FD_doc">FD Toolkit <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/graph.svg" width="11px" /></a>
+<a target="_blank" href="sg">Web Template <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/globe.svg" width="11px" /></a>
+<a href="http://rmanak.github.io/notes">Miscellany <img src="img/layers.svg" width="11px" /></a></p>
+
+             </div>
+         </div> <!--End of Sidebar -->
+
+
+     </div> <!-- end header -->
+	
+     <!--This line is for future use -->   <div style="text-align:center; padding-top:10px; padding-bottom:10px;"></div>
+	      
+     <!--This line is for compatibility issues --> <div style="width:100%;height:5px;font-family: Tahoma; font-size: 1pt;"></div>
+     <!--in class page2 -->
+     <div class="postandside">
+		        <div class="content">
+            <div class="post">
+              <style type="text/css">
+<!--
+.Special { color: #6a5acd; }
+.Statement { color: #a52a2a; font-weight: bold; }
+.Comment { color: #0000ff; }
+.PreProc { color: #a020f0; }
+.Constant { color: #ff00ff; }
+.Type { color: #2e8b57; font-weight: bold; }
+-->
+</style>
+
+<pre>
+<span class="Comment">/*</span><span class="Comment"> AAK:</span>
+<span class="Comment"> * This is an example code to learn C programming</span>
+<span class="Comment"> * Mon Nov  7 10:19:55 PST 2011</span>
+<span class="Comment"> </span><span class="Comment">*/</span>
+
+<span class="Comment">//This is a simple line comment</span>
+
+<span class="Comment">/*</span><span class="Comment"> This</span>
+<span class="Comment"> * is a multi-line comment</span>
+<span class="Comment"> </span><span class="Comment">*/</span>
+
+
+<span class="Comment">/*</span><span class="Comment"> &quot;Includes&quot; the standard I/O routines to be used in the code </span><span class="Comment">*/</span>
+<span class="PreProc">#include </span><span class="Constant">&lt;stdio.h&gt;</span>
+
+<span class="Comment">/*</span><span class="Comment"> Standard math functions in C included </span><span class="Comment">*/</span>
+<span class="PreProc">#include </span><span class="Constant">&lt;math.h&gt;</span>
+
+<span class="Comment">/*</span><span class="Comment"> Replaces character 'PI' with '3.141592' in the entire code </span><span class="Comment">*/</span>
+<span class="PreProc">#define PI </span><span class="Constant">3.141592</span><span class="PreProc"> </span>
+
+
+
+<span class="Comment">/*</span><span class="Comment"> Declaration of functions and procedures: </span><span class="Comment">*/</span>
+<span class="Type">double</span> square(<span class="Type">double</span> r);
+<span class="Type">void</span> findmax(<span class="Type">int</span> a, <span class="Type">int</span> b, <span class="Type">int</span> *c);
+
+<span class="Type">int</span> main(<span class="Type">void</span>) {
+
+<span class="Comment">/*</span><span class="Comment"> Variable declaration: </span><span class="Comment">*/</span>
+<span class="Type">int</span> i, j; <span class="Comment">/*</span><span class="Comment"> integer </span><span class="Comment">*/</span>
+<span class="Type">float</span> x;  <span class="Comment">/*</span><span class="Comment"> 4 byte real number </span><span class="Comment">*/</span>
+<span class="Type">double</span> y; <span class="Comment">/*</span><span class="Comment"> 8 byte real number </span><span class="Comment">*/</span>
+<span class="Type">char</span> s;   <span class="Comment">/*</span><span class="Comment"> character </span><span class="Comment">*/</span>
+<span class="Type">int</span> k;
+
+<span class="Type">int</span> *p;      <span class="Comment">/*</span><span class="Comment"> pointer p to an integer </span><span class="Comment">*/</span>
+<span class="Type">double</span> u[<span class="Constant">10</span>]; <span class="Comment">/*</span><span class="Comment"> an array of doubles with size 10, index starts from 0 </span><span class="Comment">*/</span>
+
+
+<span class="Comment">/*</span><span class="Comment"> Simple output routines: </span><span class="Comment">*/</span>
+  printf(<span class="Constant">&quot;Hello, world!</span><span class="Special">\n</span><span class="Constant">&quot;</span>);
+  printf(<span class="Constant">&quot;Please enter an integer variable: &quot;</span>);
+
+<span class="Comment">/*</span><span class="Comment"> Input routine: </span><span class="Comment">*/</span>
+  scanf(<span class="Constant">&quot;</span><span class="Special">%d</span><span class="Constant">&quot;</span>,&amp;i);  <span class="Comment">/*</span><span class="Comment"> %d means: &quot;look&quot; for an integer </span><span class="Comment">*/</span>
+
+<span class="Comment">/*</span><span class="Comment"> Note that scanf requires the address of the variable</span>
+<span class="Comment"> * to store the input, &amp;i is the pointer to i (address of i)</span>
+<span class="Comment"> * </span><span class="Comment">*/</span>
+
+<span class="Comment">/*</span><span class="Comment"> </span>
+<span class="Comment"> * %d : integer type</span>
+<span class="Comment"> * %f : double</span>
+<span class="Comment"> * %c:  character</span>
+<span class="Comment"> * %s:  string</span>
+<span class="Comment"> * \n:  line break</span>
+<span class="Comment"> </span><span class="Comment">*/</span>
+  printf(<span class="Constant">&quot;You enterted: </span><span class="Special">%d</span><span class="Special">\n</span><span class="Constant">&quot;</span>,i);
+
+
+<span class="Comment">/*</span><span class="Comment"> Math operations in C: </span><span class="Comment">*/</span>
+  j = <span class="Constant">5</span> + i;
+  x = <span class="Constant">2.5</span> * j; <span class="Comment">/*</span><span class="Comment"> conversion happens </span><span class="Comment">*/</span>
+  j++; <span class="Comment">/*</span><span class="Comment"> increase by 1 </span><span class="Comment">*/</span>
+  i--;
+  i += j; <span class="Comment">/*</span><span class="Comment"> equivalent to &gt; i = i + j </span><span class="Comment">*/</span>
+  x *= <span class="Constant">0.3e-1</span>;
+  k = j % i; <span class="Comment">/*</span><span class="Comment"> remainder operation  </span><span class="Comment">*/</span>
+<span class="Comment">/*</span><span class="Comment"> Note that there is not any power function built in C </span><span class="Comment">*/</span>
+  y = -x;
+
+<span class="Comment">/*</span><span class="Comment"> Logical operators:</span>
+<span class="Comment"> * AND: &amp;&amp;</span>
+<span class="Comment"> * OR : ||</span>
+<span class="Comment"> * NOT:  !</span>
+<span class="Comment"> </span><span class="Comment">*/</span>
+
+<span class="Comment">/*</span><span class="Comment"> Math Comparison:</span>
+<span class="Comment"> * &gt; &lt; == != &lt;= &gt;= </span>
+<span class="Comment"> * Note that there is no &quot;logical&quot; variable in C</span>
+<span class="Comment"> * the comparison and logical operators return:</span>
+<span class="Comment"> * 0 if false</span>
+<span class="Comment"> * 1 if true</span>
+<span class="Comment"> * see below:</span>
+<span class="Comment"> </span><span class="Comment">*/</span>
+  k = ( (<span class="Constant">1</span> &lt; <span class="Constant">2</span>) || ( <span class="Constant">5</span> % <span class="Constant">2</span> == <span class="Constant">0</span>) );
+  printf(<span class="Constant">&quot;k = </span><span class="Special">%d</span><span class="Special">\n</span><span class="Constant">&quot;</span>,k);
+
+
+<span class="Comment">/*</span><span class="Comment"> Control structure: </span><span class="Comment">*/</span>
+  s = <span class="Constant">'a'</span>;
+  <span class="Statement">if</span> ( <span class="Constant">1</span> &gt; <span class="Constant">2</span> ) {
+   printf(<span class="Constant">&quot;That's not possible!</span><span class="Special">\n</span><span class="Constant">&quot;</span>);
+
+  } <span class="Statement">else</span> <span class="Statement">if</span> (!(s ==<span class="Constant">'b'</span>)) {
+     printf(<span class="Constant">&quot;!('a' == 'b') = </span><span class="Special">%d</span><span class="Special">\n</span><span class="Constant">&quot;</span>,!(s == <span class="Constant">'b'</span>));
+     printf(<span class="Constant">&quot;statement k=5 actually returns value: </span><span class="Special">%d</span><span class="Special">\n</span><span class="Constant">&quot;</span>,(k=<span class="Constant">5</span>));
+  } <span class="Statement">else</span> {
+     printf(<span class="Constant">&quot;This shouldn't print</span><span class="Special">\n</span><span class="Constant">&quot;</span>);
+  }
+
+<span class="Comment">/*</span><span class="Comment"> A quick control and assignment in C </span><span class="Comment">*/</span>
+  i = <span class="Constant">1</span>; j = <span class="Constant">2</span>;
+  k = ( i &gt; j) ? i : j; <span class="Comment">/*</span><span class="Comment"> if statement correct, i otherwise j </span><span class="Comment">*/</span>
+  printf(<span class="Constant">&quot;k = </span><span class="Special">%d</span><span class="Special">\n</span><span class="Constant">&quot;</span>,k);
+
+  x = <span class="Constant">2.3</span>; <span class="Comment">/*</span><span class="Comment"> float variables has to have &quot;f&quot; </span><span class="Comment">*/</span>
+  <span class="Type">int</span> X;
+  <span class="Comment">/*</span><span class="Comment"> C is case sensitive!</span>
+<span class="Comment">   * Also note that you can define variables inline (along the program)</span>
+<span class="Comment">   </span><span class="Comment">*/</span>
+  <span class="Type">double</span> h = PI; <span class="Comment">/*</span><span class="Comment"> See line: #define PI 3.141592 </span><span class="Comment">*/</span>
+  printf(<span class="Constant">&quot;PI = </span><span class="Special">%f</span><span class="Special">\n</span><span class="Constant">&quot;</span>,h);
+
+<span class="Comment">/*</span><span class="Comment"> Switch structure: </span><span class="Comment">*/</span>
+  X = <span class="Constant">5</span>;
+  <span class="Statement">switch</span> (X) {
+   <span class="Statement">case</span> <span class="Constant">3</span>:
+     printf(<span class="Constant">&quot;Will not print this!</span><span class="Special">\n</span><span class="Constant">&quot;</span>);
+     <span class="Statement">break</span>;
+   <span class="Statement">case</span> <span class="Constant">5</span>:
+     printf(<span class="Constant">&quot;C is case sensitive: x = </span><span class="Special">%f</span><span class="Constant">  X = </span><span class="Special">%d</span><span class="Special">\n</span><span class="Constant">&quot;</span>,x,X);
+     <span class="Statement">break</span>;
+   <span class="Statement">default</span>:
+     printf(<span class="Constant">&quot;This is the default action, if none of the cases happen</span><span class="Special">\n</span><span class="Constant">&quot;</span>);
+     <span class="Statement">break</span>;
+
+  }
+
+<span class="Comment">/*</span><span class="Comment"> Loop structures: </span><span class="Comment">*/</span>
+  <span class="Comment">/*</span><span class="Comment"> WHILE LOOP: </span><span class="Comment">*/</span>
+  i = <span class="Constant">1</span>;
+  j = <span class="Constant">1</span>;
+  <span class="Statement">while</span> (i &lt; <span class="Constant">1000</span>) {
+    i *= (j+<span class="Constant">1</span>);
+    j++;
+    <span class="Statement">if</span> ( i &gt; <span class="Constant">200</span> ) {
+   <span class="Statement">break</span>; <span class="Comment">/*</span><span class="Comment"> abort </span><span class="Comment">*/</span>
+    }
+    <span class="Statement">else</span> <span class="Statement">if</span> ( j == <span class="Constant">4</span> ) {
+   printf(<span class="Constant">&quot;4! will not be printed</span><span class="Special">\n</span><span class="Constant">&quot;</span>);
+   <span class="Statement">continue</span>; <span class="Comment">/*</span><span class="Comment"> immediate return to top </span><span class="Comment">*/</span>
+    }
+    printf(<span class="Constant">&quot;</span><span class="Special">%d</span><span class="Constant">! = </span><span class="Special">%d</span><span class="Special">\n</span><span class="Constant">&quot;</span>,j,i);
+  }
+
+  <span class="Comment">/*</span><span class="Comment"> DO WHILE LOOP: </span><span class="Comment">*/</span>
+  i = <span class="Constant">2</span>;
+  <span class="Statement">do</span> {
+    printf(<span class="Constant">&quot;DO WHILE loop checks the condition at the end</span><span class="Special">\n</span><span class="Constant">&quot;</span>);
+  } <span class="Statement">while</span> (i &gt; <span class="Constant">3</span>);
+
+  <span class="Comment">/*</span><span class="Comment"> FOR LOOP: </span><span class="Comment">*/</span>
+  <span class="Statement">for</span> ( i = <span class="Constant">1</span>; i &lt; <span class="Constant">10</span>; i++ ){
+     printf(<span class="Constant">&quot;</span><span class="Special">%d</span><span class="Constant"> &quot;</span>,i);
+  }
+  printf(<span class="Constant">&quot;</span><span class="Special">\n</span><span class="Constant">&quot;</span>);
+  <span class="Comment">/*</span><span class="Comment"> You can do more with for loop: </span><span class="Comment">*/</span>
+  <span class="Statement">for</span> ( i = <span class="Constant">1</span>, j = <span class="Constant">1</span>; i &lt; <span class="Constant">100</span>; i*=<span class="Constant">2</span> , j++){
+    printf(<span class="Constant">&quot;2^</span><span class="Special">%d</span><span class="Constant"> = </span><span class="Special">%d</span><span class="Constant"> </span><span class="Special">\n</span><span class="Constant">&quot;</span>,j-<span class="Constant">1</span>,i);
+  }
+
+<span class="Comment">/*</span><span class="Comment"> Calling a function: </span><span class="Comment">*/</span>
+  <span class="Type">double</span> z;
+  x = <span class="Constant">2.1</span>;
+  z = square(x);
+  printf(<span class="Constant">&quot;2.1^2 = </span><span class="Special">%f</span><span class="Special">\n</span><span class="Constant">&quot;</span>,z);
+
+<span class="Comment">/*</span><span class="Comment"> Calling a procedure: </span><span class="Comment">*/</span>
+  j=<span class="Constant">2</span>;
+  i=<span class="Constant">3</span>;
+  findmax(j,<span class="Constant">15</span>,&amp;i);
+  printf(<span class="Constant">&quot;Max(</span><span class="Special">%d</span><span class="Constant">,</span><span class="Special">%d</span><span class="Constant">) = </span><span class="Special">%d</span><span class="Special">\n</span><span class="Constant">&quot;</span>,j,<span class="Constant">15</span>,i);
+  <span class="Comment">/*</span><span class="Comment"> Note that the value of j DID NOT change! </span><span class="Comment">*/</span>
+
+
+<span class="Comment">/*</span><span class="Comment"> Pointers in C </span><span class="Comment">*/</span>
+  p = &amp;i; <span class="Comment">/*</span><span class="Comment"> p is a pointer, &amp;i is the address of variable i </span><span class="Comment">*/</span>
+  printf(<span class="Constant">&quot;pointer p = </span><span class="Special">%p</span><span class="Constant"> , value stored at p = </span><span class="Special">%d</span><span class="Special">\n</span><span class="Constant">&quot;</span>,p,*p);
+
+
+
+<span class="Comment">/*</span><span class="Comment">More on math functions:</span>
+<span class="Comment"> * The following functions are provided in math.h library</span>
+<span class="Comment"> * sin, cos, tan, asin, acos, atan,</span>
+<span class="Comment"> * exp, log, log10, pow, sqrt</span>
+<span class="Comment"> </span><span class="Comment">*/</span>
+  z = <span class="Constant">4.0</span>*atan(<span class="Constant">1.0e0</span>);
+  printf(<span class="Constant">&quot;PI = </span><span class="Special">%f</span><span class="Special">\n</span><span class="Constant">&quot;</span>,z);
+
+  <span class="Statement">return</span> <span class="Constant">0</span>;
+}
+
+<span class="Comment">/*</span><span class="Comment"> Functions: </span><span class="Comment">*/</span>
+
+<span class="Type">double</span> square(<span class="Type">double</span> r) {
+   <span class="Statement">return</span> r*r;
+}
+
+<span class="Comment">/*</span><span class="Comment"> Procedure: </span><span class="Comment">*/</span>
+<span class="Comment">/*</span><span class="Comment"> Note that C &quot;passes the argument by value&quot; so</span>
+<span class="Comment"> * to be able to change the value of the passed </span>
+<span class="Comment"> * variable in the procedure one must pass the </span>
+<span class="Comment"> * address, not the value and use the address </span>
+<span class="Comment"> * to change the actual value.</span>
+<span class="Comment"> </span><span class="Comment">*/</span>
+
+<span class="Type">void</span> findmax(<span class="Type">int</span> a, <span class="Type">int</span> b, <span class="Type">int</span> *c) {
+   <span class="Statement">if</span> (a &gt; b) { *c = a; } <span class="Statement">else</span> { *c = b;}
+   a = <span class="Constant">5</span>;
+}
+
+<span class="Comment">/*</span><span class="Comment"> Procedure in C is simply a function with &quot;void&quot; return </span><span class="Comment">*/</span>
+</pre>
+
+		      <div style="clear: both;"></div>
+	         </div>
+		      <hr />
+	         <div class ="date">last update:   , </div>
+	    <div class="footer">
+           <p><a href="Home.html">Home</a>|<a href="Research.html">Research</a>|<a href="Contact.html">Contact</a>|<a href="Links.html">Links</a>|<a href="Misc.html">Misc</a>|<a href="sg">Template</a></p>
+
+      </div>  
+	    <div style="clear: both;">&nbsp;</div>
+        </div> <!-- end content -->
+	<!-- in class postandside -->
+
+                 <!--in class postandside-->   
+         <!--this line is for compatibility issues --><div style="clear: both;">&#160;</div> <!--Displacement --> 
+     </div> <!--End of post and side -->
+
+     <!-- in class page2 -->
+     <div style="clear: both;">&nbsp;</div>
+  </div> <!--End of Page2 -->
+     <div style="clear: both;">&nbsp;</div>
+
+</div> <!-- End of page -->
+<!--this is end of the file -->
+<!-- ~~~ This content is generated using sg web template ~~-->
+<!-- ~~~ For more information visit: http://laplace.physics.ubc.ca/People/arman/sg ~~ -->
+</body>
+</html>

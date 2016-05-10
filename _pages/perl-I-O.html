@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="description" />
+<meta name="keywords" content="keywords" />
+<meta name="author" content="author" />
+<link rel="stylesheet" type="text/css" href="pagestyle.css" />
+<title>Arman Akbarian's Homepage</title>
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+
+<body>
+<div class="page">
+  <div class="page2">
+     <div style="width:100%;height:1px;font-family: Tahoma; font-size: 1pt;"></div>
+     <div  class ="header">
+		
+	     <div class="title">
+
+			Arman Akbarian
+			<div class="subtitle">UNIVERSITY OF BRITISH COLUMBIA <br /> PHYSICS &amp; ASTRONOMY DEPT. </div>
+	</div> <!-- End of title -->
+		<div class="sidebar">
+         	<div class="sider">
+               <p><a href="Home.html">Home <img src="img/home.svg" width="11px" /></a>
+<a href="Research.html">Research <img src="img/beaker.svg" width="11px" /></a>
+<a href="Publications.html">Publications <img src="img/pencil.svg" width="11px" /></a>
+<a target="_blank" href="http://laplace.phas.ubc.ca/">Group Page <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/people.svg" width="11px" /></a>
+<a href="Contact.html">Contact <img src="img/envelope-closed.svg" width="11px" /></a>
+<a href="CV.html">CV <img src="img/person.svg" width="11px" /></a></p>
+
+<hr />
+
+<p><a href="Links.html">Links <img src="img/link.svg" width="11px" /></a>
+<a href="Learn-By-Examples.html">Programming <img src="img/code.svg" width="11px"/></a>
+<a target="_blank" href="FD_doc">FD Toolkit <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/graph.svg" width="11px" /></a>
+<a target="_blank" href="sg">Web Template <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/globe.svg" width="11px" /></a>
+<a href="http://rmanak.github.io/notes">Miscellany <img src="img/layers.svg" width="11px" /></a></p>
+
+             </div>
+         </div> <!--End of Sidebar -->
+
+
+     </div> <!-- end header -->
+	
+     <!--This line is for future use -->   <div style="text-align:center; padding-top:10px; padding-bottom:10px;"></div>
+	      
+     <!--This line is for compatibility issues --> <div style="width:100%;height:5px;font-family: Tahoma; font-size: 1pt;"></div>
+     <!--in class page2 -->
+     <div class="postandside">
+		        <div class="content">
+            <div class="post">
+              <style type="text/css">
+<!--
+.Constant { color: #ff00ff; }
+.Identifier { color: #008b8b; }
+.Special { color: #6a5acd; }
+pre {  color: #000000; background-color: #ffffff; }
+body {  color: #000000; background-color: #ffffff; }
+.PreProc { color: #a020f0; }
+.Comment { color: #0000ff; }
+.Statement { color: #a52a2a; font-weight: bold; }
+-->
+</style>
+<pre>
+<span class="PreProc">#!/usr/bin/perl -w</span>
+
+
+<span class="Comment">###################################</span>
+<span class="Comment"># This Document Explains perl Input/output</span>
+<span class="Comment"># facilities.</span>
+<span class="Comment"># AAK: Last Modification:</span>
+<span class="Comment"># Tue Sep 11 21:52:39 PDT 2012</span>
+<span class="Comment"># #################################</span>
+
+<span class="Comment"># -w option in first line will turning on the warnings</span>
+
+<span class="Comment"># if no argument is entered, it uses standard input</span>
+
+<span class="Statement">print</span> <span class="Constant">&quot;</span><span class="Identifier">@ARGV</span><span class="Constant"> </span><span class="Special">\n</span><span class="Constant">&quot;</span>;
+
+<span class="Comment"># @ARGV is an array that stores the argument passed to the script</span>
+
+<span class="Comment"># as explained before, you can read from standard input via:</span>
+
+<span class="Comment"># $inp = &lt;STDIN&gt;;</span>
+
+
+
+<span class="Comment">#&quot;say&quot;: is the same as print but with \n at the end:</span>
+<span class="Comment">#to use say, you need to load features of perl v5.1:</span>
+
+<span class="Statement">use </span><span class="Constant">5.010</span>;
+<span class="Statement">say</span> <span class="Constant">&quot;</span><span class="Constant">Hello!</span><span class="Constant">&quot;</span>;
+
+<span class="Comment">#you can format the output using printf:</span>
+
+<span class="Statement">printf</span> <span class="Constant">&quot;</span><span class="Constant">Hello, %s; did you know 2 + 3 = %d !</span><span class="Special">\n</span><span class="Constant">&quot;</span>, Arman, <span class="Constant">5</span>;
+<span class="Comment"># %s for string, %d for integer, %g for flexible floating-pint, integer exponential:</span>
+<span class="Statement">printf</span> <span class="Constant">&quot;</span><span class="Constant">%g %g %g </span><span class="Special">\n</span><span class="Constant">&quot;</span>, <span class="Constant">7</span>/<span class="Constant">13</span>, <span class="Constant">28</span>**<span class="Constant">43</span>, <span class="Constant">1</span>/(<span class="Constant">2.34</span>**<span class="Constant">73.232</span>);
+
+<span class="Statement">printf</span> <span class="Constant">&quot;</span><span class="Constant">%10.30f </span><span class="Special">\n</span><span class="Constant">&quot;</span>, <span class="Statement">sqrt</span>(<span class="Constant">2</span>);
+<span class="Statement">printf</span> <span class="Constant">&quot;</span><span class="Constant">%10d </span><span class="Special">\n</span><span class="Constant">&quot;</span>, <span class="Constant">287321</span>;
+
+<span class="Comment">#perl uses STDIN, STDOUT, STDERR, DATA ARGV, ARGVOUT</span>
+<span class="Comment">#for file handling, user can also define &quot;file handlers&quot; using open operator:</span>
+
+<span class="Statement">open</span> <span class="Identifier">OUTPUT</span>, <span class="Constant">&quot;</span><span class="Constant">&gt;output.dat</span><span class="Constant">&quot;</span>;
+<span class="Statement">open</span> <span class="Identifier">LOG</span>, <span class="Constant">&quot;</span><span class="Constant">&gt;&gt;log</span><span class="Constant">&quot;</span>;
+<span class="Statement">open</span> <span class="Identifier">STH</span>, <span class="Constant">&quot;</span><span class="Constant">STH</span><span class="Constant">&quot;</span>;
+
+<span class="Comment"># &gt; &gt;&gt; are linux standard output redirectings</span>
+<span class="Comment"># you can check if the opening was sucessfull:</span>
+
+<span class="Statement">if</span> ( ! <span class="Statement">open</span> <span class="Identifier">INPUTDATA</span>, <span class="Constant">&quot;</span><span class="Constant">mydata.dat</span><span class="Constant">&quot;</span> ) {
+   <span class="Statement">die</span> <span class="Constant">&quot;</span><span class="Constant">opening input data failed: </span><span class="Identifier">$!</span><span class="Constant">&quot;</span>
+}
+
+<span class="Comment"># die commands exits the program with none-zero status,</span>
+<span class="Comment"># $! is human readable error that happend</span>
+
+<span class="Comment">#using diamont operator &lt;&gt; you can read from files:</span>
+<span class="Comment">#following will read from all files named in the argument</span>
+<span class="Comment">#and for each line will do sth:</span>
+
+<span class="Comment">#to close a filehandle:</span>
+
+<span class="Statement">close</span> <span class="Identifier">STH</span>;
+
+<span class="Comment">#perl will close the filehanldes when it exits, but </span>
+<span class="Comment">#it is always good idea to be tidy</span>
+
+<span class="Comment"># you can use warn operator instead of die, just to give</span>
+
+<span class="Statement">warn</span> <span class="Constant">&quot;</span><span class="Constant">this is warning usage</span><span class="Constant">&quot;</span>;
+
+<span class="Comment">#you can use the file handle just like build-in ones:</span>
+
+<span class="Statement">while</span> (<span class="Identifier">&lt;INPUTDATA&gt;</span>) {
+   <span class="Statement">print</span> <span class="Identifier">$_</span>;
+}
+
+<span class="Statement">print</span> <span class="Identifier">LOG</span> <span class="Constant">&quot;</span><span class="Constant">this is log file created by perl </span><span class="Special">\n</span><span class="Constant">&quot;</span>;
+<span class="Statement">printf</span> <span class="Identifier">LOG</span> <span class="Constant">&quot;</span><span class="Constant">%d %s </span><span class="Special">\n</span><span class="Constant">&quot;</span>, <span class="Constant">2</span>, line;
+
+<span class="Comment">#or you can change the default output filehandle by select:</span>
+<span class="Statement">select</span> <span class="Identifier">LOG</span>;
+<span class="Statement">print</span> <span class="Constant">&quot;</span><span class="Constant">another line in log</span><span class="Special">\n</span><span class="Constant">&quot;</span>;
+
+<span class="Statement">select</span> <span class="Identifier">OUTPUT</span>;
+<span class="Statement">print</span> <span class="Constant">&quot;</span><span class="Constant">this will go to output.dat</span><span class="Constant">&quot;</span>;
+
+<span class="Statement">select</span> <span class="Identifier">STDOUT</span>;
+<span class="Statement">say</span> <span class="Constant">&quot;</span><span class="Constant">Hello again!</span><span class="Constant">&quot;</span>;
+
+<span class="Comment">#one more example, to send standard error to somewhere else:</span>
+
+<span class="Statement">if</span> ( ! <span class="Statement">open</span> <span class="Identifier">STDERR</span>, <span class="Constant">&quot;</span><span class="Constant">&gt;&gt;./.error_log</span><span class="Constant">&quot;</span> ) {
+   <span class="Statement">die</span> <span class="Constant">&quot;</span><span class="Constant">Can't open error log : </span><span class="Identifier">$!</span><span class="Constant">&quot;</span>;
+}
+
+<span class="Statement">warn</span> <span class="Constant">&quot;</span><span class="Constant">this warning will not be displayed on the terminal</span><span class="Constant">&quot;</span>;
+<span class="Statement">warn</span> <span class="Constant">&quot;</span><span class="Constant">warnings are going to .error_log file</span><span class="Constant">&quot;</span>;
+
+<span class="Statement">close</span> <span class="Identifier">STDERR</span>;
+<span class="Statement">warn</span> <span class="Constant">&quot;</span><span class="Constant">this is gonna go nowhere!</span><span class="Constant">&quot;</span>;
+
+<span class="Statement">while</span> (<span class="Statement">defined</span>(<span class="Identifier">$line</span>=&lt;&gt;)) {
+   <span class="Statement">print</span> <span class="Identifier">$line</span>;
+}
+</pre>
+
+		      <div style="clear: both;"></div>
+	         </div>
+		      <hr />
+	         <div class ="date">last update:   , </div>
+	    <div class="footer">
+           <p><a href="Home.html">Home</a>|<a href="Research.html">Research</a>|<a href="Contact.html">Contact</a>|<a href="Links.html">Links</a>|<a href="Misc.html">Misc</a>|<a href="sg">Template</a></p>
+
+      </div>  
+	    <div style="clear: both;">&nbsp;</div>
+        </div> <!-- end content -->
+	<!-- in class postandside -->
+
+                 <!--in class postandside-->   
+         <!--this line is for compatibility issues --><div style="clear: both;">&#160;</div> <!--Displacement --> 
+     </div> <!--End of post and side -->
+
+     <!-- in class page2 -->
+     <div style="clear: both;">&nbsp;</div>
+  </div> <!--End of Page2 -->
+     <div style="clear: both;">&nbsp;</div>
+
+</div> <!-- End of page -->
+<!--this is end of the file -->
+<!-- ~~~ This content is generated using sg web template ~~-->
+<!-- ~~~ For more information visit: http://laplace.physics.ubc.ca/People/arman/sg ~~ -->
+</body>
+</html>

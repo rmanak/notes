@@ -1,0 +1,56 @@
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+* { font-size: 1em; }
+.Comment { color: #8080ff; font-weight: bold; }
+.Type { color: #00ff00; }
+-->
+</style>
+
+<pre id='vimCodeElement'>
+<span class="Comment">/*</span><span class="Comment">----------------------------</span>
+<span class="Comment"> * libbbhutil/librnpl</span>
+<span class="Comment"> *----------------------------</span><span class="Comment">*/</span>
+
+
+<span class="Type">void</span> rdvcpy(<span class="Type">double</span> *r,<span class="Type">double</span> *s, <span class="Type">int</span> len)
+
+
+<span class="Type">void</span> rivcpy(<span class="Type">int</span> *r, <span class="Type">int</span> *s, <span class="Type">int</span> len)
+
+
+<span class="Type">double</span> l2norm(<span class="Type">int</span> N, <span class="Type">double</span> *vec)
+
+
+<span class="Type">double</span> rdvmin(<span class="Type">double</span> *v, <span class="Type">int</span> n)
+
+<span class="Type">double</span> rdvmax(<span class="Type">double</span> *v, <span class="Type">int</span> n)
+
+<span class="Comment">//allcate memory and returns the pointer</span>
+<span class="Type">double</span> * vec_alloc(<span class="Type">int</span> size)
+
+<span class="Comment">//uses name for error output if can't allocate memory</span>
+<span class="Type">double</span> * vec_alloc_n(<span class="Type">int</span> size, <span class="Type">char</span> * name)
+
+<span class="Type">int</span> * ivec_alloc_n(<span class="Type">int</span> size, <span class="Type">char</span> * name)
+
+
+<span class="Comment">//READING SDF FILES:</span>
+
+<span class="Type">int</span> gft_read_shape(<span class="Type">const</span> <span class="Type">char</span> *gf_name, <span class="Type">const</span> <span class="Type">int</span> level, <span class="Type">int</span> *shape)
+
+<span class="Type">int</span> gft_read_full(<span class="Type">const</span> <span class="Type">char</span> *gf_name, <span class="Type">int</span> level, <span class="Type">int</span> *shape, <span class="Type">char</span> *cnames,
+                    <span class="Type">int</span> rank, <span class="Type">double</span> *time, <span class="Type">double</span> *coords, <span class="Type">double</span> *data)
+
+<span class="Type">int</span> gft_read_name(<span class="Type">const</span> <span class="Type">char</span> *file_name, <span class="Type">const</span> <span class="Type">int</span> n, <span class="Type">char</span> *name)
+
+<span class="Type">int</span> gft_read_brief(<span class="Type">const</span> <span class="Type">char</span> *gf_name, <span class="Type">int</span> level,  <span class="Type">double</span> *data )
+
+<span class="Type">int</span> gft_out_full(<span class="Type">char</span> *func_name, <span class="Type">double</span> time, <span class="Type">int</span> *shape,
+                 <span class="Type">char</span> *cnames, <span class="Type">int</span> rank, <span class="Type">double</span> *coords, <span class="Type">double</span> *data)
+
+<span class="Type">int</span> gft_out_bbox(<span class="Type">char</span> *func_name, <span class="Type">double</span> time, <span class="Type">int</span> *shape, <span class="Type">int</span> rank,
+                 <span class="Type">double</span> *coords, <span class="Type">double</span> *data)
+
+</pre>

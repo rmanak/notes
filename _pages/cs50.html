@@ -1,0 +1,393 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="Arman Akbarian's Homepage" />
+<meta name="keywords" content="Arman Akbarian homepage web webpage academic website site UBC
+numerical relativity group" />
+<meta name="author" content="Arman Akbarian" />
+<link rel="stylesheet" type="text/css" href="pagestyle.css" />
+<title>Arman Akbarian's Homepage</title>
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+
+<body>
+<div class="page">
+  <div class="page2">
+     <div style="width:100%;height:1px;font-family: Tahoma; font-size: 1pt;"></div>
+     <div  class ="header">
+		
+	     <div class="title">
+
+			Arman Akbarian
+			<div class="subtitle">UNIVERSITY OF BRITISH COLUMBIA <br /> PHYSICS &amp; ASTRONOMY DEPT. </div>
+	</div> <!-- End of title -->
+		<div class="sidebar">
+         	<div class="sider">
+               <p><a href="Home.html">Home <img src="img/home.svg" width="11px" /></a>
+<a href="Research.html">Research <img src="img/beaker.svg" width="11px" /></a>
+<a href="Publications.html">Publications <img src="img/pencil.svg" width="11px" /></a>
+<a target="_blank" href="http://laplace.phas.ubc.ca/">Group Page <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/people.svg" width="11px" /></a>
+<a href="Contact.html">Contact <img src="img/envelope-closed.svg" width="11px" /></a>
+<a href="CV.html">CV <img src="img/person.svg" width="11px" /></a></p>
+
+<hr />
+
+<p><a href="Links.html">Links <img src="img/link.svg" width="11px" /></a>
+<a href="Learn-By-Examples.html">Programming <img src="img/code.svg" width="11px"/></a>
+<a target="_blank" href="FD_doc">FD Toolkit <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/graph.svg" width="11px" /></a>
+<a target="_blank" href="sg">Web Template <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/globe.svg" width="11px" /></a>
+<a href="http://rmanak.github.io/notes">Miscellany <img src="img/layers.svg" width="11px" /></a></p>
+
+             </div>
+         </div> <!--End of Sidebar -->
+
+
+     </div> <!-- end header -->
+	
+     <!--This line is for future use -->   <div style="text-align:center; padding-top:10px; padding-bottom:10px;"></div>
+	      
+     <!--This line is for compatibility issues --> <div style="width:100%;height:5px;font-family: Tahoma; font-size: 1pt;"></div>
+     <!--in class page2 -->
+     <div class="postandside">
+		        <div class="content">
+            <div class="post">
+              <p><style type="text/css">
+pre { font-family: monospace; color: #000000; background-color: #ffffff; }
+.Special { color: #c000c0; }
+.Statement { color: #af5f00; }
+.Type { color: #008000; }
+.Constant { color: #c00000; }
+.PreProc { color: #c000c0; }
+.Comment { color: #0000c0; }
+</style>
+<pre>
+<span class="Comment">/*</span><span class="Comment">***************************************************************************</span>
+<span class="Comment"> * CS50 Library 5</span>
+<span class="Comment"> * <a href="https://manual.cs50.net/library/">https://manual.cs50.net/library/</a></span>
+<span class="Comment"> *</span>
+<span class="Comment"> * Based on Eric Roberts' genlib.c and simpio.c.</span>
+<span class="Comment"> *</span>
+<span class="Comment"> * Copyright (c) 2013,</span>
+<span class="Comment"> * Glenn Holloway &lt;holloway@eecs.harvard.edu&gt;</span>
+<span class="Comment"> * David J. Malan &lt;malan@harvard.edu&gt;</span>
+<span class="Comment"> * All rights reserved.</span>
+<span class="Comment"> *</span>
+<span class="Comment"> * BSD 3-Clause License</span>
+<span class="Comment"> * <a href="http://www.opensource.org/licenses/BSD-3-Clause">http://www.opensource.org/licenses/BSD-3-Clause</a></span>
+<span class="Comment"> *</span>
+<span class="Comment"> * Redistribution and use in source and binary forms, with or without</span>
+<span class="Comment"> * modification, are permitted provided that the following conditions are</span>
+<span class="Comment"> * met:</span>
+<span class="Comment"> *</span>
+<span class="Comment"> * * Redistributions of source code must retain the above copyright notice,</span>
+<span class="Comment"> *   this list of conditions and the following disclaimer.</span>
+<span class="Comment"> * * Redistributions in binary form must reproduce the above copyright</span>
+<span class="Comment"> *   notice, this list of conditions and the following disclaimer in the</span>
+<span class="Comment"> *   documentation and/or other materials provided with the distribution.</span>
+<span class="Comment"> * * Neither the name of CS50 nor the names of its contributors may be used</span>
+<span class="Comment"> *   to endorse or promote products derived from this software without</span>
+<span class="Comment"> *   specific prior written permission.</span>
+<span class="Comment"> *</span>
+<span class="Comment"> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS</span>
+<span class="Comment"> * IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED</span>
+<span class="Comment"> * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A</span>
+<span class="Comment"> * PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</span>
+<span class="Comment"> * HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</span>
+<span class="Comment"> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED</span>
+<span class="Comment"> * TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR</span>
+<span class="Comment"> * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF</span>
+<span class="Comment"> * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING</span>
+<span class="Comment"> * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span>
+<span class="Comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+<span class="Comment"> **************************************************************************</span><span class="Comment">*/</span>
+
+<span class="PreProc">#include </span><span class="Constant">&lt;stdio.h&gt;</span>
+<span class="PreProc">#include </span><span class="Constant">&lt;stdlib.h&gt;</span>
+<span class="PreProc">#include </span><span class="Constant">&lt;string.h&gt;</span>
+
+<span class="PreProc">#include </span><span class="Constant">&quot;cs50.h&quot;</span>
+
+<span class="Comment">/*</span><span class="Comment">*</span>
+<span class="Comment"> * Reads a line of text from standard input and returns the equivalent</span>
+<span class="Comment"> * char; if text does not represent a char, user is prompted to retry.</span>
+<span class="Comment"> * Leading and trailing whitespace is ignored.  If line can't be read,</span>
+<span class="Comment"> * returns CHAR_MAX.</span>
+<span class="Comment"> </span><span class="Comment">*/</span>
+<span class="Type">char</span> GetChar(<span class="Type">void</span>)
+{
+    <span class="Comment">// try to get a char from user</span>
+    <span class="Statement">while</span> (<span class="Constant">true</span>)
+    {
+        <span class="Comment">// get line of text, returning CHAR_MAX on failure</span>
+        string line = GetString();
+        <span class="Statement">if</span> (line == <span class="Constant">NULL</span>)
+        {
+            <span class="Statement">return</span> <span class="Constant">CHAR_MAX</span>;
+        }
+
+        <span class="Comment">// return a char if only a char (possibly with</span>
+        <span class="Comment">// leading and/or trailing whitespace) was provided</span>
+        <span class="Type">char</span> c1, c2;
+        <span class="Statement">if</span> (sscanf(line, <span class="Constant">&quot; </span><span class="Special">%c</span><span class="Constant"> </span><span class="Special">%c</span><span class="Constant">&quot;</span>, &amp;c1, &amp;c2) == <span class="Constant">1</span>)
+        {
+            free(line);
+            <span class="Statement">return</span> c1;
+        }
+        <span class="Statement">else</span>
+        {
+            free(line);
+            printf(<span class="Constant">&quot;Retry: &quot;</span>);
+        }
+    }
+}
+
+<span class="Comment">/*</span><span class="Comment">*</span>
+<span class="Comment"> * Reads a line of text from standard input and returns the equivalent</span>
+<span class="Comment"> * double as precisely as possible; if text does not represent a</span>
+<span class="Comment"> * double, user is prompted to retry.  Leading and trailing whitespace</span>
+<span class="Comment"> * is ignored.  For simplicity, overflow and underflow are not detected.</span>
+<span class="Comment"> * If line can't be read, returns DBL_MAX.</span>
+<span class="Comment"> </span><span class="Comment">*/</span>
+<span class="Type">double</span> GetDouble(<span class="Type">void</span>)
+{
+    <span class="Comment">// try to get a double from user</span>
+    <span class="Statement">while</span> (<span class="Constant">true</span>)
+    {
+        <span class="Comment">// get line of text, returning DBL_MAX on failure</span>
+        string line = GetString();
+        <span class="Statement">if</span> (line == <span class="Constant">NULL</span>)
+        {
+            <span class="Statement">return</span> <span class="Constant">DBL_MAX</span>;
+        }
+
+        <span class="Comment">// return a double if only a double (possibly with</span>
+        <span class="Comment">// leading and/or trailing whitespace) was provided</span>
+        <span class="Type">double</span> d; <span class="Type">char</span> c;
+        <span class="Statement">if</span> (sscanf(line, <span class="Constant">&quot; </span><span class="Special">%lf</span><span class="Constant"> </span><span class="Special">%c</span><span class="Constant">&quot;</span>, &amp;d, &amp;c) == <span class="Constant">1</span>)
+        {
+            free(line);
+            <span class="Statement">return</span> d;
+        }
+        <span class="Statement">else</span>
+        {
+            free(line);
+            printf(<span class="Constant">&quot;Retry: &quot;</span>);
+        }
+    }
+}
+
+<span class="Comment">/*</span><span class="Comment">*</span>
+<span class="Comment"> * Reads a line of text from standard input and returns the equivalent</span>
+<span class="Comment"> * float as precisely as possible; if text does not represent a float,</span>
+<span class="Comment"> * user is prompted to retry.  Leading and trailing whitespace is ignored.</span>
+<span class="Comment"> * For simplicity, overflow and underflow are not detected.  If line can't</span>
+<span class="Comment"> * be read, returns FLT_MAX.</span>
+<span class="Comment"> </span><span class="Comment">*/</span>
+<span class="Type">float</span> GetFloat(<span class="Type">void</span>)
+{
+    <span class="Comment">// try to get a float from user</span>
+    <span class="Statement">while</span> (<span class="Constant">true</span>)
+    {
+        <span class="Comment">// get line of text, returning FLT_MAX on failure</span>
+        string line = GetString();
+        <span class="Statement">if</span> (line == <span class="Constant">NULL</span>)
+        {
+            <span class="Statement">return</span> <span class="Constant">FLT_MAX</span>;
+        }
+
+        <span class="Comment">// return a float if only a float (possibly with</span>
+        <span class="Comment">// leading and/or trailing whitespace) was provided</span>
+        <span class="Type">char</span> c; <span class="Type">float</span> f;
+        <span class="Statement">if</span> (sscanf(line, <span class="Constant">&quot; </span><span class="Special">%f</span><span class="Constant"> </span><span class="Special">%c</span><span class="Constant">&quot;</span>, &amp;f, &amp;c) == <span class="Constant">1</span>)
+        {
+            free(line);
+            <span class="Statement">return</span> f;
+        }
+        <span class="Statement">else</span>
+        {
+            free(line);
+            printf(<span class="Constant">&quot;Retry: &quot;</span>);
+        }
+    }
+}
+
+<span class="Comment">/*</span><span class="Comment">*</span>
+<span class="Comment"> * Reads a line of text from standard input and returns it as an</span>
+<span class="Comment"> * int in the range of [-2^31 + 1, 2^31 - 2], if possible; if text</span>
+<span class="Comment"> * does not represent such an int, user is prompted to retry.  Leading</span>
+<span class="Comment"> * and trailing whitespace is ignored.  For simplicity, overflow is not</span>
+<span class="Comment"> * detected.  If line can't be read, returns INT_MAX.</span>
+<span class="Comment"> </span><span class="Comment">*/</span>
+<span class="Type">int</span> GetInt(<span class="Type">void</span>)
+{
+    <span class="Comment">// try to get an int from user</span>
+    <span class="Statement">while</span> (<span class="Constant">true</span>)
+    {
+        <span class="Comment">// get line of text, returning INT_MAX on failure</span>
+        string line = GetString();
+        <span class="Statement">if</span> (line == <span class="Constant">NULL</span>)
+        {
+            <span class="Statement">return</span> <span class="Constant">INT_MAX</span>;
+        }
+
+        <span class="Comment">// return an int if only an int (possibly with</span>
+        <span class="Comment">// leading and/or trailing whitespace) was provided</span>
+        <span class="Type">int</span> n; <span class="Type">char</span> c;
+        <span class="Statement">if</span> (sscanf(line, <span class="Constant">&quot; </span><span class="Special">%d</span><span class="Constant"> </span><span class="Special">%c</span><span class="Constant">&quot;</span>, &amp;n, &amp;c) == <span class="Constant">1</span>)
+        {
+            free(line);
+            <span class="Statement">return</span> n;
+        }
+        <span class="Statement">else</span>
+        {
+            free(line);
+            printf(<span class="Constant">&quot;Retry: &quot;</span>);
+        }
+    }
+}
+
+<span class="Comment">/*</span><span class="Comment">*</span>
+<span class="Comment"> * Reads a line of text from standard input and returns an equivalent</span>
+<span class="Comment"> * long long in the range [-2^63 + 1, 2^63 - 2], if possible; if text</span>
+<span class="Comment"> * does not represent such a long long, user is prompted to retry.</span>
+<span class="Comment"> * Leading and trailing whitespace is ignored.  For simplicity, overflow</span>
+<span class="Comment"> * is not detected.  If line can't be read, returns LLONG_MAX.</span>
+<span class="Comment"> </span><span class="Comment">*/</span>
+
+<span class="Type">long</span> <span class="Type">long</span> GetLongLong(<span class="Type">void</span>)
+{
+    <span class="Comment">// try to get a long long from user</span>
+    <span class="Statement">while</span> (<span class="Constant">true</span>)
+    {
+        <span class="Comment">// get line of text, returning LLONG_MAX on failure</span>
+        string line = GetString();
+        <span class="Statement">if</span> (line == <span class="Constant">NULL</span>)
+        {
+            <span class="Statement">return</span> <span class="Constant">LLONG_MAX</span>;
+        }
+
+        <span class="Comment">// return a long long if only a long long (possibly with</span>
+        <span class="Comment">// leading and/or trailing whitespace) was provided</span>
+        <span class="Type">long</span> <span class="Type">long</span> n; <span class="Type">char</span> c;
+        <span class="Statement">if</span> (sscanf(line, <span class="Constant">&quot; </span><span class="Special">%lld</span><span class="Constant"> </span><span class="Special">%c</span><span class="Constant">&quot;</span>, &amp;n, &amp;c) == <span class="Constant">1</span>)
+        {
+            free(line);
+            <span class="Statement">return</span> n;
+        }
+        <span class="Statement">else</span>
+        {
+            free(line);
+            printf(<span class="Constant">&quot;Retry: &quot;</span>);
+        }
+    }
+}
+
+<span class="Comment">/*</span><span class="Comment">*</span>
+<span class="Comment"> * Reads a line of text from standard input and returns it as a</span>
+<span class="Comment"> * string (char*), sans trailing newline character.  (Ergo, if</span>
+<span class="Comment"> * user inputs only &quot;\n&quot;, returns &quot;&quot; not NULL.)  Returns NULL</span>
+<span class="Comment"> * upon error or no input whatsoever (i.e., just EOF).  Leading</span>
+<span class="Comment"> * and trailing whitespace is not ignored.  Stores string on heap</span>
+<span class="Comment"> * (via malloc); memory must be freed by caller to avoid leak.</span>
+<span class="Comment"> </span><span class="Comment">*/</span>
+string GetString(<span class="Type">void</span>)
+{
+    <span class="Comment">// growable buffer for chars</span>
+    string buffer = <span class="Constant">NULL</span>;
+
+    <span class="Comment">// capacity of buffer</span>
+    <span class="Type">unsigned</span> <span class="Type">int</span> capacity = <span class="Constant">0</span>;
+
+    <span class="Comment">// number of chars actually in buffer</span>
+    <span class="Type">unsigned</span> <span class="Type">int</span> n = <span class="Constant">0</span>;
+
+    <span class="Comment">// character read or EOF</span>
+    <span class="Type">int</span> c;
+
+    <span class="Comment">// iteratively get chars from standard input</span>
+    <span class="Statement">while</span> ((c = fgetc(<span class="Constant">stdin</span>)) != <span class="Special">'\n'</span> &amp;&amp; c != <span class="Constant">EOF</span>)
+    {
+        <span class="Comment">// grow buffer if necessary</span>
+        <span class="Statement">if</span> (n + <span class="Constant">1</span> &gt; capacity)
+        {
+            <span class="Comment">// determine new capacity: start at 32 then double</span>
+            <span class="Statement">if</span> (capacity == <span class="Constant">0</span>)
+            {
+                capacity = <span class="Constant">32</span>;
+            }
+            <span class="Statement">else</span> <span class="Statement">if</span> (capacity &lt;= (<span class="Constant">UINT_MAX</span> / <span class="Constant">2</span>))
+            {
+                capacity *= <span class="Constant">2</span>;
+            }
+            <span class="Statement">else</span>
+            {
+                free(buffer);
+                <span class="Statement">return</span> <span class="Constant">NULL</span>;
+            }
+
+            <span class="Comment">// extend buffer's capacity</span>
+            string temp = realloc(buffer, capacity * <span class="Statement">sizeof</span>(<span class="Type">char</span>));
+            <span class="Statement">if</span> (temp == <span class="Constant">NULL</span>)
+            {
+                free(buffer);
+                <span class="Statement">return</span> <span class="Constant">NULL</span>;
+            }
+            buffer = temp;
+        }
+
+        <span class="Comment">// append current character to buffer</span>
+        buffer[n++] = c;
+    }
+
+    <span class="Comment">// return NULL if user provided no input</span>
+    <span class="Statement">if</span> (n == <span class="Constant">0</span> &amp;&amp; c == <span class="Constant">EOF</span>)
+    {
+        <span class="Statement">return</span> <span class="Constant">NULL</span>;
+    }
+
+    <span class="Comment">// minimize buffer</span>
+    string minimal = malloc((n + <span class="Constant">1</span>) * <span class="Statement">sizeof</span>(<span class="Type">char</span>));
+    strncpy(minimal, buffer, n);
+    free(buffer);
+
+    <span class="Comment">// terminate string</span>
+    minimal[n] = <span class="Special">'\0'</span>;
+
+    <span class="Comment">// return string</span>
+    <span class="Statement">return</span> minimal;
+}
+</pre>
+
+
+
+</p>
+
+		      <div style="clear: both;"></div>
+	         </div>
+		      <hr />
+	         <div class ="date">last update: Wed Aug 19, 2015</div>
+	    <div class="footer">
+           <p><a href="Home.html">Home</a>|<a href="Research.html">Research</a>|<a href="Contact.html">Contact</a>|<a href="Links.html">Links</a>|<a href="Misc.html">Misc</a>|<a href="sg">Template</a></p>
+
+      </div>  
+	    <div style="clear: both;">&nbsp;</div>
+        </div> <!-- end content -->
+	<!-- in class postandside -->
+
+                 <!--in class postandside-->   
+         <!--this line is for compatibility issues --><div style="clear: both;">&#160;</div> <!--Displacement --> 
+     </div> <!--End of post and side -->
+
+     <!-- in class page2 -->
+     <div style="clear: both;">&nbsp;</div>
+  </div> <!--End of Page2 -->
+     <div style="clear: both;">&nbsp;</div>
+
+</div> <!-- End of page -->
+<!--this is end of the file -->
+<!-- ~~~ This content is generated using sg web template ~~-->
+<!-- ~~~ For more information visit: http://laplace.physics.ubc.ca/People/arman/sg ~~ -->
+</body>
+</html>

@@ -1,0 +1,73 @@
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
+.Comment { color: #8080ff; font-weight: bold; }
+.Constant { color: #ff6060; }
+.Special { color: #ff40ff; }
+.Identifier { color: #00ffff; }
+.Statement { color: #aaaa00; }
+-->
+</style>
+
+<script type='text/javascript'>
+<!--
+
+-->
+</script>
+<pre id='vimCodeElement'>
+<span class="Comment">% Loading training set:</span>
+data = load(<span class="Constant">'datalogisticregression.txt'</span>)<span class="Special">;</span>
+X = data(:, <span class="Identifier">[</span><span class="Constant">1</span>, <span class="Constant">2</span><span class="Identifier">]</span>)<span class="Special">;</span> y = data(:, <span class="Constant">3</span>)<span class="Special">;</span>
+<span class="Comment">% Adding non-linear features:</span>
+rf=<span class="Constant">100</span><span class="Special">;</span>
+X = <span class="Identifier">[</span>X , X<span class="Statement">.^</span><span class="Constant">2</span><span class="Statement">/</span>rf, X(:,<span class="Constant">1</span>)<span class="Statement">.*</span>X(:,<span class="Constant">2</span>)<span class="Statement">/</span>rf<span class="Identifier">]</span><span class="Special">;</span>
+
+<span class="Comment">%First visualizing the data:</span>
+pos = find(y<span class="Statement">==</span><span class="Constant">1</span>)<span class="Special">;</span> neg = find(y<span class="Statement">==</span><span class="Constant">0</span>)<span class="Special">;</span>
+plot(X(pos,<span class="Constant">1</span>),X(pos,<span class="Constant">2</span>),<span class="Constant">'g+'</span>,X(neg,<span class="Constant">1</span>),X(neg,<span class="Constant">2</span>),<span class="Constant">'bo'</span>,<span class="Constant">'MarkerSize'</span>,<span class="Constant">8</span>)<span class="Special">;</span>
+hold on
+
+<span class="Identifier">[</span>m, n<span class="Identifier">]</span> = <span class="Statement">size</span>(X)<span class="Special">;</span>
+
+<span class="Comment">% Add intercept term to data</span>
+X = <span class="Identifier">[</span><span class="Statement">ones</span>(m, <span class="Constant">1</span>) X<span class="Identifier">]</span><span class="Special">;</span>
+
+init_theta = <span class="Statement">zeros</span>(n <span class="Statement">+</span> <span class="Constant">1</span>, <span class="Constant">1</span>)<span class="Special">;</span>
+
+<span class="Identifier">[</span>cost, grad<span class="Identifier">]</span> = costfunction(init_theta, X, y)<span class="Special">;</span>
+
+<span class="Comment">%Optimizing the cost function using Matlab's built-in fminunc</span>
+options = optimset(<span class="Constant">'GradObj'</span>, <span class="Constant">'on'</span>, <span class="Constant">'MaxIter'</span>, <span class="Constant">1000</span>)<span class="Special">;</span>
+<span class="Identifier">[</span>theta, cost<span class="Identifier">]</span> = <span class="Comment">...</span>
+   fminunc(@(t)(costfunction(t, X, y)), init_theta, options)<span class="Special">;</span>
+
+fprintf(<span class="Constant">'After optimization cost is: %f\n'</span>,cost)<span class="Special">;</span>
+fprintf(<span class="Constant">'Parameter Vector is:\n'</span>)<span class="Special">;</span>
+theta
+prob = sigmoid(<span class="Identifier">[</span><span class="Constant">1</span> <span class="Constant">50</span> <span class="Constant">80</span> <span class="Constant">50</span><span class="Statement">^</span><span class="Constant">2</span><span class="Statement">/</span>rf <span class="Constant">80</span><span class="Statement">^</span><span class="Constant">2</span><span class="Statement">/</span>rf <span class="Constant">50</span><span class="Statement">*</span><span class="Constant">80</span><span class="Statement">/</span>rf<span class="Identifier">]</span> <span class="Statement">*</span> theta)<span class="Special">;</span>
+fprintf(<span class="Constant">'For feature 45 and 80, probability is %f\n'</span>, prob)<span class="Special">;</span>
+
+<span class="Comment">% Compute accuracy of the results:</span>
+prediction = sigmoid(X<span class="Statement">*</span>theta) <span class="Statement">&gt;</span> <span class="Constant">0.5</span><span class="Special">;</span>
+
+fprintf(<span class="Constant">'Training Accuracy: %f\n'</span>, <span class="Statement">mean</span>(double(prediction <span class="Statement">==</span> y)) <span class="Statement">*</span> <span class="Constant">100</span>)<span class="Special">;</span>
+
+<span class="Comment">% plotting the decision boundary:</span>
+X1 = linspace(<span class="Constant">30</span>,<span class="Constant">100</span>,<span class="Constant">100</span>)<span class="Statement">'</span><span class="Special">;</span>
+X2 = linspace(<span class="Constant">30</span>,<span class="Constant">100</span>,<span class="Constant">100</span>)<span class="Special">;</span>
+
+z = <span class="Statement">zeros</span>(<span class="Constant">100</span>,<span class="Constant">100</span>)<span class="Special">;</span>
+
+z = sigmoid(<span class="Constant">1.0</span><span class="Statement">*</span>theta(<span class="Constant">1</span>) <span class="Statement">+</span> X1<span class="Statement">*</span><span class="Statement">ones</span>(<span class="Constant">1</span>,<span class="Constant">100</span>)<span class="Statement">*</span>theta(<span class="Constant">2</span>) <span class="Statement">+</span> <span class="Statement">ones</span>(<span class="Constant">100</span>,<span class="Constant">1</span>)<span class="Statement">*</span>X2<span class="Statement">*</span>theta(<span class="Constant">3</span>) <span class="Statement">+</span> <span class="Comment">...</span>
+(X1<span class="Statement">*</span><span class="Statement">ones</span>(<span class="Constant">1</span>,<span class="Constant">100</span>))<span class="Statement">.^</span><span class="Constant">2</span><span class="Statement">/</span>rf<span class="Statement">*</span>theta(<span class="Constant">4</span>) <span class="Statement">+</span> (<span class="Statement">ones</span>(<span class="Constant">100</span>,<span class="Constant">1</span>)<span class="Statement">*</span>X2)<span class="Statement">.^</span><span class="Constant">2</span><span class="Statement">/</span>rf<span class="Statement">*</span>theta(<span class="Constant">5</span>) <span class="Statement">+</span> <span class="Comment">...</span>
+theta(<span class="Constant">6</span>)<span class="Statement">*</span>X1<span class="Statement">*</span>X2<span class="Statement">/</span>rf)<span class="Special">;</span>
+
+mesh(X1<span class="Statement">'</span>,X2,z)<span class="Special">;</span>
+colormap cool<span class="Special">;</span>
+colorbar<span class="Special">;</span>
+
+print <span class="Statement">-</span>dpng regplot.png
+
+hold off
+
+</pre>

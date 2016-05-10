@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>~/examples/C/C_Array_Pointer.c.html</title>
+<meta name="Generator" content="Vim/7.2">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+.Special { color: #6a5acd; }
+.Statement { color: #a52a2a; font-weight: bold; }
+pre { font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+.Comment { color: #0000ff; }
+.PreProc { color: #a020f0; }
+.Constant { color: #ff00ff; }
+.Type { color: #2e8b57; font-weight: bold; }
+-->
+</style>
+</head>
+<body>
+<pre>
+<span class="Comment">/*</span><span class="Comment"> AAK:</span>
+<span class="Comment"> * This is an example code to learn </span>
+<span class="Comment"> * array/matrices and pointer handling in C</span>
+<span class="Comment"> * memory allocation etc..</span>
+<span class="Comment"> * last update:</span>
+<span class="Comment"> * Sat Sep 15 17:10:05 PDT 2012</span>
+<span class="Comment"> </span><span class="Comment">*/</span>
+
+<span class="PreProc">#include </span><span class="Constant">&lt;stdio.h&gt;</span>
+
+
+<span class="Type">int</span> main(<span class="Type">int</span> argc, <span class="Type">char</span> *argv[]) {
+
+   <span class="Type">double</span> *p;
+   <span class="Type">int</span> *q;
+   <span class="Type">double</span> r;
+   <span class="Type">int</span> y[<span class="Constant">3</span>][<span class="Constant">3</span>]; <span class="Comment">/*</span><span class="Comment"> Two dimensional arrays are pointer to pointers </span><span class="Comment">*/</span>
+        <span class="Type">int</span> x[<span class="Constant">10</span>]; <span class="Comment">/*</span><span class="Comment"> in C arrays are basically pointers </span><span class="Comment">*/</span>
+   <span class="Type">int</span> i,j;
+
+   r = <span class="Constant">10.0</span>;
+   p = &amp;r;
+   *p = <span class="Constant">5.0</span>;
+   printf(<span class="Constant">&quot;Value of r changed to = </span><span class="Special">%f</span><span class="Special">\n</span><span class="Constant">&quot;</span>,r);
+
+   <span class="Statement">for</span>(i=<span class="Constant">0</span>;i&lt;<span class="Constant">10</span>;i++){
+      x[i] = <span class="Constant">2</span> * (i+<span class="Constant">1</span>);
+   }
+
+   <span class="Comment">/*</span><span class="Comment"> q will be a pointer to first element in array x </span><span class="Comment">*/</span>
+   q = x;
+   printf(<span class="Constant">&quot;First element in x = </span><span class="Special">%d</span><span class="Special">\n</span><span class="Constant">&quot;</span>,*q);
+
+   <span class="Comment">/*</span><span class="Comment"> going to the neighbooring memory position using pointer: </span><span class="Comment">*/</span>
+   printf(<span class="Constant">&quot;4th element in x = </span><span class="Special">%d</span><span class="Special">\n</span><span class="Constant">&quot;</span>,*(q+<span class="Constant">3</span>));
+   <span class="Comment">/*</span><span class="Comment"> or equivalently </span><span class="Comment">*/</span>
+        printf(<span class="Constant">&quot;4th element of x = </span><span class="Special">%d</span><span class="Special">\n</span><span class="Constant">&quot;</span>,q[<span class="Constant">3</span>]);
+
+   <span class="Comment">/*</span><span class="Comment"> allocating memory of 5 double variable and returning</span>
+<span class="Comment">    * the address to p </span>
+<span class="Comment">    * </span><span class="Comment">*/</span>
+
+   p = (<span class="Type">double</span> *)malloc(<span class="Statement">sizeof</span>(<span class="Type">double</span>)*<span class="Constant">5</span>);
+
+   <span class="Comment">/*</span><span class="Comment"> malloc(N) allocates N bytes</span>
+<span class="Comment">    * sizeof(type) returns the number of bytes for that type of data</span>
+<span class="Comment">    </span><span class="Comment">*/</span>
+
+   printf(<span class="Constant">&quot;Values in p: </span><span class="Special">%f</span><span class="Constant"> </span><span class="Special">%f</span><span class="Constant"> </span><span class="Special">%f</span><span class="Constant"> </span><span class="Special">%f</span><span class="Constant"> </span><span class="Special">%f</span><span class="Special">\n</span><span class="Constant">&quot;</span>,p[<span class="Constant">0</span>],p[<span class="Constant">1</span>],p[<span class="Constant">2</span>],p[<span class="Constant">3</span>],p[<span class="Constant">4</span>]);
+
+   q = (<span class="Type">int</span> *)malloc(<span class="Statement">sizeof</span>(<span class="Type">int</span>)*<span class="Constant">10</span>);
+
+   <span class="Comment">/*</span><span class="Comment"> making q shifted compared to x </span><span class="Comment">*/</span>
+
+   q = &amp;(x[<span class="Constant">1</span>]);
+
+   printf(<span class="Constant">&quot;q is shifted by one as you can see:</span><span class="Special">\n</span><span class="Constant">&quot;</span>);
+   printf(<span class="Constant">&quot;q's = </span><span class="Special">%d</span><span class="Constant"> </span><span class="Special">%d</span><span class="Constant"> </span><span class="Special">%d</span><span class="Constant"> </span><span class="Special">%d</span><span class="Constant"> ...</span><span class="Special">\n</span><span class="Constant">&quot;</span>,q[<span class="Constant">0</span>],q[<span class="Constant">1</span>],q[<span class="Constant">2</span>],q[<span class="Constant">3</span>]);
+   printf(<span class="Constant">&quot;x's = </span><span class="Special">%d</span><span class="Constant"> </span><span class="Special">%d</span><span class="Constant"> </span><span class="Special">%d</span><span class="Constant"> </span><span class="Special">%d</span><span class="Constant"> ...</span><span class="Special">\n</span><span class="Constant">&quot;</span>,x[<span class="Constant">0</span>],x[<span class="Constant">1</span>],x[<span class="Constant">2</span>],x[<span class="Constant">3</span>]);
+
+   <span class="Comment">/*</span><span class="Comment"> The following line basically &quot;copies&quot; the vector x into q </span><span class="Comment">*/</span>
+
+   q = x;
+
+   printf(<span class="Constant">&quot;q and x are the same: </span><span class="Special">%d</span><span class="Constant"> = </span><span class="Special">%d</span><span class="Constant"> , </span><span class="Special">%d</span><span class="Constant"> = </span><span class="Special">%d</span><span class="Constant"> </span><span class="Special">\n</span><span class="Constant">&quot;</span>,q[<span class="Constant">9</span>],x[<span class="Constant">9</span>], q[<span class="Constant">5</span>],x[<span class="Constant">5</span>]);
+
+   <span class="Comment">/*</span><span class="Comment"> Higher dimensional arrays are also stored in a continuous memory</span>
+<span class="Comment">    * with first index runs first, see the output: </span>
+<span class="Comment">    * Note that two dimensional array is a pointer to pointer</span><span class="Comment">*/</span>
+
+   <span class="Statement">for</span>(i=<span class="Constant">0</span>;i&lt;<span class="Constant">3</span>;i++) {
+      <span class="Statement">for</span> (j=<span class="Constant">0</span>;j&lt;<span class="Constant">3</span>;j++){
+         y[i][j] = <span class="Constant">10</span>*(i+<span class="Constant">1</span>) + j + <span class="Constant">1</span>;
+      }
+   }
+
+   <span class="Statement">for</span>(i=<span class="Constant">0</span>;i&lt;<span class="Constant">3</span>;i++){
+      printf(<span class="Constant">&quot;y[</span><span class="Special">%d</span><span class="Constant">][1],y[</span><span class="Special">%d</span><span class="Constant">][2],y[</span><span class="Special">%d</span><span class="Constant">][3] = </span><span class="Special">%d</span><span class="Constant"> </span><span class="Special">%d</span><span class="Constant"> </span><span class="Special">%d</span><span class="Special">\n</span><span class="Constant">&quot;</span>,i,i,i,y[i][<span class="Constant">0</span>], y[i][<span class="Constant">1</span>], y[i][<span class="Constant">2</span>]);
+   }
+
+
+   printf(<span class="Constant">&quot;Y's are stored as:</span><span class="Special">\n</span><span class="Constant">&quot;</span>);
+   <span class="Statement">for</span>(i=<span class="Constant">0</span>;i&lt;<span class="Constant">3</span>;i++) {
+      <span class="Statement">for</span> (j=<span class="Constant">0</span>;j&lt;<span class="Constant">3</span>;j++){
+         printf(<span class="Constant">&quot; </span><span class="Special">%d</span><span class="Constant"> &quot;</span>,*(*(y+j)+i));
+      }
+   }
+   printf(<span class="Constant">&quot;</span><span class="Special">\n</span><span class="Constant">&quot;</span>);
+
+
+<span class="Comment">/*</span><span class="Comment"> Strings in C are handled by pointers to character </span><span class="Comment">*/</span>
+<span class="Type">char</span> *str;
+
+  str=(<span class="Type">char</span> *)malloc(<span class="Statement">sizeof</span>(<span class="Type">char</span>)*<span class="Constant">10</span>);
+  printf(<span class="Constant">&quot;Enter an string:</span><span class="Special">\n</span><span class="Constant">&quot;</span>);
+  scanf(<span class="Constant">&quot;</span><span class="Special">%s</span><span class="Constant">&quot;</span>,str);
+  printf(<span class="Constant">&quot;You entered: [</span><span class="Special">%s</span><span class="Constant">]</span><span class="Special">\n</span><span class="Constant">&quot;</span>,str);
+  str=<span class="Constant">&quot;Hi!  &quot;</span>;
+  printf(<span class="Constant">&quot;str changed to: [</span><span class="Special">%s</span><span class="Constant">]</span><span class="Special">\n</span><span class="Constant">&quot;</span>,str);
+
+<span class="Comment">/*</span><span class="Comment"> or you can define str as char str[10] </span><span class="Comment">*/</span>
+
+}
+
+</pre>
+</body>
+</html>

@@ -1,0 +1,2621 @@
+<html>
+<body>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;From:&nbsp;<b>MATLAB&nbsp;An&nbsp;Introduction&nbsp;with&nbsp;Applications</b></tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Amos&nbsp;Gilat</b></tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>Chapter&nbsp;3&nbsp;&nbsp;&nbsp;Mathematical&nbsp;Operations&nbsp;with&nbsp;Arrays</b></tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;Preamble:</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;One&nbsp;of&nbsp;the&nbsp;main&nbsp;design&nbsp;goals&nbsp;of&nbsp;Matlab&nbsp;was&nbsp;to&nbsp;make&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;calculations&nbsp;in&nbsp;linear&nbsp;algebra&nbsp;straightforward.</tt></font><br>
+   <font color="green"><tt>%&nbsp;Among&nbsp;other&nbsp;things,&nbsp;this&nbsp;means&nbsp;that&nbsp;operations&nbsp;central&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;to&nbsp;that&nbsp;branch&nbsp;of&nbsp;mathematics&nbsp;have&nbsp;a&nbsp;simple&nbsp;and&nbsp;natural&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;expression&nbsp;in&nbsp;the&nbsp;language.&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;A&nbsp;key&nbsp;example&nbsp;of&nbsp;this&nbsp;is&nbsp;that,&nbsp;as&nbsp;we&nbsp;shall&nbsp;see,&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;the&nbsp;operations&nbsp;of&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;matrix-vector&nbsp;multiplication</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;matrix-matrix&nbsp;multiplication</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;matrix-vector&nbsp;division</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;matrix-matrix&nbsp;division</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;are&nbsp;implemented&nbsp;using&nbsp;the&nbsp;'*'&nbsp;and&nbsp;'/'&nbsp;operators&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;that&nbsp;we&nbsp;are&nbsp;familar&nbsp;with&nbsp;in&nbsp;the&nbsp;context&nbsp;of&nbsp;arithmetic</tt></font><br>
+   <font color="green"><tt>%&nbsp;expressions&nbsp;using&nbsp;scalar&nbsp;quantities.&nbsp;&nbsp;We&nbsp;refer&nbsp;to&nbsp;these&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;operations&nbsp;as&nbsp;"matrix"&nbsp;or&nbsp;"whole-array"&nbsp;or&nbsp;"array"&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;multiplication&nbsp;and&nbsp;division.</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;However,&nbsp;there&nbsp;is&nbsp;a&nbsp;distinct&nbsp;type&nbsp;of&nbsp;multiplication/division</tt></font><br>
+   <font color="green"><tt>%&nbsp;operation&nbsp;we&nbsp;will&nbsp;frequently&nbsp;wish&nbsp;to&nbsp;use&nbsp;with&nbsp;arrays,&nbsp;which&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;is&nbsp;to&nbsp;apply&nbsp;the&nbsp;operators&nbsp;on&nbsp;an&nbsp;"element-by-element"&nbsp;basis.&nbsp;&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;Matlab&nbsp;thus&nbsp;has&nbsp;a&nbsp;separate&nbsp;notation/syntax&nbsp;for&nbsp;element-wise&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;multiplication,&nbsp;division&nbsp;(and&nbsp;exponentiation)&nbsp;operations,</tt></font><br>
+   <font color="green"><tt>%&nbsp;which&nbsp;is&nbsp;to&nbsp;prepend&nbsp;the&nbsp;usual&nbsp;operator&nbsp;with&nbsp;a&nbsp;'.'&nbsp;(dot,</tt></font><br>
+   <font color="green"><tt>%&nbsp;period).&nbsp;&nbsp;The&nbsp;syntax&nbsp;can&nbsp;also&nbsp;be&nbsp;used&nbsp;with&nbsp;addition&nbsp;and&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;subtraction,&nbsp;but&nbsp;in&nbsp;those&nbsp;instances&nbsp;the&nbsp;'.'&nbsp;is,&nbsp;as&nbsp;we&nbsp;shall&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;see&nbsp;redundant.</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;Thus,&nbsp;the&nbsp;operators&nbsp;for&nbsp;element-wise&nbsp;arithmetic&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;operations&nbsp;on&nbsp;arrays&nbsp;are&nbsp;</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;.*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Element-by-element&nbsp;multiplication</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;./&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Element-by-element&nbsp;(right)&nbsp;division</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;.\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Element-by-element&nbsp;left&nbsp;division</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;.^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Element-by-element&nbsp;exponentiation.</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;For&nbsp;both&nbsp;matrix&nbsp;and&nbsp;element-wise&nbsp;caclulations&nbsp;there&nbsp;are&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;constraints&nbsp;that&nbsp;the&nbsp;operands&nbsp;must&nbsp;satisfy&nbsp;so&nbsp;that&nbsp;the&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;operation&nbsp;is&nbsp;well&nbsp;defined.</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;1)&nbsp;For&nbsp;matrix&nbsp;operations,&nbsp;the&nbsp;dimensions&nbsp;(which&nbsp;we&nbsp;will</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;also&nbsp;refer&nbsp;to&nbsp;as&nbsp;sizes)&nbsp;of&nbsp;the&nbsp;operands&nbsp;must&nbsp;be&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;be&nbsp;conformant&nbsp;according&nbsp;to&nbsp;the&nbsp;usual&nbsp;rules&nbsp;&nbsp;of&nbsp;linear&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;algebra.</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;2)&nbsp;For&nbsp;element-wise&nbsp;operations,&nbsp;one&nbsp;of&nbsp;the&nbsp;following&nbsp;must&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;be&nbsp;true</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;i)&nbsp;&nbsp;&nbsp;Both&nbsp;of&nbsp;the&nbsp;operands&nbsp;are&nbsp;scalars.</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;ii)&nbsp;&nbsp;One&nbsp;of&nbsp;the&nbsp;operands&nbsp;is&nbsp;a&nbsp;scalar&nbsp;and&nbsp;the&nbsp;other</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is&nbsp;an&nbsp;array.</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;iii)&nbsp;Both&nbsp;operands&nbsp;are&nbsp;arrays&nbsp;and&nbsp;have&nbsp;the&nbsp;same</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dimensions.</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;result&nbsp;of&nbsp;an&nbsp;element-by-element&nbsp;array&nbsp;operation</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;has&nbsp;the&nbsp;same&nbsp;dimensions&nbsp;of&nbsp;the&nbsp;operand&nbsp;array(s),&nbsp;with</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;values&nbsp;that,&nbsp;as&nbsp;the&nbsp;nomenclature&nbsp;suggests,&nbsp;are&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;calculated&nbsp;from&nbsp;the&nbsp;action&nbsp;of&nbsp;the&nbsp;particular&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;binary&nbsp;operator&nbsp;(*,&nbsp;/,&nbsp;\,&nbsp;^)&nbsp;on&nbsp;corresponding&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;elements&nbsp;of&nbsp;the&nbsp;operand&nbsp;arrays.</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;If&nbsp;all&nbsp;of&nbsp;this&nbsp;is&nbsp;confusing,&nbsp;the&nbsp;examples&nbsp;below&nbsp;should</tt></font><br>
+   <font color="green"><tt>%&nbsp;clear&nbsp;things&nbsp;up.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>Arithmetic&nbsp;operations&nbsp;between&nbsp;a&nbsp;scalar&nbsp;and&nbsp;an&nbsp;array</b></tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;If&nbsp;one&nbsp;of&nbsp;the&nbsp;operands&nbsp;of&nbsp;an&nbsp;elementary&nbsp;operation</tt></font><br>
+   <font color="green"><tt>%&nbsp;involving&nbsp;+,&nbsp;-,&nbsp;*,&nbsp;or&nbsp;/&nbsp;is&nbsp;a&nbsp;scalar&nbsp;and&nbsp;the&nbsp;other&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;is&nbsp;an&nbsp;array,&nbsp;A,&nbsp;then&nbsp;the&nbsp;operation&nbsp;is&nbsp;applied&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;(distributed)&nbsp;to&nbsp;each&nbsp;element&nbsp;of&nbsp;A,&nbsp;yielding&nbsp;a&nbsp;result&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;that&nbsp;is&nbsp;also&nbsp;an&nbsp;array&nbsp;with&nbsp;the&nbsp;same&nbsp;dimensions&nbsp;as&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;A.&nbsp;&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;In&nbsp;short,&nbsp;"what&nbsp;you&nbsp;get&nbsp;is&nbsp;what&nbsp;you&nbsp;expect"!</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+v = 1:5<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+v&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;5
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+v1 = v + pi<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+v1&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;4.1416&nbsp;&nbsp;&nbsp;&nbsp;5.1416&nbsp;&nbsp;&nbsp;&nbsp;6.1416&nbsp;&nbsp;&nbsp;&nbsp;7.1416&nbsp;&nbsp;&nbsp;&nbsp;8.1416
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+v2 = 3.1 * v<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+v2&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9.3000&nbsp;&nbsp;&nbsp;&nbsp;12.4000&nbsp;&nbsp;&nbsp;&nbsp;15.5000
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+v3 = v / 5<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+v3&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;0.20000&nbsp;&nbsp;&nbsp;0.40000&nbsp;&nbsp;&nbsp;0.60000&nbsp;&nbsp;&nbsp;0.80000&nbsp;&nbsp;&nbsp;1.00000
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+v4 = 2 * v + 6<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+v4&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;14&nbsp;&nbsp;&nbsp;16
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+m = [1 2 3; 4 5 6]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+m&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3
+<br>
+&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;6
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+m1 = 3 * m<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+m1&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;9
+<br>
+&nbsp;&nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;18
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+offset = -12<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+offset&nbsp;=&nbsp;-12
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+m2 = m  / 2 + offset<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+m2&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;-11.5000&nbsp;&nbsp;-11.0000&nbsp;&nbsp;-10.5000
+<br>
+&nbsp;&nbsp;-10.0000&nbsp;&nbsp;&nbsp;-9.5000&nbsp;&nbsp;&nbsp;-9.0000
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+-3 * ones(1,7)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;-3&nbsp;&nbsp;-3&nbsp;&nbsp;-3&nbsp;&nbsp;-3&nbsp;&nbsp;-3&nbsp;&nbsp;-3&nbsp;&nbsp;-3
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+6 * ones(3)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;6
+<br>
+&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;6
+<br>
+&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;6
+<br>
+</font></b></tt>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>NOTE:</b>&nbsp;The&nbsp;exponentiation&nbsp;operator&nbsp;^&nbsp;can&nbsp;NOT&nbsp;be&nbsp;used</tt></font><br>
+   <font color="green"><tt>%&nbsp;in&nbsp;this&nbsp;way,&nbsp;e.g.&nbsp;v^2&nbsp;will&nbsp;NOT&nbsp;return&nbsp;the&nbsp;vector&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;[1&nbsp;4&nbsp;9&nbsp;15&nbsp;25].&nbsp;&nbsp;The&nbsp;element-wise&nbsp;syntax&nbsp;discussed&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;below&nbsp;must&nbsp;be&nbsp;used&nbsp;instead.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&nbsp;</tt></font><br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>3.1&nbsp;Addition&nbsp;and&nbsp;Subtraction</b></tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>NOTE:</b>&nbsp;For&nbsp;addition&nbsp;and&nbsp;subtraction,&nbsp;matrix/array</tt></font><br>
+   <font color="green"><tt>%&nbsp;operation&nbsp;is&nbsp;always&nbsp;an&nbsp;element-by-element&nbsp;operation.</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;If&nbsp;arrays&nbsp;are&nbsp;added&nbsp;or&nbsp;subtracted&nbsp;then:</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;1)&nbsp;They&nbsp;must&nbsp;have&nbsp;identical&nbsp;sizes.</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;2)&nbsp;The&nbsp;arrays&nbsp;are&nbsp;added&nbsp;or&nbsp;subtracted&nbsp;element-wise&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;produce&nbsp;the&nbsp;result.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+VectA = [8 5 4] <br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+VectA&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;4
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+VectB = [10 2 7]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+VectB&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;7
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+VectC = VectA + VectB<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+VectC&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;11
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+VectA + 13<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;21&nbsp;&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;17
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+A = [5 -3 8; 9 2 10]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+A&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;-3&nbsp;&nbsp;&nbsp;&nbsp;8
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;10
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+B = [10 7 4; -11 15 1]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+B&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;4
+<br>
+&nbsp;&nbsp;-11&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;1
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+A - B<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;-5&nbsp;&nbsp;-10&nbsp;&nbsp;&nbsp;&nbsp;4
+<br>
+&nbsp;&nbsp;&nbsp;20&nbsp;&nbsp;-13&nbsp;&nbsp;&nbsp;&nbsp;9
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+C = A + B<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+C&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;12
+<br>
+&nbsp;&nbsp;&nbsp;-2&nbsp;&nbsp;&nbsp;17&nbsp;&nbsp;&nbsp;11
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+C - 8<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;-4&nbsp;&nbsp;&nbsp;&nbsp;4
+<br>
+&nbsp;&nbsp;-10&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;3
+<br>
+</font></b></tt>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>3.2&nbsp;Array&nbsp;(Matrix)&nbsp;Multiplication></b></tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;Matrix&nbsp;multiplication&nbsp;in&nbsp;MATLAB&nbsp;is&nbsp;denoted&nbsp;by&nbsp;*</tt></font><br>
+   <font color="green"><tt>%&nbsp;and&nbsp;is&nbsp;defined&nbsp;according&nbsp;to&nbsp;the&nbsp;standard&nbsp;rule&nbsp;of&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;linear&nbsp;algebra:&nbsp;namely&nbsp;</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;If&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>A</b>&nbsp;is&nbsp;an&nbsp;<b>m&nbsp;x&nbsp;n</b>&nbsp;matrix&nbsp;with&nbsp;elements&nbsp;a(i,j)</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;and&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>B</b>&nbsp;is&nbsp;an&nbsp;<b>n&nbsp;x&nbsp;p</b>&nbsp;matrix&nbsp;with&nbsp;elements&nbsp;b(j,k)</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;then</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>C</b>&nbsp;=&nbsp;<b>A&nbsp;*&nbsp;B</b>&nbsp;is&nbsp;an&nbsp;<b>m&nbsp;x&nbsp;p</b>&nbsp;matrix&nbsp;with&nbsp;elements&nbsp;c(i,k)</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;defined&nbsp;by&nbsp;&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c(i,k)&nbsp;=&nbsp;Sum&nbsp;[&nbsp;a(i,j)&nbsp;x&nbsp;b(j,k)&nbsp;]</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j=1</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>NOTE:</b>&nbsp;For&nbsp;this&nbsp;operation&nbsp;to&nbsp;be&nbsp;well&nbsp;defined,</tt></font><br>
+   <font color="green"><tt>%&nbsp;the&nbsp;<b>number&nbsp;of&nbsp;columns&nbsp;of&nbsp;A&nbsp;must&nbsp;equal&nbsp;the&nbsp;number&nbsp;of&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;rows&nbsp;of&nbsp;B.</b></tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+A = [1 4 2; 5 7 3; 9 1 6; 4 2 8]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+A&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;2
+<br>
+&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;3
+<br>
+&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;6
+<br>
+&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;8
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+B = [6 1; 2 5; 7 3]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+B&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;1
+<br>
+&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;5
+<br>
+&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;3
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+C = A * B<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+C&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;&nbsp;27
+<br>
+&nbsp;&nbsp;&nbsp;65&nbsp;&nbsp;&nbsp;49
+<br>
+&nbsp;&nbsp;&nbsp;98&nbsp;&nbsp;&nbsp;32
+<br>
+&nbsp;&nbsp;&nbsp;84&nbsp;&nbsp;&nbsp;38
+<br>
+</font></b></tt>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;D&nbsp;=&nbsp;B&nbsp;*&nbsp;A&nbsp;&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;would&nbsp;generate&nbsp;an&nbsp;error&nbsp;message&nbsp;since&nbsp;the&nbsp;number&nbsp;of&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;columns&nbsp;of&nbsp;B&nbsp;is&nbsp;not&nbsp;equal&nbsp;to&nbsp;the&nbsp;number&nbsp;of&nbsp;rows&nbsp;of&nbsp;A</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+F = [1 3; 5 7]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+F&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;3
+<br>
+&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;7
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+G = [4 2; 1 6]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+G&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;2
+<br>
+&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;6
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+F * G<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;20
+<br>
+&nbsp;&nbsp;&nbsp;27&nbsp;&nbsp;&nbsp;52
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+G * F<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;14&nbsp;&nbsp;&nbsp;26
+<br>
+&nbsp;&nbsp;&nbsp;31&nbsp;&nbsp;&nbsp;45
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+AV = [2 5 1]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+AV&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;1
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+BV = [3; 1; 4]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+BV&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;3
+<br>
+&nbsp;&nbsp;&nbsp;1
+<br>
+&nbsp;&nbsp;&nbsp;4
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+AV * BV<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=&nbsp;&nbsp;15
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+BV * AV<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;3
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;1
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;&nbsp;4
+<br>
+</font></b></tt>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>3.4&nbsp;Element-By-Element&nbsp;Operations</b></tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;As&nbsp;already&nbsp;noted&nbsp;above,&nbsp;the&nbsp;following&nbsp;binary&nbsp;operators</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;multiplication</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;right&nbsp;division</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;left&nbsp;division</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exponentiation</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;can&nbsp;be&nbsp;applied&nbsp;to&nbsp;arrays&nbsp;in&nbsp;an&nbsp;element-by-element</tt></font><br>
+   <font color="green"><tt>%&nbsp;fashion&nbsp;by&nbsp;prefixing&nbsp;the&nbsp;operator&nbsp;with&nbsp;a&nbsp;'.'</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;.*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;element-by-element&nbsp;multiplication</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;.\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;element-by-element&nbsp;right&nbsp;division</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;./&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;element-by-element&nbsp;left&nbsp;division</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;.^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;element-by-element&nbsp;exponentiation</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>NOTE:</b>&nbsp;When&nbsp;using&nbsp;element-by-element&nbsp;operations</tt></font><br>
+   <font color="green"><tt>%&nbsp;between&nbsp;arrays,&nbsp;the&nbsp;arrays&nbsp;must&nbsp;be&nbsp;the&nbsp;same&nbsp;size.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+A = [2 6 3; 5 8 4]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+A&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;3
+<br>
+&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;4
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+B = [1 4 10; 3 2 7]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+B&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;10
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;7
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+A .* B<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;24&nbsp;&nbsp;&nbsp;30
+<br>
+&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;28
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+C = A ./ B<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+C&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;2.00000&nbsp;&nbsp;&nbsp;1.50000&nbsp;&nbsp;&nbsp;0.30000
+<br>
+&nbsp;&nbsp;&nbsp;1.66667&nbsp;&nbsp;&nbsp;4.00000&nbsp;&nbsp;&nbsp;0.57143
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+D = A .\ B<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+D&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;0.50000&nbsp;&nbsp;&nbsp;0.66667&nbsp;&nbsp;&nbsp;3.33333
+<br>
+&nbsp;&nbsp;&nbsp;0.60000&nbsp;&nbsp;&nbsp;0.25000&nbsp;&nbsp;&nbsp;1.75000
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+C .* D<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;1
+<br>
+&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;1
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+B .^ 3<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;64&nbsp;&nbsp;&nbsp;1000
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;343
+<br>
+</font></b></tt>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;Using&nbsp;element-by-element&nbsp;operations&nbsp;to&nbsp;compute&nbsp;a</tt></font><br>
+   <font color="green"><tt>%&nbsp;function&nbsp;at&nbsp;many&nbsp;values&nbsp;of&nbsp;its&nbsp;argument.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+x = [1:8]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+x&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;8
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+y = x.^2 - 4*x<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+y&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;-3&nbsp;&nbsp;&nbsp;-4&nbsp;&nbsp;&nbsp;-3&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;21&nbsp;&nbsp;&nbsp;32
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+z = [1:2:11]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+z&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;11
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+y = (z.^3 + 5*z) ./ (4*z.^2 - 10)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+y&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;-1.0000&nbsp;&nbsp;&nbsp;1.6154&nbsp;&nbsp;&nbsp;1.6667&nbsp;&nbsp;&nbsp;2.0323&nbsp;&nbsp;&nbsp;2.4650&nbsp;&nbsp;&nbsp;2.9241
+<br>
+</font></b></tt>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;We&nbsp;<b>can</b>&nbsp;also&nbsp;use&nbsp;the&nbsp;element-wise&nbsp;notation&nbsp;with&nbsp;the</tt></font><br>
+   <font color="green"><tt>%&nbsp;addition&nbsp;and&nbsp;subtraction&nbsp;operators,&nbsp;but&nbsp;it&nbsp;is&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>unnecessary</b>.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+[ 1 2 3 4] .+ [5 6 7 8]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;12
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+[ 1 2 3 4] + [5 6 7 8]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;12
+<br>
+</font></b></tt>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>NOTE:</b>&nbsp;It&nbsp;is&nbsp;very&nbsp;important&nbsp;to&nbsp;understand&nbsp;the</tt></font><br>
+   <font color="green"><tt>%&nbsp;distinction&nbsp;between&nbsp;"whole&nbsp;array"&nbsp;operations&nbsp;and&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;element&nbsp;by&nbsp;element&nbsp;operations&nbsp;for&nbsp;*,&nbsp;/&nbsp;and&nbsp;^&nbsp;</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;It&nbsp;is&nbsp;a&nbsp;very&nbsp;common&nbsp;error&nbsp;for&nbsp;a&nbsp;Matlab&nbsp;user&nbsp;to&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;type&nbsp;something&nbsp;like&nbsp;this</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>>>&nbsp;v1&nbsp;=&nbsp;[1&nbsp;2&nbsp;3]</b></tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>>>&nbsp;v2&nbsp;=&nbsp;[4&nbsp;5&nbsp;6]</b></tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>>>&nbsp;v3&nbsp;=&nbsp;v1&nbsp;*&nbsp;v2</b></tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;expecting&nbsp;v3&nbsp;to&nbsp;be&nbsp;assigned&nbsp;[4&nbsp;10&nbsp;18].&nbsp;&nbsp;</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;Instead,&nbsp;the&nbsp;following&nbsp;error&nbsp;message&nbsp;results:</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>Error&nbsp;using&nbsp;*</b></tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>Inner&nbsp;matrix&nbsp;dimensions&nbsp;must&nbsp;agree.</b></tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;since&nbsp;<b>*</b>&nbsp;in&nbsp;this&nbsp;context&nbsp;denotes&nbsp;<b>matrix</b></tt></font><br>
+   <font color="green"><tt>%&nbsp;multiplication.&nbsp;&nbsp;</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;Similarly,&nbsp;attempting&nbsp;to&nbsp;square&nbsp;each&nbsp;element&nbsp;of&nbsp;v1</tt></font><br>
+   <font color="green"><tt>%&nbsp;using&nbsp;</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>>>&nbsp;v4&nbsp;=&nbsp;v1^2</b></tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;generates&nbsp;the&nbsp;error&nbsp;message:</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>Error&nbsp;using&nbsp;^</b></tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>Inputs&nbsp;must&nbsp;be&nbsp;a&nbsp;scalar&nbsp;and&nbsp;a&nbsp;square&nbsp;matrix.</b></tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>To&nbsp;compute&nbsp;elementwise&nbsp;POWER,&nbsp;use&nbsp;POWER&nbsp;(.^)&nbsp;instead.</b></tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>3.5&nbsp;Using&nbsp;Arrays&nbsp;In&nbsp;MATLAB&nbsp;Built-in&nbsp;Math&nbsp;Functions</b></tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;When&nbsp;any&nbsp;of&nbsp;MATLAB's&nbsp;built&nbsp;in&nbsp;math&nbsp;functions&nbsp;is&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;invoked&nbsp;with&nbsp;an&nbsp;array&nbsp;argument,&nbsp;the&nbsp;output&nbsp;is&nbsp;an</tt></font><br>
+   <font color="green"><tt>%&nbsp;array&nbsp;with&nbsp;identical&nbsp;size&nbsp;of&nbsp;the&nbsp;input,&nbsp;and&nbsp;with&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;elements&nbsp;whose&nbsp;values&nbsp;are&nbsp;the&nbsp;results&nbsp;of&nbsp;applying</tt></font><br>
+   <font color="green"><tt>%&nbsp;the&nbsp;function&nbsp;to&nbsp;the&nbsp;corresponding&nbsp;elements&nbsp;of&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;the&nbsp;input&nbsp;array.</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;Again&nbsp;this&nbsp;is&nbsp;a&nbsp;case&nbsp;where&nbsp;"what&nbsp;you&nbsp;get&nbsp;is&nbsp;what&nbsp;you&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;expect"!</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+x = [0:pi/6:pi]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+x&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;0.00000&nbsp;&nbsp;&nbsp;0.52360&nbsp;&nbsp;&nbsp;1.04720&nbsp;&nbsp;&nbsp;1.57080&nbsp;&nbsp;&nbsp;2.09440&nbsp;&nbsp;&nbsp;2.61799&nbsp;&nbsp;&nbsp;3.14159
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+y = cos(x)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+y&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;Columns&nbsp;1&nbsp;through&nbsp;6:
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;1.0000e+00&nbsp;&nbsp;&nbsp;8.6603e-01&nbsp;&nbsp;&nbsp;5.0000e-01&nbsp;&nbsp;&nbsp;6.1230e-17&nbsp;&nbsp;-5.0000e-01&nbsp;&nbsp;-8.6603e-01
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;Column&nbsp;7:
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;-1.0000e+00
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+d = [1 4 9; 16 25 36; 49 64 81]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+d&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;9
+<br>
+&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;25&nbsp;&nbsp;&nbsp;36
+<br>
+&nbsp;&nbsp;&nbsp;49&nbsp;&nbsp;&nbsp;64&nbsp;&nbsp;&nbsp;81
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+h = sqrt(d)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+h&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3
+<br>
+&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;6
+<br>
+&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;9
+<br>
+</font></b></tt>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>3.6&nbsp;Built&nbsp;In&nbsp;Functions&nbsp;for&nbsp;Analyzing&nbsp;Arrays</b></tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>Reduction&nbsp;Functions</b></tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;Many&nbsp;of&nbsp;the&nbsp;functions&nbsp;described&nbsp;below&nbsp;(those&nbsp;marked</tt></font><br>
+   <font color="green"><tt>%&nbsp;with&nbsp;an&nbsp;(*))&nbsp;operate&nbsp;on&nbsp;arrays&nbsp;of&nbsp;general&nbsp;dimensions,</tt></font><br>
+   <font color="green"><tt>%&nbsp;as&nbsp;well&nbsp;as&nbsp;on&nbsp;vectors.&nbsp;&nbsp;Furthermore,&nbsp;when&nbsp;operating&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;on&nbsp;a&nbsp;vector,&nbsp;many&nbsp;of&nbsp;these&nbsp;functions&nbsp;return&nbsp;a&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>single</b>&nbsp;value.</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;For&nbsp;higher&nbsp;dimensional&nbsp;arrays,&nbsp;and&nbsp;for&nbsp;matrices&nbsp;in</tt></font><br>
+   <font color="green"><tt>%&nbsp;particular,&nbsp;such&nbsp;functions&nbsp;generally&nbsp;operate&nbsp;<b>along</tt></font><br>
+   <font color="green"><tt>%&nbsp;columns</b>&nbsp;(i.e.&nbsp;along&nbsp;the&nbsp;first&nbsp;dimension&nbsp;of&nbsp;the&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;array),&nbsp;returning&nbsp;a&nbsp;<b>row&nbsp;vector</b>&nbsp;of&nbsp;values:&nbsp;each&nbsp;value</tt></font><br>
+   <font color="green"><tt>%&nbsp;in&nbsp;the&nbsp;row&nbsp;vector&nbsp;is&nbsp;the&nbsp;result&nbsp;of&nbsp;applying&nbsp;the&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;function&nbsp;to&nbsp;the&nbsp;elements&nbsp;of&nbsp;the&nbsp;corresponding&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;column&nbsp;of&nbsp;the&nbsp;original&nbsp;matrix.</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;One&nbsp;net&nbsp;effect&nbsp;of&nbsp;these&nbsp;functions&nbsp;is&nbsp;thus&nbsp;to&nbsp;reduce&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;the&nbsp;dimensionality&nbsp;of&nbsp;the&nbsp;array&nbsp;by&nbsp;one&nbsp;(or,&nbsp;more&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;properly,&nbsp;to&nbsp;collapse&nbsp;the&nbsp;length&nbsp;of&nbsp;the&nbsp;first&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;dimension&nbsp;to&nbsp;1):&nbsp;such&nbsp;functions&nbsp;are&nbsp;therefore&nbsp;often&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;termed&nbsp;<b>reductions</b>.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;max(<font color="magenta">&lt;A&gt</font>)&nbsp;(*)</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;If&nbsp;<font color="magenta">&lt;A&gt</font>&nbsp;is&nbsp;a&nbsp;vector,&nbsp;returns&nbsp;the&nbsp;largest&nbsp;element&nbsp;in&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;<font color="magenta">&lt;A&gt</font>.</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;If&nbsp;<font color="magenta">&lt;A&gt</font>&nbsp;is&nbsp;a&nbsp;matrix,&nbsp;returns&nbsp;a&nbsp;row&nbsp;vector&nbsp;containing&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;the&nbsp;largest&nbsp;element&nbsp;of&nbsp;each&nbsp;column&nbsp;of&nbsp;<font color="magenta">&lt;A&gt</font>.</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;[<font color="magenta">&lt;d&gt</font>,&nbsp;<font color="magenta">&lt;n&gt</font>]&nbsp;=&nbsp;max(<font color="magenta">&lt;A&gt</font>)&nbsp;(*)</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;If&nbsp;<font color="magenta">&lt;A&gt</font>&nbsp;is&nbsp;a&nbsp;vector,&nbsp;<font color="magenta">&lt;d&gt</font>&nbsp;is&nbsp;the&nbsp;largest&nbsp;element</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;in&nbsp;<font color="magenta">&lt;A&gt</font>&nbsp;and&nbsp;<font color="magenta">&lt;n&gt</font>&nbsp;is&nbsp;the&nbsp;(first)&nbsp;position&nbsp;of&nbsp;the&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;largest&nbsp;element.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+A = [5 9 2 4 11 6 11 1]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+A&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;&nbsp;1
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+C = max(A)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+C&nbsp;=&nbsp;&nbsp;11
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+[d, n] = max(A)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+d&nbsp;=&nbsp;&nbsp;11
+<br>
+n&nbsp;=&nbsp;&nbsp;5
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+AA = [1 3 2; 4 1 3; 8 11 12; -2, 6, 100]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+AA&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;&nbsp;12
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;100
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+CC = max(AA)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+CC&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;100
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+[dd, nn] = max(AA)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+dd&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;100
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+nn&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;4
+<br>
+</font></b></tt>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;min(<font color="magenta">&lt;A&gt</font>)&nbsp;(*)</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;Returns&nbsp;the&nbsp;smallest&nbsp;element&nbsp;in&nbsp;<font color="magenta">&lt;A&gt</font>.</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;[<font color="magenta">&lt;d&gt</font>,&nbsp;<font color="magenta">&lt;n&gt</font>]&nbsp;=&nbsp;min(<font color="magenta">&lt;A&gt</font>)&nbsp;(*)</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;<font color="magenta">&lt;d&gt</font>&nbsp;is&nbsp;the&nbsp;smallest&nbsp;element&nbsp;in&nbsp;<font color="magenta">&lt;A&gt</font>&nbsp;and&nbsp;<font color="magenta">&lt;n&gt</font>&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;is&nbsp;the&nbsp;(first)&nbsp;position&nbsp;of&nbsp;the&nbsp;smallest&nbsp;element.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+A = [5 9 2 4 11 6 11 1]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+A&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;&nbsp;1
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+C = min(A)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+C&nbsp;=&nbsp;&nbsp;1
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+[d, n] = min(A)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+d&nbsp;=&nbsp;&nbsp;1
+<br>
+n&nbsp;=&nbsp;&nbsp;8
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+AA = [1 3 2; 4 1 3; 8 11 12; -2, 6, 100]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+AA&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;&nbsp;12
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;100
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+CC = min(AA)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+CC&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;-2&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+[dd, nn] = min(AA)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+dd&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;-2&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+nn&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;1
+<br>
+</font></b></tt>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;sum(<font color="magenta">&lt;A&gt</font>)&nbsp;(*)</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;Returns&nbsp;the&nbsp;sum&nbsp;of&nbsp;elements&nbsp;of&nbsp;<font color="magenta">&lt;A&gt</font>.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+A = [5 9 2 4]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+A&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;4
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+sum(A)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=&nbsp;&nbsp;20
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+AA = [1 3 2; 4 1 3; 8 11 12; -2, 6, 100]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+AA&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;&nbsp;12
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;100
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+sum(AA)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;&nbsp;21&nbsp;&nbsp;&nbsp;117
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+sum(sum(AA))<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=&nbsp;&nbsp;149
+<br>
+</font></b></tt>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>Statistical&nbsp;Functions</b>&nbsp;(assuming&nbsp;<font color="magenta">&lt;A&gt</font>&nbsp;is&nbsp;a&nbsp;vector)</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;(These&nbsp;are&nbsp;all&nbsp;reductions.)</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;mean(<font color="magenta">&lt;A&gt</font>)&nbsp;(*)</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;Returns&nbsp;the&nbsp;mean&nbsp;value&nbsp;of&nbsp;elements&nbsp;of&nbsp;<font color="magenta">&lt;A&gt</font>.</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;median(<font color="magenta">&lt;A&gt</font>)&nbsp;(*)</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;Returns&nbsp;the&nbsp;median&nbsp;value&nbsp;of&nbsp;elements&nbsp;of&nbsp;<font color="magenta">&lt;A&gt</font>.</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;std(<font color="magenta">&lt;A&gt</font>)&nbsp;(*)</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;Returns&nbsp;the&nbsp;standard&nbsp;deviation&nbsp;of&nbsp;elements&nbsp;of&nbsp;<font color="magenta">&lt;A&gt</font>.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+vals = [1 2 3 3 4 4 4 5 6 6 7 7 7 7 7 8 9]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+vals&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;9
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+mean(vals)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=&nbsp;&nbsp;5.2941
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+median(vals)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=&nbsp;&nbsp;6
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+std(vals)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=&nbsp;&nbsp;2.2573
+<br>
+</font></b></tt>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>Miscellaneous&nbsp;Functions</b></tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;sort(<font color="magenta">&lt;A&gt</font>)&nbsp;(*)</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;sort(<font color="magenta">&lt;A&gt</font>,&nbsp;'descend')&nbsp;(*)</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;Returns&nbsp;the&nbsp;elements&nbsp;of&nbsp;<font color="magenta">&lt;A&gt</font>&nbsp;sorted&nbsp;in&nbsp;ascending&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;order.</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>NOTE</b>:&nbsp;sort&nbsp;is&nbsp;<b>not</b>&nbsp;a&nbsp;reduction.&nbsp;&nbsp;It&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;returns&nbsp;an&nbsp;array&nbsp;of&nbsp;the&nbsp;same&nbsp;size&nbsp;as&nbsp;its&nbsp;input.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+A = [5 9 2 4]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+A&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;4
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+sort(A)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;9
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+sort(A, 'descend')<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;2
+<br>
+</font></b></tt>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;For&nbsp;a&nbsp;matrix,&nbsp;columns&nbsp;are&nbsp;sorted</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+AA = [1 3 2; 4 1 3; 8 11 12; -2, 6, 100]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+AA&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;&nbsp;12
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;100
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+sort(AA)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;-2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;12
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;100
+<br>
+</font></b></tt>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;Sort&nbsp;rows&nbsp;using&nbsp;transpose&nbsp;operator&nbsp;(twice).</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+sort(AA')'<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;&nbsp;12
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;100
+<br>
+</font></b></tt>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;dot(<font color="magenta">&lt;a&gt</font>,<font color="magenta">&lt;b&gt</font>)&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;Returns&nbsp;the&nbsp;scalar&nbsp;(dot)&nbsp;product&nbsp;of&nbsp;two&nbsp;vectors&nbsp;<font color="magenta">&lt;a&gt</font></tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;and&nbsp;<font color="magenta">&lt;b&gt</font>,&nbsp;which&nbsp;can&nbsp;be&nbsp;either&nbsp;row&nbsp;or&nbsp;column&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;vectors,&nbsp;but&nbsp;which&nbsp;must&nbsp;be&nbsp;the&nbsp;same&nbsp;length.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+v1 = 1:10<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+v1&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;10
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+v2 = 11:20<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+v2&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;13&nbsp;&nbsp;&nbsp;14&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;17&nbsp;&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;19&nbsp;&nbsp;&nbsp;20
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+dot(v1, v2)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=&nbsp;&nbsp;935
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+dot(v1, v2')<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=&nbsp;&nbsp;935
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+dot(v1', v2)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=&nbsp;&nbsp;935
+<br>
+</font></b></tt>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;cross(<font color="magenta">&lt;a&gt</font>,<font color="magenta">&lt;b&gt</font>)</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;Calculates&nbsp;the&nbsp;cross&nbsp;product&nbsp;of&nbsp;two&nbsp;vectors&nbsp;<font color="magenta">&lt;a&gt</font>&nbsp;and&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;<font color="magenta">&lt;b&gt</font>,&nbsp;each&nbsp;of&nbsp;which&nbsp;must&nbsp;be&nbsp;of&nbsp;length&nbsp;3.&nbsp;&nbsp;Returns</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;a&nbsp;vector&nbsp;which&nbsp;also&nbsp;has&nbsp;3&nbsp;elements.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+u1 = [1 0 0]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+u1&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+u2 = [0 1 0]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+u2&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;0
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+cross(u1, u2)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1
+<br>
+</font></b></tt>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>3.7&nbsp;Generation&nbsp;of&nbsp;(Pseudo)-Random&nbsp;Numbers</b></tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>NOTE</b>:&nbsp;As&nbsp;with&nbsp;many&nbsp;languages&nbsp;and&nbsp;software&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;systems,&nbsp;the&nbsp;"random"&nbsp;numbers&nbsp;generated&nbsp;by&nbsp;MATLAB</tt></font><br>
+   <font color="green"><tt>%&nbsp;are&nbsp;actually&nbsp;computed&nbsp;using&nbsp;specific,&nbsp;deterministic</tt></font><br>
+   <font color="green"><tt>%&nbsp;algorithms,&nbsp;and&nbsp;are&nbsp;thus&nbsp;not&nbsp;truly&nbsp;random:&nbsp;hence</tt></font><br>
+   <font color="green"><tt>%&nbsp;the&nbsp;nomenclature&nbsp;"pseudo-random".</tt></font><br>
+   <font color="green"><tt>%&nbsp;However,&nbsp;"good"&nbsp;random&nbsp;number&nbsp;generators,&nbsp;such&nbsp;as&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;those&nbsp;used&nbsp;by&nbsp;MATLAB&nbsp;/&nbsp;octave&nbsp;are&nbsp;designed&nbsp;so&nbsp;that&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;the&nbsp;sequences&nbsp;of&nbsp;numbers&nbsp;produced&nbsp;share&nbsp;many&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;statistical&nbsp;properties&nbsp;with&nbsp;true&nbsp;random&nbsp;values.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;rand</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;Generates&nbsp;a&nbsp;single&nbsp;pseudo-random&nbsp;number,&nbsp;drawn&nbsp;from&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;a&nbsp;uniform&nbsp;distribution&nbsp;between&nbsp;0&nbsp;and&nbsp;1&nbsp;(i.e.&nbsp;the&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;probability&nbsp;of&nbsp;getting&nbsp;any&nbsp;number&nbsp;in&nbsp;the&nbsp;range&nbsp;is&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;the&nbsp;same).&nbsp;&nbsp;Also&nbsp;note&nbsp;that&nbsp;the&nbsp;generator&nbsp;will&nbsp;never</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;produce&nbsp;exactly&nbsp;0&nbsp;or&nbsp;exactly&nbsp;1.&nbsp;&nbsp;We&nbsp;will&nbsp;refer&nbsp;to</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;such&nbsp;a&nbsp;value&nbsp;as&nbsp;a&nbsp;"standard&nbsp;random&nbsp;number"&nbsp;</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+rand<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=&nbsp;&nbsp;0.36157
+<br>
+</font></b></tt>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;Note&nbsp;the&nbsp;use&nbsp;of&nbsp;commas&nbsp;to&nbsp;separate&nbsp;multiple&nbsp;stmnts</tt></font><br>
+   <font color="green"><tt>%&nbsp;on&nbsp;a&nbsp;single&nbsp;line&nbsp;in&nbsp;the&nbsp;following.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+for ir = 1:10, rand, end<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=&nbsp;&nbsp;0.21743
+<br>
+ans&nbsp;=&nbsp;&nbsp;0.59916
+<br>
+ans&nbsp;=&nbsp;&nbsp;0.24004
+<br>
+ans&nbsp;=&nbsp;&nbsp;0.24027
+<br>
+ans&nbsp;=&nbsp;&nbsp;0.94701
+<br>
+ans&nbsp;=&nbsp;&nbsp;0.88035
+<br>
+ans&nbsp;=&nbsp;&nbsp;0.99662
+<br>
+ans&nbsp;=&nbsp;&nbsp;0.38873
+<br>
+ans&nbsp;=&nbsp;&nbsp;0.89823
+<br>
+ans&nbsp;=&nbsp;&nbsp;0.54595
+<br>
+</font></b></tt>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;rand(1,n)</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;Generates&nbsp;an&nbsp;n&nbsp;element&nbsp;row&nbsp;vector&nbsp;of&nbsp;standard&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;random&nbsp;numbers.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+a = rand(1,4)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+a&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;0.59067&nbsp;&nbsp;&nbsp;0.17958&nbsp;&nbsp;&nbsp;0.63294&nbsp;&nbsp;&nbsp;0.43284
+<br>
+</font></b></tt>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;rand(n)</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;Generates&nbsp;an&nbsp;n&nbsp;x&nbsp;n&nbsp;matrix&nbsp;of&nbsp;standard&nbsp;random&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;numbers.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+b = rand(3)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+b&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;0.400980&nbsp;&nbsp;&nbsp;0.564698&nbsp;&nbsp;&nbsp;0.327925
+<br>
+&nbsp;&nbsp;&nbsp;0.618998&nbsp;&nbsp;&nbsp;0.980688&nbsp;&nbsp;&nbsp;0.895760
+<br>
+&nbsp;&nbsp;&nbsp;0.208195&nbsp;&nbsp;&nbsp;0.565038&nbsp;&nbsp;&nbsp;0.042747
+<br>
+</font></b></tt>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;rand(m,&nbsp;n)</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;Generates&nbsp;an&nbsp;m&nbsp;x&nbsp;n&nbsp;matrix&nbsp;of&nbsp;standard&nbsp;random&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;numbers.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+c = rand(2, 4)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+c&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;0.49560&nbsp;&nbsp;&nbsp;0.89398&nbsp;&nbsp;&nbsp;0.53796&nbsp;&nbsp;&nbsp;0.95716
+<br>
+&nbsp;&nbsp;&nbsp;0.81574&nbsp;&nbsp;&nbsp;0.53583&nbsp;&nbsp;&nbsp;0.15438&nbsp;&nbsp;&nbsp;0.44374
+<br>
+</font></b></tt>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;randi(imax)</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;Generates&nbsp;a&nbsp;uniformly&nbsp;distributed&nbsp;random&nbsp;<b>integer</b>&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;in&nbsp;the&nbsp;range&nbsp;1&nbsp;to&nbsp;imax&nbsp;inclusive</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;<b>NOTE!</b>&nbsp;May&nbsp;be&nbsp;useful&nbsp;in&nbsp;homework.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+for ir = 1:10, randi(3), end<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=&nbsp;&nbsp;2
+<br>
+ans&nbsp;=&nbsp;&nbsp;1
+<br>
+ans&nbsp;=&nbsp;&nbsp;3
+<br>
+ans&nbsp;=&nbsp;&nbsp;3
+<br>
+ans&nbsp;=&nbsp;&nbsp;1
+<br>
+ans&nbsp;=&nbsp;&nbsp;1
+<br>
+ans&nbsp;=&nbsp;&nbsp;1
+<br>
+ans&nbsp;=&nbsp;&nbsp;2
+<br>
+ans&nbsp;=&nbsp;&nbsp;1
+<br>
+ans&nbsp;=&nbsp;&nbsp;1
+<br>
+</font></b></tt>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>Generating&nbsp;Uniformly&nbsp;Distributed&nbsp;Pseudo-Random&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;Numbers&nbsp;on&nbsp;an&nbsp;Arbitrary&nbsp;Range</b></tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;To&nbsp;generate&nbsp;pseudo-random&nbsp;numbers&nbsp;uniformly&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;distributed&nbsp;on&nbsp;the&nbsp;interval&nbsp;(a,b)&nbsp;use</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;a&nbsp;+&nbsp;(b&nbsp;-&nbsp;a)&nbsp;*&nbsp;rand&nbsp;</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;Example:&nbsp;Generate&nbsp;10&nbsp;random&nbsp;numbers&nbsp;on&nbsp;the&nbsp;interval</tt></font><br>
+   <font color="green"><tt>%&nbsp;(-1,1)</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+vr = -1 + 2 * rand(1,10)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+vr&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;Columns&nbsp;1&nbsp;through&nbsp;7:
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;-0.027007&nbsp;&nbsp;-0.459888&nbsp;&nbsp;-0.807179&nbsp;&nbsp;-0.427544&nbsp;&nbsp;-0.200963&nbsp;&nbsp;&nbsp;0.443654&nbsp;&nbsp;&nbsp;0.331083
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;Columns&nbsp;8&nbsp;through&nbsp;10:
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;0.585445&nbsp;&nbsp;&nbsp;0.274515&nbsp;&nbsp;&nbsp;0.065332
+<br>
+</font></b></tt>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>Normally&nbsp;distributed&nbsp;pseudo-random&nbsp;numbers</b></tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;Both&nbsp;MATLAB&nbsp;and&nbsp;octave&nbsp;have&nbsp;a&nbsp;function&nbsp;randn&nbsp;which</tt></font><br>
+   <font color="green"><tt>%&nbsp;operates&nbsp;analogously&nbsp;to&nbsp;rand,&nbsp;but&nbsp;which&nbsp;generates&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;pseudo-random&nbsp;numbers&nbsp;that&nbsp;are&nbsp;normally&nbsp;distributed&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;with&nbsp;zero&nbsp;mean&nbsp;and&nbsp;unit&nbsp;standard&nbsp;deviation.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;Generate&nbsp;row&nbsp;vector&nbsp;with&nbsp;20&nbsp;pseudo-random&nbsp;numbers</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;randn(20)&nbsp;would&nbsp;retutn&nbsp;a&nbsp;20&nbsp;x&nbsp;20&nbsp;matrix.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+vrn = randn(1,20)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+vrn&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;Columns&nbsp;1&nbsp;through&nbsp;7:
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;-0.035302&nbsp;&nbsp;&nbsp;0.432336&nbsp;&nbsp;&nbsp;2.169054&nbsp;&nbsp;-0.432086&nbsp;&nbsp;&nbsp;0.110601&nbsp;&nbsp;&nbsp;1.142099&nbsp;&nbsp;&nbsp;0.379011
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;Columns&nbsp;8&nbsp;through&nbsp;14:
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;-1.865757&nbsp;&nbsp;&nbsp;0.638635&nbsp;&nbsp;&nbsp;0.132396&nbsp;&nbsp;-1.479825&nbsp;&nbsp;-1.112132&nbsp;&nbsp;-1.260945&nbsp;&nbsp;&nbsp;0.149237
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;Columns&nbsp;15&nbsp;through&nbsp;20:
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;-0.329726&nbsp;&nbsp;&nbsp;0.621541&nbsp;&nbsp;&nbsp;0.180450&nbsp;&nbsp;-0.190954&nbsp;&nbsp;&nbsp;0.234217&nbsp;&nbsp;&nbsp;0.534053
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+for i = [10 100 1000 10000 100000], vrn = randn(1,i);, ...<br>
+	mean(vrn), std(vrn), disp(''), end<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=&nbsp;&nbsp;0.077353
+<br>
+ans&nbsp;=&nbsp;&nbsp;1.3523
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+ans&nbsp;=&nbsp;-0.015641
+<br>
+ans&nbsp;=&nbsp;&nbsp;1.1377
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+ans&nbsp;=&nbsp;-0.0060678
+<br>
+ans&nbsp;=&nbsp;&nbsp;0.96140
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+ans&nbsp;=&nbsp;-0.0021500
+<br>
+ans&nbsp;=&nbsp;&nbsp;1.0091
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+ans&nbsp;=&nbsp;&nbsp;3.6672e-05
+<br>
+ans&nbsp;=&nbsp;&nbsp;1.0028
+<br>
+</font></b></tt>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>3.3&nbsp;Array&nbsp;(Matrix)&nbsp;Division</b></tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;Matrix&nbsp;division&nbsp;in&nbsp;MATLAB&nbsp;is&nbsp;also&nbsp;associated&nbsp;with</tt></font><br>
+   <font color="green"><tt>%&nbsp;the&nbsp;rules&nbsp;of&nbsp;linear&nbsp;algebra;&nbsp;and&nbsp;specifically&nbsp;with&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;the&nbsp;solution&nbsp;of&nbsp;matrix&nbsp;equations.&nbsp;&nbsp;We&nbsp;thus&nbsp;first&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;review&nbsp;some&nbsp;pertinent&nbsp;definitions&nbsp;and&nbsp;concepts.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&nbsp;</tt></font><br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>Identity&nbsp;Matrix</b></tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;The&nbsp;identity&nbsp;matrix&nbsp;is&nbsp;a&nbsp;square&nbsp;matrix&nbsp;in&nbsp;which&nbsp;the</tt></font><br>
+   <font color="green"><tt>%&nbsp;elements&nbsp;along&nbsp;the&nbsp;main&nbsp;diagonal&nbsp;are&nbsp;1,&nbsp;and&nbsp;all&nbsp;other</tt></font><br>
+   <font color="green"><tt>%&nbsp;elements&nbsp;are&nbsp;0.&nbsp;&nbsp;As&nbsp;we&nbsp;have&nbsp;already&nbsp;seen,&nbsp;the&nbsp;n&nbsp;x&nbsp;n</tt></font><br>
+   <font color="green"><tt>%&nbsp;identity&nbsp;matrix&nbsp;can&nbsp;be&nbsp;generated&nbsp;in&nbsp;MATLAB&nbsp;using&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;the&nbsp;<b>eye</b>&nbsp;command.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&nbsp;</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+I = eye(3) <br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+I&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+Diagonal&nbsp;Matrix
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0
+<br>
+&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;0
+<br>
+&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1
+<br>
+</font></b></tt>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;In&nbsp;linear&nbsp;algebra,&nbsp;the&nbsp;identity&nbsp;matrix&nbsp;is&nbsp;to&nbsp;general&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;matrices&nbsp;and&nbsp;vectors&nbsp;as&nbsp;the&nbsp;constant&nbsp;1&nbsp;is&nbsp;to&nbsp;real</tt></font><br>
+   <font color="green"><tt>%&nbsp;numbers,&nbsp;i.e.&nbsp;for&nbsp;any&nbsp;n&nbsp;x&nbsp;m&nbsp;array,&nbsp;A,&nbsp;multiplication</tt></font><br>
+   <font color="green"><tt>%&nbsp;on&nbsp;the&nbsp;left&nbsp;by&nbsp;the&nbsp;n&nbsp;x&nbsp;n&nbsp;identity&nbsp;matrix&nbsp;I&nbsp;yields</tt></font><br>
+   <font color="green"><tt>%&nbsp;the&nbsp;original&nbsp;array,&nbsp;A,&nbsp;that&nbsp;is&nbsp;</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;<b>I&nbsp;A&nbsp;=&nbsp;A</b></tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&nbsp;</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+A = [1 2; 3 4; 5 6]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+A&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2
+<br>
+&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;4
+<br>
+&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;6
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+I * A<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2
+<br>
+&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;4
+<br>
+&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;6
+<br>
+</font></b></tt>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;In&nbsp;the&nbsp;special&nbsp;case&nbsp;that&nbsp;A&nbsp;is&nbsp;n&nbsp;x&nbsp;n&nbsp;(i.e.&nbsp;square),</tt></font><br>
+   <font color="green"><tt>%&nbsp;we&nbsp;have</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>I&nbsp;A&nbsp;=&nbsp;A&nbsp;I&nbsp;=&nbsp;A</b></tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&nbsp;</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+A = [1 2 3; 4 5 6; 7 8 9]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+A&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3
+<br>
+&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;6
+<br>
+&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;9
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+I * A<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3
+<br>
+&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;6
+<br>
+&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;9
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+A * I<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3
+<br>
+&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;6
+<br>
+&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;9
+<br>
+</font></b></tt>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>Inverse&nbsp;of&nbsp;a&nbsp;Matrix</b></tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&nbsp;</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;If&nbsp;A&nbsp;is&nbsp;a&nbsp;n&nbsp;x&nbsp;n&nbsp;(square)&nbsp;matrix,&nbsp;then&nbsp;the&nbsp;n&nbsp;x&nbsp;n&nbsp;(square)</tt></font><br>
+   <font color="green"><tt>%&nbsp;matrix&nbsp;B&nbsp;is&nbsp;the&nbsp;<b>inverse</b>&nbsp;of&nbsp;A&nbsp;if&nbsp;and&nbsp;only&nbsp;if</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>A&nbsp;*&nbsp;B&nbsp;=&nbsp;B&nbsp;*&nbsp;A&nbsp;=&nbsp;I</b></tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;where&nbsp;I&nbsp;is&nbsp;the&nbsp;n&nbsp;x&nbsp;n&nbsp;identity&nbsp;matrix.</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-1</tt></font><br>
+   <font color="green"><tt>%&nbsp;The&nbsp;inverse&nbsp;of&nbsp;A&nbsp;is&nbsp;often&nbsp;denoted&nbsp;A&nbsp;&nbsp;&nbsp;and&nbsp;can&nbsp;be&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;computed&nbsp;in&nbsp;MATLAB&nbsp;either&nbsp;by&nbsp;raising&nbsp;A&nbsp;to&nbsp;the&nbsp;-1</tt></font><br>
+   <font color="green"><tt>%&nbsp;power,&nbsp;or&nbsp;by&nbsp;using&nbsp;the&nbsp;<b>inv</b>&nbsp;function.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&nbsp;</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+A = [2 1 4; 4 1 8; 2 -1 3]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+A&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;4
+<br>
+&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;8
+<br>
+&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;-1&nbsp;&nbsp;&nbsp;3
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+B = inv(A)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+B&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;5.50000&nbsp;&nbsp;-3.50000&nbsp;&nbsp;&nbsp;2.00000
+<br>
+&nbsp;&nbsp;&nbsp;2.00000&nbsp;&nbsp;-1.00000&nbsp;&nbsp;&nbsp;0.00000
+<br>
+&nbsp;&nbsp;-3.00000&nbsp;&nbsp;&nbsp;2.00000&nbsp;&nbsp;-1.00000
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+A * B<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0
+<br>
+&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;0
+<br>
+&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+B * A<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0
+<br>
+&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;0
+<br>
+&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+A^-1<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;5.50000&nbsp;&nbsp;-3.50000&nbsp;&nbsp;&nbsp;2.00000
+<br>
+&nbsp;&nbsp;&nbsp;2.00000&nbsp;&nbsp;-1.00000&nbsp;&nbsp;&nbsp;0.00000
+<br>
+&nbsp;&nbsp;-3.00000&nbsp;&nbsp;&nbsp;2.00000&nbsp;&nbsp;-1.00000
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+A * A^-1<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0
+<br>
+&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;0
+<br>
+&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1
+<br>
+</font></b></tt>
+<br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;Not&nbsp;all&nbsp;square&nbsp;matrices&nbsp;have&nbsp;inverses.&nbsp;&nbsp;Indeed,&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;the&nbsp;necessary&nbsp;and&nbsp;sufficient&nbsp;condition&nbsp;for&nbsp;the&nbsp;n&nbsp;x&nbsp;n</tt></font><br>
+   <font color="green"><tt>%&nbsp;matrix&nbsp;A&nbsp;to&nbsp;have&nbsp;an&nbsp;inverse&nbsp;is&nbsp;that&nbsp;its&nbsp;<b>determinant</b></tt></font><br>
+   <font color="green"><tt>%&nbsp;be&nbsp;non-vanishing.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>Determinants</b></tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;I&nbsp;assume&nbsp;that&nbsp;you&nbsp;have&nbsp;seen&nbsp;the&nbsp;definition&nbsp;of&nbsp;the&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;determinant&nbsp;of&nbsp;a&nbsp;matrix,&nbsp;if&nbsp;not,&nbsp;refer&nbsp;to&nbsp;any&nbsp;text</tt></font><br>
+   <font color="green"><tt>%&nbsp;on&nbsp;linear&nbsp;algebra&nbsp;(or&nbsp;wikipedia)</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;In&nbsp;MATLAB,&nbsp;the&nbsp;determinant&nbsp;of&nbsp;a&nbsp;(square)&nbsp;matrix&nbsp;can&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;be&nbsp;computed&nbsp;using&nbsp;the&nbsp;<b>det</b>&nbsp;function.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+A = [1 2; 3 4]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+A&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2
+<br>
+&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;4
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+det(A)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=&nbsp;-2
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+A = [3 4; 1 2]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+A&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;4
+<br>
+&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+det(A)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=&nbsp;&nbsp;2
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+A = [4 3; 2 1]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+A&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;3
+<br>
+&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;1
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+det(A)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=&nbsp;-2
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+A = [2 1; 4 3]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+A&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;1
+<br>
+&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;3
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+det(A)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+ans&nbsp;=&nbsp;&nbsp;2
+<br>
+</font></b></tt>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>Array&nbsp;(Matrix)&nbsp;Division</b></tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;MATLAB&nbsp;has&nbsp;2&nbsp;types&nbsp;of&nbsp;matrix&nbsp;division,&nbsp;namely</tt></font><br>
+   <font color="green"><tt>%&nbsp;right&nbsp;and&nbsp;left&nbsp;division.&nbsp;&nbsp;Both&nbsp;are&nbsp;best&nbsp;defined</tt></font><br>
+   <font color="green"><tt>%&nbsp;in&nbsp;the&nbsp;context&nbsp;of&nbsp;solving&nbsp;matrix&nbsp;equations.</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>Left&nbsp;Division&nbsp;\</b></tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;Left&nbsp;division&nbsp;is&nbsp;used&nbsp;to&nbsp;solve&nbsp;the&nbsp;matrix&nbsp;equation</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>A&nbsp;X&nbsp;=&nbsp;B</b></tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;where&nbsp;A&nbsp;is&nbsp;an&nbsp;n&nbsp;x&nbsp;n&nbsp;matrix,&nbsp;while&nbsp;X&nbsp;and&nbsp;B&nbsp;are&nbsp;<b>column</b></tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>vectors</b>&nbsp;of&nbsp;length&nbsp;n.</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;This&nbsp;equation&nbsp;can&nbsp;be&nbsp;solved&nbsp;by&nbsp;left-multiplying&nbsp;both&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;sides&nbsp;with&nbsp;the&nbsp;inverse&nbsp;of&nbsp;A:</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;-1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-1</tt></font><br>
+   <font color="green"><tt>%&nbsp;A&nbsp;&nbsp;A&nbsp;X&nbsp;=&nbsp;A&nbsp;&nbsp;B</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-1&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;X&nbsp;=&nbsp;A&nbsp;&nbsp;B</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-1</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X&nbsp;=&nbsp;A&nbsp;&nbsp;B</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;This&nbsp;last&nbsp;expression&nbsp;can&nbsp;be&nbsp;defined&nbsp;in&nbsp;terms&nbsp;of&nbsp;the&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>left&nbsp;division</b>&nbsp;operator&nbsp;<b>\</b>&nbsp;as</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>X&nbsp;=&nbsp;A&nbsp;\&nbsp;B</b></tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>Right&nbsp;Division&nbsp;/</b></tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;Right&nbsp;division&nbsp;is&nbsp;used&nbsp;to&nbsp;solve&nbsp;the&nbsp;matrix&nbsp;equation</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;<b>X&nbsp;C&nbsp;=&nbsp;D</b></tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;where&nbsp;C&nbsp;is&nbsp;an&nbsp;n&nbsp;x&nbsp;n&nbsp;matrix,&nbsp;while&nbsp;X&nbsp;and&nbsp;D&nbsp;are&nbsp;<b>row</b></tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>vectors</b>&nbsp;of&nbsp;length&nbsp;n.</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;This&nbsp;equation&nbsp;can&nbsp;be&nbsp;solved&nbsp;by&nbsp;right-multiplying&nbsp;both&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;sides&nbsp;with&nbsp;the&nbsp;inverse&nbsp;of&nbsp;C</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-1</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;X&nbsp;C&nbsp;C&nbsp;&nbsp;=&nbsp;D&nbsp;C</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-1&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X&nbsp;I&nbsp;=&nbsp;D&nbsp;C</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-1</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X&nbsp;=&nbsp;D&nbsp;C</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;This&nbsp;last&nbsp;expression&nbsp;can&nbsp;be&nbsp;defined&nbsp;in&nbsp;terms&nbsp;of&nbsp;the&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>right&nbsp;division</b>&nbsp;operator&nbsp;<b>/</b>&nbsp;as</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>X&nbsp;=&nbsp;D&nbsp;/&nbsp;C</b></tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+   <font color="green"><tt>%&nbsp;<b>Example</b>:&nbsp;Solving&nbsp;three&nbsp;linear&nbsp;equations</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;Use&nbsp;matrix&nbsp;operations&nbsp;to&nbsp;solve&nbsp;the&nbsp;following&nbsp;system</tt></font><br>
+   <font color="green"><tt>%&nbsp;of&nbsp;linear&nbsp;equations</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;4x&nbsp;-&nbsp;&nbsp;2y&nbsp;+&nbsp;6z&nbsp;=&nbsp;8</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;2x&nbsp;+&nbsp;&nbsp;8y&nbsp;+&nbsp;2z&nbsp;=&nbsp;4</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;6x&nbsp;+&nbsp;10y&nbsp;+&nbsp;3z&nbsp;=&nbsp;0</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;This&nbsp;can&nbsp;be&nbsp;solved&nbsp;in&nbsp;either&nbsp;of&nbsp;the&nbsp;following&nbsp;forms</tt></font><br>
+   <font color="green"><tt>%&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;-</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;|&nbsp;&nbsp;4&nbsp;&nbsp;-2&nbsp;&nbsp;&nbsp;6&nbsp;|&nbsp;&nbsp;|&nbsp;x&nbsp;|&nbsp;&nbsp;&nbsp;|&nbsp;8&nbsp;|</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;|&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;2&nbsp;|&nbsp;&nbsp;|&nbsp;y&nbsp;|&nbsp;=&nbsp;|&nbsp;4&nbsp;|</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;|&nbsp;&nbsp;6&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;3&nbsp;|&nbsp;&nbsp;|&nbsp;z&nbsp;|&nbsp;&nbsp;&nbsp;|&nbsp;0&nbsp;|</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;-</tt></font><br>
+   <font color="green"><tt>%</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;|&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;6&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;|&nbsp;x&nbsp;&nbsp;y&nbsp;&nbsp;z&nbsp;|&nbsp;&nbsp;|&nbsp;-2&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;10&nbsp;|&nbsp;&nbsp;=&nbsp;|&nbsp;8&nbsp;&nbsp;4&nbsp;&nbsp;0&nbsp;|</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;|&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;</tt></font><br>
+   <font color="green"><tt>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></font><br>
+   <font color="green"><tt>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</tt></font><br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+A = [4 -2 6; 2 8 2; 6 10 3]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+A&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;-2&nbsp;&nbsp;&nbsp;&nbsp;6
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;2
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;&nbsp;3
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+B = [8; 4; 0]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+B&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;8
+<br>
+&nbsp;&nbsp;&nbsp;4
+<br>
+&nbsp;&nbsp;&nbsp;0
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+X = A \ B<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+X&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;-1.80488
+<br>
+&nbsp;&nbsp;&nbsp;0.29268
+<br>
+&nbsp;&nbsp;&nbsp;2.63415
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+Xb = inv(A) * B<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+Xb&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;-1.80488
+<br>
+&nbsp;&nbsp;&nbsp;0.29268
+<br>
+&nbsp;&nbsp;&nbsp;2.63415
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+C = [4 2 6; -2 8 10; 6 2 3] <br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+C&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;6
+<br>
+&nbsp;&nbsp;&nbsp;-2&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;10
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;3
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+D = [8 4 0]<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+D&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;0
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+Xc = D / C<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+Xc&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;-1.80488&nbsp;&nbsp;&nbsp;0.29268&nbsp;&nbsp;&nbsp;2.63415
+<br>
+</font></b></tt>
+<br>
+<br>
+<tt><b><font color="purple">>>&nbsp;</font> 
+<font color="red">
+Xd = D * inv(C)<br>
+<br></font></b></tt>
+<tt><b><font color="blue">
+Xd&nbsp;=
+<br>
+</font></b></tt>
+<br>
+<tt><b><font color="blue">
+&nbsp;&nbsp;-1.80488&nbsp;&nbsp;&nbsp;0.29268&nbsp;&nbsp;&nbsp;2.63415
+<br>
+</font></b></tt>
+<br>

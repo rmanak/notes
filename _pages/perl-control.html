@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="description" />
+<meta name="keywords" content="keywords" />
+<meta name="author" content="author" />
+<link rel="stylesheet" type="text/css" href="pagestyle.css" />
+<title>Arman Akbarian's Homepage</title>
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+
+<body>
+<div class="page">
+  <div class="page2">
+     <div style="width:100%;height:1px;font-family: Tahoma; font-size: 1pt;"></div>
+     <div  class ="header">
+		
+	     <div class="title">
+
+			Arman Akbarian
+			<div class="subtitle">UNIVERSITY OF BRITISH COLUMBIA <br /> PHYSICS &amp; ASTRONOMY DEPT. </div>
+	</div> <!-- End of title -->
+		<div class="sidebar">
+         	<div class="sider">
+               <p><a href="Home.html">Home <img src="img/home.svg" width="11px" /></a>
+<a href="Research.html">Research <img src="img/beaker.svg" width="11px" /></a>
+<a href="Publications.html">Publications <img src="img/pencil.svg" width="11px" /></a>
+<a target="_blank" href="http://laplace.phas.ubc.ca/">Group Page <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/people.svg" width="11px" /></a>
+<a href="Contact.html">Contact <img src="img/envelope-closed.svg" width="11px" /></a>
+<a href="CV.html">CV <img src="img/person.svg" width="11px" /></a></p>
+
+<hr />
+
+<p><a href="Links.html">Links <img src="img/link.svg" width="11px" /></a>
+<a href="Learn-By-Examples.html">Programming <img src="img/code.svg" width="11px"/></a>
+<a target="_blank" href="FD_doc">FD Toolkit <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/graph.svg" width="11px" /></a>
+<a target="_blank" href="sg">Web Template <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/globe.svg" width="11px" /></a>
+<a href="http://rmanak.github.io/notes">Miscellany <img src="img/layers.svg" width="11px" /></a></p>
+
+             </div>
+         </div> <!--End of Sidebar -->
+
+
+     </div> <!-- end header -->
+	
+     <!--This line is for future use -->   <div style="text-align:center; padding-top:10px; padding-bottom:10px;"></div>
+	      
+     <!--This line is for compatibility issues --> <div style="width:100%;height:5px;font-family: Tahoma; font-size: 1pt;"></div>
+     <!--in class page2 -->
+     <div class="postandside">
+		        <div class="content">
+            <div class="post">
+              <style type="text/css">
+<!--
+.Comment { color: #0000ff; }
+.Identifier { color: #008b8b; }
+.Special { color: #6a5acd; }
+pre {  color: #000000; background-color: #ffffff; }
+body {  color: #000000; background-color: #ffffff; }
+.PreProc { color: #a020f0; }
+.Statement { color: #a52a2a; font-weight: bold; }
+.Constant { color: #ff00ff; }
+-->
+</style>
+<pre>
+<span class="PreProc">#!/usr/bin/perl -w</span>
+
+<span class="Statement">use </span><span class="Constant">5.010</span>;
+<span class="Comment">#########################################</span>
+<span class="Comment"># This document is about various control</span>
+<span class="Comment"># structures in Perl</span>
+<span class="Comment"># AAK: Last Modification</span>
+<span class="Comment"># Tue Sep 11 22:00:53 PDT 2012</span>
+<span class="Comment"># #######################################</span>
+
+<span class="Comment"># unless is opposite of if:</span>
+
+<span class="Statement">unless</span> ( <span class="Constant">2</span> &lt; <span class="Constant">1</span> )  {
+<span class="Statement">say</span> <span class="Constant">&quot;</span><span class="Constant">This is unless usage</span><span class="Constant">&quot;</span>;
+}
+
+<span class="Comment"># until is opposite of while, quits when condition becomes correct</span>
+
+<span class="Identifier">$i</span> = <span class="Constant">0</span>;
+
+<span class="Statement">until</span> ( <span class="Identifier">$i</span> &gt; <span class="Constant">10</span> )
+{
+  <span class="Statement">print</span> <span class="Constant">&quot;</span><span class="Identifier">$i</span><span class="Constant"> </span><span class="Special">\n</span><span class="Constant">&quot;</span>;
+  <span class="Identifier">$i</span> += <span class="Constant">1</span>;
+}
+
+<span class="Comment">#you can have express way of controlling actions:</span>
+
+<span class="Identifier">$n</span> = <span class="Constant">9</span>;
+<span class="Statement">print</span> <span class="Constant">&quot;</span><span class="Identifier">$n</span><span class="Constant"> is bigger than 10</span><span class="Constant">&quot;</span> <span class="Statement">if</span> <span class="Identifier">$n</span> &gt; <span class="Constant">10</span>;
+
+<span class="Identifier">$i</span> += <span class="Constant">10</span> <span class="Statement">until</span> <span class="Identifier">$i</span> &gt; <span class="Constant">1000</span>;
+<span class="Statement">say</span> <span class="Identifier">$i</span>;
+
+<span class="Identifier">@fruit</span> = <span class="Constant">qw(</span><span class="Constant"> banana apple melon </span><span class="Constant">)</span>;
+
+<span class="Statement">sub</span><span class="Identifier"> </span><span class="Identifier">echoit</span><span class="Identifier"> </span>{
+   <span class="Statement">say</span> <span class="Constant">&quot;</span><span class="Identifier">@_</span><span class="Constant">&quot;</span>;
+}
+
+<span class="Identifier">&amp;echoit</span>(<span class="Identifier">$_</span>) <span class="Statement">foreach</span> <span class="Identifier">@fruit</span>;
+
+<span class="Comment">#naked block is as following:</span>
+
+{
+   <span class="Statement">say</span> <span class="Constant">&quot;</span><span class="Constant">This is naked block</span><span class="Constant">&quot;</span>;
+   <span class="Statement">my</span> <span class="Identifier">$tmpn</span> = <span class="Constant">10.0</span>;
+   <span class="Statement">say</span> <span class="Identifier">$tmpn</span>;
+}
+
+<span class="Comment">#note that variables defined inside the naked block are temporary</span>
+<span class="Comment">#and only belongs to that block so:</span>
+
+<span class="Statement">say</span> <span class="Identifier">$tmpn</span>;
+
+<span class="Comment">#will print nothing! (you will see a warning, due to -w option enabled)</span>
+
+<span class="Comment">#else if structure is as following:</span>
+
+<span class="Identifier">$control</span> = <span class="Constant">1</span>;
+<span class="Identifier">$control2</span> = <span class="Constant">0</span>;
+<span class="Identifier">$control3</span> = <span class="Constant">0</span>;
+
+<span class="Statement">if</span> ( <span class="Identifier">$control2</span> ) {<span class="Statement">say</span> <span class="Constant">&quot;</span><span class="Constant">hi 2!</span><span class="Constant">&quot;</span>}
+<span class="Statement">elsif</span> (<span class="Identifier">$control3</span>) {<span class="Statement">say</span> <span class="Constant">&quot;</span><span class="Constant">hi 3!</span><span class="Constant">&quot;</span>}
+<span class="Statement">elsif</span> (<span class="Identifier">$control</span>) {<span class="Statement">say</span> <span class="Constant">&quot;</span><span class="Constant">this is how elsif works</span><span class="Constant">&quot;</span>};
+
+<span class="Comment">#similar to C ++ and -- will increase or decrease the scalar by 1:</span>
+
+<span class="Identifier">$n</span> = <span class="Constant">10</span>;
+<span class="Identifier">$n</span>++;
+<span class="Statement">say</span> <span class="Identifier">$n</span>;
+<span class="Identifier">$n</span>--;
+<span class="Statement">say</span> <span class="Identifier">$n</span>;
+
+<span class="Comment">#the for control structure is as following (very similar to C):</span>
+
+<span class="Statement">for</span> (<span class="Identifier">$i</span> = <span class="Constant">1</span>; <span class="Identifier">$i</span> &lt;= <span class="Constant">10</span>; <span class="Identifier">$i</span>++) {
+   <span class="Statement">print</span> <span class="Constant">&quot;</span><span class="Constant">i =</span><span class="Constant">&quot;</span>, <span class="Identifier">$i</span>, <span class="Constant">&quot;</span><span class="Special">\n</span><span class="Constant">&quot;</span>;
+}
+
+<span class="Statement">for</span> (<span class="Identifier">$i</span> = <span class="Constant">100</span>; <span class="Identifier">$i</span> &gt;=<span class="Constant">-20</span>; <span class="Identifier">$i</span> -= <span class="Constant">10</span>) {
+   <span class="Statement">print</span> <span class="Constant">&quot;</span><span class="Constant">i = </span><span class="Constant">&quot;</span>, <span class="Identifier">$i</span>, <span class="Constant">&quot;</span><span class="Special">\n</span><span class="Constant">&quot;</span>;
+}
+
+<span class="Comment">#last operator breaks the loop immediately:</span>
+
+<span class="Statement">for</span> (<span class="Identifier">$i</span> =<span class="Constant">1</span>; <span class="Identifier">$i</span> &lt;=<span class="Constant">1000</span>; <span class="Identifier">$i</span> *= <span class="Constant">2</span>) {
+   <span class="Statement">print</span> <span class="Constant">&quot;</span><span class="Constant">i = </span><span class="Constant">&quot;</span>, <span class="Identifier">$i</span>, <span class="Constant">&quot;</span><span class="Special">\n</span><span class="Constant">&quot;</span>;
+   <span class="Statement">if</span> (<span class="Identifier">$i</span> &gt;= <span class="Constant">500</span>) {<span class="Statement">last</span>;}
+}
+<span class="Comment">#the next operator will send the operation to the end of</span>
+<span class="Comment">#the loop and start the loop again:</span>
+
+<span class="Statement">for</span> (<span class="Identifier">$i</span> = <span class="Constant">1</span>; <span class="Identifier">$i</span> &gt;= <span class="Constant">0.01</span>; <span class="Identifier">$i</span> /= <span class="Constant">2</span>) {
+   <span class="Statement">unless</span> (<span class="Identifier">$i</span> == <span class="Constant">0.125</span>) {<span class="Statement">next</span>;}
+   <span class="Statement">say</span> <span class="Constant">&quot;</span><span class="Constant"> i = </span><span class="Identifier">$i</span><span class="Constant">&quot;</span>
+}
+
+<span class="Comment">#redo operator says to go back and do the loop again, without</span>
+<span class="Comment">#checking for any condition or changing the loop controller variable:</span>
+
+<span class="Statement">for</span> (<span class="Identifier">$i</span> = <span class="Constant">1</span>; <span class="Identifier">$i</span> &lt;=<span class="Constant">5</span>; <span class="Identifier">$i</span>++){
+   <span class="Statement">say</span> <span class="Constant">&quot;</span><span class="Constant"> i = </span><span class="Identifier">$i</span><span class="Constant">&quot;</span>;
+   <span class="Statement">if</span> (<span class="Identifier">$i</span> == <span class="Constant">5</span>) {
+           <span class="Identifier">$i</span>++;
+      <span class="Statement">redo</span>;
+   }
+}
+
+<span class="Comment">#C's Tenary operator ? : is as following:</span>
+
+<span class="Comment"># expression ? do_this_if_true : do_this_if_false;</span>
+
+<span class="Identifier">$width</span> = <span class="Constant">15</span>;
+
+<span class="Statement">my</span> <span class="Identifier">$size</span> =
+   (<span class="Identifier">$width</span> &lt; <span class="Constant">10</span>) ? <span class="Constant">&quot;</span><span class="Constant">small</span><span class="Constant">&quot;</span> :
+   (<span class="Identifier">$width</span> &lt; <span class="Constant">20</span>) ? <span class="Constant">&quot;</span><span class="Constant">medium</span><span class="Constant">&quot;</span> :
+   (<span class="Identifier">$width</span> &lt; <span class="Constant">30</span>) ? <span class="Constant">&quot;</span><span class="Constant">large</span><span class="Constant">&quot;</span> :
+                   <span class="Constant">&quot;</span><span class="Constant">extra-large</span><span class="Constant">&quot;</span>; <span class="Comment">#this it the default</span>
+
+<span class="Statement">say</span> <span class="Identifier">$size</span>;
+
+<span class="Comment">#and Perl has AND OR operator by &amp;&amp; and ||:</span>
+
+<span class="Identifier">$k</span> = <span class="Constant">5</span>;
+<span class="Statement">if</span> ( (<span class="Identifier">$k</span> &gt; <span class="Constant">3</span>) &amp;&amp; (<span class="Identifier">$k</span> != <span class="Constant">4</span>) ) {<span class="Statement">say</span> <span class="Constant">&quot;</span><span class="Constant">this is AND</span><span class="Constant">&quot;</span>;}
+<span class="Statement">if</span> ( (<span class="Identifier">$k</span> &gt; <span class="Constant">3</span>) || (<span class="Identifier">$k</span> != <span class="Constant">5</span>) ) {<span class="Statement">say</span> <span class="Constant">&quot;</span><span class="Constant">this is OR</span><span class="Constant">&quot;</span>;}
+
+</pre>
+
+		      <div style="clear: both;"></div>
+	         </div>
+		      <hr />
+	         <div class ="date">last update:   , </div>
+	    <div class="footer">
+           <p><a href="Home.html">Home</a>|<a href="Research.html">Research</a>|<a href="Contact.html">Contact</a>|<a href="Links.html">Links</a>|<a href="Misc.html">Misc</a>|<a href="sg">Template</a></p>
+
+      </div>  
+	    <div style="clear: both;">&nbsp;</div>
+        </div> <!-- end content -->
+	<!-- in class postandside -->
+
+                 <!--in class postandside-->   
+         <!--this line is for compatibility issues --><div style="clear: both;">&#160;</div> <!--Displacement --> 
+     </div> <!--End of post and side -->
+
+     <!-- in class page2 -->
+     <div style="clear: both;">&nbsp;</div>
+  </div> <!--End of Page2 -->
+     <div style="clear: both;">&nbsp;</div>
+
+</div> <!-- End of page -->
+<!--this is end of the file -->
+<!-- ~~~ This content is generated using sg web template ~~-->
+<!-- ~~~ For more information visit: http://laplace.physics.ubc.ca/People/arman/sg ~~ -->
+</body>
+</html>

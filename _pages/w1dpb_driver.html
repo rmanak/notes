@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="Arman Akbarian's Homepage" />
+<meta name="keywords" content="Arman Akbarian homepage web webpage academic website site UBC
+numerical relativity group" />
+<meta name="author" content="Arman Akbarian" />
+<link rel="stylesheet" type="text/css" href="pagestyle.css" />
+<title>Arman Akbarian's Homepage</title>
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+
+<body>
+<div class="page">
+  <div class="page2">
+     <div style="width:100%;height:1px;font-family: Tahoma; font-size: 1pt;"></div>
+     <div  class ="header">
+		
+	     <div class="title">
+
+			Arman Akbarian
+			<div class="subtitle">UNIVERSITY OF BRITISH COLUMBIA <br /> PHYSICS &amp; ASTRONOMY DEPT. </div>
+	</div> <!-- End of title -->
+		<div class="sidebar">
+         	<div class="sider">
+               <p><a href="Home.html">Home <img src="img/home.svg" width="11px" /></a>
+<a href="Research.html">Research <img src="img/beaker.svg" width="11px" /></a>
+<a href="Publications.html">Publications <img src="img/pencil.svg" width="11px" /></a>
+<a target="_blank" href="http://laplace.phas.ubc.ca/">Group Page <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/people.svg" width="11px" /></a>
+<a href="Contact.html">Contact <img src="img/envelope-closed.svg" width="11px" /></a>
+<a href="CV.html">CV <img src="img/person.svg" width="11px" /></a></p>
+
+<hr />
+
+<p><a href="Links.html">Links <img src="img/link.svg" width="11px" /></a>
+<a href="Learn-By-Examples.html">Programming <img src="img/code.svg" width="11px"/></a>
+<a target="_blank" href="FD_doc">FD Toolkit <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/graph.svg" width="11px" /></a>
+<a target="_blank" href="sg">Web Template <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/globe.svg" width="11px" /></a>
+<a href="http://rmanak.github.io/notes">Miscellany <img src="img/layers.svg" width="11px" /></a></p>
+
+             </div>
+         </div> <!--End of Sidebar -->
+
+
+     </div> <!-- end header -->
+	
+     <!--This line is for future use -->   <div style="text-align:center; padding-top:10px; padding-bottom:10px;"></div>
+	      
+     <!--This line is for compatibility issues --> <div style="width:100%;height:5px;font-family: Tahoma; font-size: 1pt;"></div>
+     <!--in class page2 -->
+     <div class="postandside">
+		        <div class="content">
+            <div class="post">
+              <pre>
+<font color="0000ff"><strong>#include <font color="#008000">&lt;stdlib.h&gt;</font></strong></font>
+<font color="0000ff"><strong>#include <font color="#008000">&lt;sdf_read.h&gt;</font></strong></font>
+<font color="0000ff"><strong>#include <font color="#008000">&lt;stdio.h&gt;</font></strong></font>
+<font color="0000ff"><strong>#include <font color="#008000">&lt;math.h&gt;</font></strong></font>
+<font color="0000ff"><strong>#include <font color="#008000">&lt;u_f.h&gt;</font></strong></font>
+<font color="0000ff"><strong>#include <font color="#008000">&lt;init_f.h&gt;</font></strong></font>
+<font color="0000ff"><strong>#include <font color="#008000">&lt;u_f_t.h&gt;</font></strong></font>
+<font color="0000ff"><strong>#include <font color="#008000">&lt;init_f_t.h&gt;</font></strong></font>
+<font color="0000ff"><strong>#include <font color="#008000">&lt;res_f.h&gt;</font></strong></font>
+<font color="0000ff"><strong>#include <font color="#008000">&lt;res_f_t.h&gt;</font></strong></font>
+<font color="0000ff"><strong>#include <font color="#008000">&lt;ire_f.h&gt;</font></strong></font>
+<font color="#444444">/* Shapes: */</font>
+<strong>int</strong> <font color="#2040a0">Nx</font><font color="4444FF">;</font>
+<strong>int</strong> <font color="#2040a0">shape</font><font color="4444FF">[</font><font color="#FF0000">1</font><font color="4444FF">]</font><font color="4444FF">;</font>
+<strong>int</strong> <font color="#2040a0">dim</font><font color="4444FF">;</font>
+<strong>int</strong> <font color="#2040a0">level</font><font color="4444FF">;</font>
+<font color="#444444">/* Coordinates: */</font>
+<strong>double</strong> <font color="4444FF">*</font><font color="#2040a0">x</font><font color="4444FF">;</font>
+<font color="#444444">/* Grid Functions: */</font>
+<strong>double</strong> <font color="4444FF">*</font><font color="#2040a0">n_f</font><font color="4444FF">;</font>
+<strong>double</strong> <font color="4444FF">*</font><font color="#2040a0">n_f_t</font><font color="4444FF">;</font>
+<strong>double</strong> <font color="4444FF">*</font><font color="#2040a0">np1_f</font><font color="4444FF">;</font>
+<strong>double</strong> <font color="4444FF">*</font><font color="#2040a0">np1_f_t</font><font color="4444FF">;</font>
+<strong>double</strong> <font color="4444FF">*</font><font color="#2040a0">nm1_f</font><font color="4444FF">;</font>
+<font color="#444444">/* Parameters: */</font>
+<strong>double</strong> <font color="#2040a0">A</font><font color="4444FF">;</font>
+<strong>double</strong> <font color="#2040a0">tot_res</font><font color="4444FF">;</font>
+<strong>double</strong> <font color="#2040a0">ht</font><font color="4444FF">;</font>
+<strong>double</strong> <font color="#2040a0">x0</font><font color="4444FF">;</font>
+<strong>double</strong> <font color="#2040a0">delx</font><font color="4444FF">;</font>
+<strong>double</strong> <font color="#2040a0">init_v</font><font color="4444FF">;</font>
+<strong>double</strong> <font color="#2040a0">idsignum</font><font color="4444FF">;</font>
+<strong>double</strong> <font color="#2040a0">res_f</font>,<font color="#2040a0">res_f_t</font><font color="4444FF">;</font>
+<strong>double</strong> <font color="#2040a0">ire_f</font><font color="4444FF">;</font>
+<font color="#444444">/* Coordinate Parameters: */</font>
+<strong>double</strong> <font color="#2040a0">x_max</font><font color="4444FF">;</font>
+<strong>double</strong> <font color="#2040a0">x_min</font><font color="4444FF">;</font>
+<strong>double</strong> <font color="#2040a0">hx</font><font color="4444FF">;</font>
+<strong>double</strong> <font color="#2040a0">bbox</font><font color="4444FF">[</font><font color="#FF0000">2</font><font color="4444FF">]</font><font color="4444FF">;</font>
+<strong>int</strong> <font color="#2040a0">phys_bdy</font><font color="4444FF">[</font><font color="#FF0000">4</font><font color="4444FF">]</font><font color="4444FF">;</font>
+<font color="#444444">/* Time Evolution Parameters: */</font>
+<strong>int</strong> <font color="#2040a0">steps</font><font color="4444FF">;</font>
+<strong>double</strong> <font color="#2040a0">lambda</font><font color="4444FF">;</font>
+<strong>double</strong> <font color="#2040a0">time</font><font color="4444FF">;</font>
+<strong>int</strong> <font color="#2040a0">output_freq</font><font color="4444FF">;</font>
+<strong>void</strong> <font color="#2040a0">swap_levels</font><font color="4444FF">(</font><strong>double</strong> <font color="4444FF">*</font><font color="4444FF">*</font><font color="#2040a0">a</font>, <strong>double</strong> <font color="4444FF">*</font><font color="4444FF">*</font><font color="#2040a0">b</font><font color="4444FF">)</font> <font color="4444FF"><strong>{</strong></font>
+     <strong>double</strong> <font color="4444FF">*</font><font color="#2040a0">t</font><font color="4444FF">;</font>
+     <font color="#2040a0">t</font> <font color="4444FF">=</font> <font color="4444FF">*</font><font color="#2040a0">a</font><font color="4444FF">;</font>
+     <font color="4444FF">*</font><font color="#2040a0">a</font> <font color="4444FF">=</font> <font color="4444FF">*</font><font color="#2040a0">b</font><font color="4444FF">;</font>
+     <font color="4444FF">*</font><font color="#2040a0">b</font> <font color="4444FF">=</font> <font color="#2040a0">t</font><font color="4444FF">;</font>
+<font color="4444FF"><strong>}</strong></font>
+
+<strong>void</strong> <font color="#2040a0">set_cons</font><font color="4444FF">(</font><strong>double</strong> <font color="4444FF">*</font><font color="#2040a0">f</font>, <strong>int</strong> <font color="#2040a0">N</font>, <strong>double</strong> <font color="#2040a0">c</font><font color="4444FF">)</font> <font color="4444FF"><strong>{</strong></font>
+       <strong>int</strong> <font color="#2040a0">i</font><font color="4444FF">;</font>
+           <strong>for</strong><font color="4444FF">(</font><font color="#2040a0">i</font><font color="4444FF">=</font><font color="#FF0000">0</font><font color="4444FF">;</font><font color="#2040a0">i</font><font color="4444FF">&lt;</font><font color="#2040a0">N</font><font color="4444FF">;</font><font color="#2040a0">i</font><font color="4444FF">+</font><font color="4444FF">+</font><font color="4444FF">)</font> <font color="#2040a0">f</font><font color="4444FF">[</font><font color="#2040a0">i</font><font color="4444FF">]</font> <font color="4444FF">=</font> <font color="#2040a0">c</font><font color="4444FF">;</font>
+<font color="4444FF"><strong>}</strong></font>
+
+<strong>void</strong> <font color="#2040a0">copy_lev</font><font color="4444FF">(</font><strong>double</strong> <font color="4444FF">*</font><font color="4444FF">*</font><font color="#2040a0">a</font>, <strong>double</strong> <font color="4444FF">*</font><font color="4444FF">*</font><font color="#2040a0">b</font><font color="4444FF">)</font> <font color="4444FF"><strong>{</strong></font>
+       <font color="4444FF">*</font><font color="#2040a0">b</font> <font color="4444FF">=</font> <font color="4444FF">*</font><font color="#2040a0">a</font><font color="4444FF">;</font>
+<font color="4444FF"><strong>}</strong></font>
+
+
+<strong>void</strong> <font color="#2040a0">read_params</font><font color="4444FF">(</font><strong>char</strong> <font color="4444FF">*</font><font color="#2040a0">p_file</font>,<strong>double</strong> <font color="4444FF">*</font><font color="#2040a0">A</font>,<strong>double</strong> <font color="4444FF">*</font><font color="#2040a0">x_min</font>,<strong>double</strong> <font color="4444FF">*</font><font color="#2040a0">lambda</font>,<strong>double</strong> <font color="4444FF">*</font><font color="#2040a0">idsignum</font>,
+<strong>double</strong> <font color="4444FF">*</font><font color="#2040a0">init_v</font>,<strong>double</strong> <font color="4444FF">*</font><font color="#2040a0">delx</font>,<strong>int</strong> <font color="4444FF">*</font><font color="#2040a0">level</font>,<strong>double</strong> <font color="4444FF">*</font><font color="#2040a0">x_max</font>,<strong>int</strong> <font color="4444FF">*</font><font color="#2040a0">Nx</font>,
+<strong>int</strong> <font color="4444FF">*</font><font color="#2040a0">steps</font>,<strong>double</strong> <font color="4444FF">*</font><font color="#2040a0">x0</font>,<strong>int</strong> <font color="4444FF">*</font><font color="#2040a0">output_freq</font><font color="4444FF">)</font>
+<font color="4444FF"><strong>{</strong></font>
+<font color="#2040a0">get_param</font><font color="4444FF">(</font><font color="#2040a0">p_file</font>,<font color="#008000">&quot;A&quot;</font>,<font color="#008000">&quot;double&quot;</font>,<font color="#FF0000">1</font>,<font color="#2040a0">A</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">get_param</font><font color="4444FF">(</font><font color="#2040a0">p_file</font>,<font color="#008000">&quot;x_min&quot;</font>,<font color="#008000">&quot;double&quot;</font>,<font color="#FF0000">1</font>,<font color="#2040a0">x_min</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">get_param</font><font color="4444FF">(</font><font color="#2040a0">p_file</font>,<font color="#008000">&quot;lambda&quot;</font>,<font color="#008000">&quot;double&quot;</font>,<font color="#FF0000">1</font>,<font color="#2040a0">lambda</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">get_param</font><font color="4444FF">(</font><font color="#2040a0">p_file</font>,<font color="#008000">&quot;idsignum&quot;</font>,<font color="#008000">&quot;double&quot;</font>,<font color="#FF0000">1</font>,<font color="#2040a0">idsignum</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">get_param</font><font color="4444FF">(</font><font color="#2040a0">p_file</font>,<font color="#008000">&quot;init_v&quot;</font>,<font color="#008000">&quot;double&quot;</font>,<font color="#FF0000">1</font>,<font color="#2040a0">init_v</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">get_param</font><font color="4444FF">(</font><font color="#2040a0">p_file</font>,<font color="#008000">&quot;delx&quot;</font>,<font color="#008000">&quot;double&quot;</font>,<font color="#FF0000">1</font>,<font color="#2040a0">delx</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">get_param</font><font color="4444FF">(</font><font color="#2040a0">p_file</font>,<font color="#008000">&quot;level&quot;</font>,<font color="#008000">&quot;long&quot;</font>,<font color="#FF0000">1</font>,<font color="#2040a0">level</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">get_param</font><font color="4444FF">(</font><font color="#2040a0">p_file</font>,<font color="#008000">&quot;x_max&quot;</font>,<font color="#008000">&quot;double&quot;</font>,<font color="#FF0000">1</font>,<font color="#2040a0">x_max</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">get_param</font><font color="4444FF">(</font><font color="#2040a0">p_file</font>,<font color="#008000">&quot;Nx&quot;</font>,<font color="#008000">&quot;long&quot;</font>,<font color="#FF0000">1</font>,<font color="#2040a0">Nx</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">get_param</font><font color="4444FF">(</font><font color="#2040a0">p_file</font>,<font color="#008000">&quot;steps&quot;</font>,<font color="#008000">&quot;long&quot;</font>,<font color="#FF0000">1</font>,<font color="#2040a0">steps</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">get_param</font><font color="4444FF">(</font><font color="#2040a0">p_file</font>,<font color="#008000">&quot;x0&quot;</font>,<font color="#008000">&quot;double&quot;</font>,<font color="#FF0000">1</font>,<font color="#2040a0">x0</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">get_param</font><font color="4444FF">(</font><font color="#2040a0">p_file</font>,<font color="#008000">&quot;output_freq&quot;</font>,<font color="#008000">&quot;long&quot;</font>,<font color="#FF0000">1</font>,<font color="#2040a0">output_freq</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="4444FF"><strong>}</strong></font>
+
+<strong>int</strong> <font color="#2040a0">main</font><font color="4444FF">(</font><strong>int</strong> <font color="#2040a0">argc</font>, <strong>char</strong> <font color="4444FF">*</font><font color="4444FF">*</font><font color="#2040a0">argv</font><font color="4444FF">)</font> <font color="4444FF"><strong>{</strong></font>
+<strong>char</strong> <font color="#2040a0">pfile</font><font color="4444FF">[</font><font color="#FF0000">64</font><font color="4444FF">]</font><font color="4444FF">;</font>
+<strong>int</strong> <font color="#2040a0">j</font><font color="4444FF">;</font>
+<font color="#2040a0">strcpy</font><font color="4444FF">(</font><font color="#2040a0">pfile</font>,<font color="#2040a0">argv</font><font color="4444FF">[</font><font color="#FF0000">1</font><font color="4444FF">]</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#444444">/* Initialization of Coordinate: */</font>
+<font color="#2040a0">dim</font> <font color="4444FF">=</font><font color="#FF0000">1</font><font color="4444FF">;</font>
+<font color="#2040a0">read_params</font><font color="4444FF">(</font><font color="#2040a0">pfile</font>,<font color="4444FF">&amp;</font><font color="#2040a0">A</font>,<font color="4444FF">&amp;</font><font color="#2040a0">x_min</font>,<font color="4444FF">&amp;</font><font color="#2040a0">lambda</font>,<font color="4444FF">&amp;</font><font color="#2040a0">idsignum</font>,<font color="4444FF">&amp;</font><font color="#2040a0">init_v</font>,<font color="4444FF">&amp;</font><font color="#2040a0">delx</font>,
+ <font color="4444FF">&amp;</font><font color="#2040a0">level</font>,<font color="4444FF">&amp;</font><font color="#2040a0">x_max</font>,<font color="4444FF">&amp;</font><font color="#2040a0">Nx</font>,<font color="4444FF">&amp;</font><font color="#2040a0">steps</font>,<font color="4444FF">&amp;</font><font color="#2040a0">x0</font>,<font color="4444FF">&amp;</font><font color="#2040a0">output_freq</font><font color="4444FF">)</font><font color="4444FF">;</font>
+
+<font color="#2040a0">Nx</font> <font color="4444FF">=</font> <font color="#2040a0">Nx</font><font color="4444FF">*</font><font color="4444FF">(</font><strong>int</strong><font color="4444FF">)</font><font color="#2040a0">pow</font><font color="4444FF">(</font><font color="#FF0000">2.0</font>,<font color="4444FF">(</font><strong>double</strong><font color="4444FF">)</font><font color="#2040a0">level</font><font color="4444FF">)</font><font color="4444FF">+</font><font color="#FF0000">1</font><font color="4444FF">;</font>
+<font color="#2040a0">steps</font> <font color="4444FF">=</font> <font color="#2040a0">steps</font><font color="4444FF">*</font><font color="4444FF">(</font><strong>int</strong><font color="4444FF">)</font><font color="#2040a0">pow</font><font color="4444FF">(</font><font color="#FF0000">2.0</font>,<font color="4444FF">(</font><strong>double</strong><font color="4444FF">)</font><font color="#2040a0">level</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#444444">/* Allocating Memory to Grid Functions: */</font>
+<font color="#2040a0">x</font> <font color="4444FF">=</font> <font color="#2040a0">vec_alloc</font><font color="4444FF">(</font><font color="#2040a0">Nx</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">n_f</font> <font color="4444FF">=</font> <font color="#2040a0">vec_alloc</font><font color="4444FF">(</font><font color="#FF0000">1</font><font color="4444FF">*</font><font color="#2040a0">Nx</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">n_f_t</font> <font color="4444FF">=</font> <font color="#2040a0">vec_alloc</font><font color="4444FF">(</font><font color="#FF0000">1</font><font color="4444FF">*</font><font color="#2040a0">Nx</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">np1_f</font> <font color="4444FF">=</font> <font color="#2040a0">vec_alloc</font><font color="4444FF">(</font><font color="#FF0000">1</font><font color="4444FF">*</font><font color="#2040a0">Nx</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">np1_f_t</font> <font color="4444FF">=</font> <font color="#2040a0">vec_alloc</font><font color="4444FF">(</font><font color="#FF0000">1</font><font color="4444FF">*</font><font color="#2040a0">Nx</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">nm1_f</font> <font color="4444FF">=</font> <font color="#2040a0">vec_alloc</font><font color="4444FF">(</font><font color="#2040a0">Nx</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">hx</font> <font color="4444FF">=</font> <font color="4444FF">(</font><font color="#2040a0">x_max</font><font color="4444FF">-</font><font color="#2040a0">x_min</font><font color="4444FF">)</font>/<font color="4444FF">(</font><font color="#2040a0">Nx</font><font color="4444FF">-</font><font color="#FF0000">1</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">dvumsh</font><font color="4444FF">(</font><font color="#2040a0">x</font>,<font color="#2040a0">Nx</font>,<font color="#2040a0">x_min</font>,<font color="#2040a0">x_max</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">ht</font> <font color="4444FF">=</font> <font color="#2040a0">lambda</font><font color="4444FF">*</font><font color="#2040a0">sqrt</font><font color="4444FF">(</font> <font color="#FF0000">0.0</font><font color="4444FF">+</font> <font color="#2040a0">hx</font><font color="4444FF">*</font><font color="#2040a0">hx</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">shape</font><font color="4444FF">[</font><font color="#FF0000">0</font><font color="4444FF">]</font><font color="4444FF">=</font><font color="#2040a0">Nx</font><font color="4444FF">;</font>
+<font color="#2040a0">bbox</font><font color="4444FF">[</font><font color="#FF0000">0</font><font color="4444FF">]</font><font color="4444FF">=</font><font color="#2040a0">x_min</font><font color="4444FF">;</font>
+<font color="#2040a0">bbox</font><font color="4444FF">[</font><font color="#FF0000">1</font><font color="4444FF">]</font><font color="4444FF">=</font><font color="#2040a0">x_max</font><font color="4444FF">;</font>
+<font color="#2040a0">time</font><font color="4444FF">=</font><font color="#FF0000">0.0</font><font color="4444FF">;</font>
+<font color="#2040a0">init_f_</font><font color="4444FF">(</font><font color="#2040a0">x</font>,<font color="4444FF">&amp;</font><font color="#2040a0">Nx</font>,<font color="4444FF">&amp;</font><font color="#2040a0">A</font>,<font color="4444FF">&amp;</font><font color="#2040a0">x0</font>,<font color="4444FF">&amp;</font><font color="#2040a0">delx</font>,<font color="#2040a0">n_f</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">init_f_</font><font color="4444FF">(</font><font color="#2040a0">x</font>,<font color="4444FF">&amp;</font><font color="#2040a0">Nx</font>,<font color="4444FF">&amp;</font><font color="#2040a0">A</font>,<font color="4444FF">&amp;</font><font color="#2040a0">x0</font>,<font color="4444FF">&amp;</font><font color="#2040a0">delx</font>,<font color="#2040a0">np1_f</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">init_f_t_</font><font color="4444FF">(</font><font color="#2040a0">x</font>,<font color="4444FF">&amp;</font><font color="#2040a0">Nx</font>,<font color="4444FF">&amp;</font><font color="#2040a0">A</font>,<font color="4444FF">&amp;</font><font color="#2040a0">x0</font>,<font color="4444FF">&amp;</font><font color="#2040a0">delx</font>,<font color="4444FF">&amp;</font><font color="#2040a0">idsignum</font>,<font color="#2040a0">n_f_t</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">init_f_t_</font><font color="4444FF">(</font><font color="#2040a0">x</font>,<font color="4444FF">&amp;</font><font color="#2040a0">Nx</font>,<font color="4444FF">&amp;</font><font color="#2040a0">A</font>,<font color="4444FF">&amp;</font><font color="#2040a0">x0</font>,<font color="4444FF">&amp;</font><font color="#2040a0">delx</font>,<font color="4444FF">&amp;</font><font color="#2040a0">idsignum</font>,<font color="#2040a0">np1_f_t</font><font color="4444FF">)</font><font color="4444FF">;</font>
+
+<font color="#2040a0">gft_out_bbox</font><font color="4444FF">(</font><font color="#008000">&quot;f.sdf&quot;</font>,<font color="#2040a0">time</font>,<font color="#2040a0">shape</font>,<font color="#2040a0">dim</font>,<font color="#2040a0">bbox</font>,<font color="#2040a0">np1_f</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">gft_out_bbox</font><font color="4444FF">(</font><font color="#008000">&quot;f_t.sdf&quot;</font>,<font color="#2040a0">time</font>,<font color="#2040a0">shape</font>,<font color="#2040a0">dim</font>,<font color="#2040a0">bbox</font>,<font color="#2040a0">np1_f_t</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="#2040a0">printf</font><font color="4444FF">(</font><font color="#008000">&quot;step: %d time: %f iter: %d res: %1.14e ire: %1.14e<font color="#77dd77">\n</font>&quot;</font>,<font color="#FF0000">0</font>,<font color="#2040a0">time</font>,<font color="#FF0000">0</font>,<font color="#FF0000">0.0</font>,<font color="#FF0000">0.0</font><font color="4444FF">)</font><font color="4444FF">;</font>
+
+
+<strong>for</strong> <font color="4444FF">(</font><strong>int</strong> <font color="#2040a0">i</font><font color="4444FF">=</font><font color="#FF0000">0</font><font color="4444FF">;</font> <font color="#2040a0">i</font><font color="4444FF">&lt;</font><font color="#2040a0">steps</font><font color="4444FF">;</font> <font color="#2040a0">i</font><font color="4444FF">+</font><font color="4444FF">+</font><font color="4444FF">)</font> <font color="4444FF"><strong>{</strong></font>
+  <font color="#2040a0">j</font><font color="4444FF">=</font><font color="#FF0000">0</font><font color="4444FF">;</font>
+  <font color="#2040a0">tot_res</font> <font color="4444FF">=</font> <font color="#FF0000">1.0</font><font color="4444FF">;</font>
+  <font color="#2040a0">ire_f</font> <font color="4444FF">=</font> <font color="#FF0000">0</font><font color="4444FF">;</font>
+  <strong>while</strong> <font color="4444FF">(</font><font color="#2040a0">tot_res</font> <font color="4444FF">&gt;</font> <font color="#FF0000">1.0e-9</font><font color="4444FF">)</font> <font color="4444FF"><strong>{</strong></font>
+      <font color="#2040a0">u_f_</font><font color="4444FF">(</font><font color="#2040a0">n_f</font>,<font color="#2040a0">n_f_t</font>,<font color="#2040a0">np1_f</font>,<font color="#2040a0">np1_f_t</font>,<font color="4444FF">&amp;</font><font color="#2040a0">Nx</font>,<font color="4444FF">&amp;</font><font color="#2040a0">ht</font>,<font color="#2040a0">phys_bdy</font>,<font color="#2040a0">np1_f</font><font color="4444FF">)</font><font color="4444FF">;</font>
+      <font color="#2040a0">u_f_t_</font><font color="4444FF">(</font><font color="#2040a0">n_f</font>,<font color="#2040a0">n_f_t</font>,<font color="#2040a0">np1_f</font>,<font color="#2040a0">np1_f_t</font>,<font color="4444FF">&amp;</font><font color="#2040a0">Nx</font>,<font color="4444FF">&amp;</font><font color="#2040a0">ht</font>,<font color="4444FF">&amp;</font><font color="#2040a0">hx</font>,<font color="#2040a0">phys_bdy</font>,<font color="#2040a0">np1_f_t</font><font color="4444FF">)</font><font color="4444FF">;</font>
+      <font color="#2040a0">res_f_</font><font color="4444FF">(</font><font color="#2040a0">n_f</font>,<font color="#2040a0">n_f_t</font>,<font color="#2040a0">np1_f</font>,<font color="#2040a0">np1_f_t</font>,<font color="4444FF">&amp;</font><font color="#2040a0">Nx</font>,<font color="4444FF">&amp;</font><font color="#2040a0">ht</font>,<font color="#2040a0">phys_bdy</font>,<font color="4444FF">&amp;</font><font color="#2040a0">res_f</font><font color="4444FF">)</font><font color="4444FF">;</font>
+      <font color="#2040a0">res_f_t_</font><font color="4444FF">(</font><font color="#2040a0">n_f</font>,<font color="#2040a0">n_f_t</font>,<font color="#2040a0">np1_f</font>,<font color="#2040a0">np1_f_t</font>,<font color="4444FF">&amp;</font><font color="#2040a0">Nx</font>,<font color="4444FF">&amp;</font><font color="#2040a0">ht</font>,<font color="4444FF">&amp;</font><font color="#2040a0">hx</font>,<font color="#2040a0">phys_bdy</font>,<font color="4444FF">&amp;</font><font color="#2040a0">res_f_t</font><font color="4444FF">)</font><font color="4444FF">;</font>
+        <font color="#2040a0">tot_res</font><font color="4444FF">=</font><font color="#2040a0">res_f</font>/<font color="#2040a0">l2norm</font><font color="4444FF">(</font><font color="#2040a0">Nx</font>,<font color="#2040a0">np1_f</font><font color="4444FF">)</font> <font color="4444FF">+</font> <font color="#2040a0">res_f_t</font>/<font color="#2040a0">l2norm</font><font color="4444FF">(</font><font color="#2040a0">Nx</font>,<font color="#2040a0">np1_f_t</font><font color="4444FF">)</font><font color="4444FF">;</font>
+        <font color="#2040a0">j</font><font color="4444FF">+</font><font color="4444FF">+</font><font color="4444FF">;</font>
+      <font color="4444FF"><strong>}</strong></font>
+   <strong>if</strong> <font color="4444FF">(</font><font color="#2040a0">i</font><font color="4444FF">&gt;</font><font color="#FF0000">1</font><font color="4444FF">)</font> <font color="4444FF"><strong>{</strong></font>
+     <font color="#2040a0">ire_f_</font><font color="4444FF">(</font><font color="#2040a0">n_f</font>,<font color="#2040a0">nm1_f</font>,<font color="#2040a0">np1_f</font>,<font color="4444FF">&amp;</font><font color="#2040a0">Nx</font>,<font color="4444FF">&amp;</font><font color="#2040a0">ht</font>,<font color="4444FF">&amp;</font><font color="#2040a0">hx</font>,<font color="4444FF">&amp;</font><font color="#2040a0">ire_f</font><font color="4444FF">)</font><font color="4444FF">;</font>
+    <font color="4444FF"><strong>}</strong></font>
+   <font color="#2040a0">time</font> <font color="4444FF">=</font> <font color="#2040a0">time</font> <font color="4444FF">+</font> <font color="#2040a0">ht</font><font color="4444FF">;</font>
+    <strong>if</strong> <font color="4444FF">(</font><font color="4444FF">(</font><font color="#2040a0">i</font> <font color="4444FF">+</font> <font color="#FF0000">1</font><font color="4444FF">)</font> <font color="4444FF">%</font> <font color="4444FF">(</font><font color="#2040a0">output_freq</font><font color="4444FF">*</font><font color="4444FF">(</font><strong>int</strong><font color="4444FF">)</font><font color="#2040a0">pow</font><font color="4444FF">(</font><font color="#FF0000">2.0</font>,<font color="4444FF">(</font><strong>double</strong><font color="4444FF">)</font><font color="#2040a0">level</font><font color="4444FF">)</font><font color="4444FF">)</font>  <font color="4444FF">=</font><font color="4444FF">=</font> <font color="#FF0000">0</font><font color="4444FF">)</font> <font color="4444FF"><strong>{</strong></font>
+      <font color="#2040a0">gft_out_bbox</font><font color="4444FF">(</font><font color="#008000">&quot;f.sdf&quot;</font>,<font color="#2040a0">time</font>,<font color="#2040a0">shape</font>,<font color="#2040a0">dim</font>,<font color="#2040a0">bbox</font>,<font color="#2040a0">np1_f</font><font color="4444FF">)</font><font color="4444FF">;</font>
+      <font color="#2040a0">gft_out_bbox</font><font color="4444FF">(</font><font color="#008000">&quot;f_t.sdf&quot;</font>,<font color="#2040a0">time</font>,<font color="#2040a0">shape</font>,<font color="#2040a0">dim</font>,<font color="#2040a0">bbox</font>,<font color="#2040a0">np1_f_t</font><font color="4444FF">)</font><font color="4444FF">;</font>
+      <font color="#2040a0">printf</font><font color="4444FF">(</font><font color="#008000">&quot;step: %d time: %f iter: %d res: %1.14e ire: %1.14e<font color="#77dd77">\n</font>&quot;</font>,<font color="#2040a0">i</font><font color="4444FF">+</font><font color="#FF0000">1</font>,<font color="#2040a0">time</font>,<font color="#2040a0">j</font>,<font color="#2040a0">tot_res</font>,<font color="#2040a0">ire_f</font><font color="4444FF">)</font><font color="4444FF">;</font>
+    <font color="4444FF"><strong>}</strong></font>
+    <font color="#2040a0">rdvcpy</font><font color="4444FF">(</font><font color="#2040a0">nm1_f</font>,<font color="#2040a0">n_f</font>,<font color="#2040a0">Nx</font><font color="4444FF">)</font><font color="4444FF">;</font>
+    <font color="#2040a0">swap_levels</font><font color="4444FF">(</font><font color="4444FF">&amp;</font><font color="#2040a0">np1_f</font>,<font color="4444FF">&amp;</font><font color="#2040a0">n_f</font><font color="4444FF">)</font><font color="4444FF">;</font>
+    <font color="#2040a0">swap_levels</font><font color="4444FF">(</font><font color="4444FF">&amp;</font><font color="#2040a0">np1_f_t</font>,<font color="4444FF">&amp;</font><font color="#2040a0">n_f_t</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="4444FF"><strong>}</strong></font>
+<font color="#2040a0">gft_close_all</font><font color="4444FF">(</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="4444FF"><strong>}</strong></font>
+</pre>
+
+<p>
+
+</p>
+
+		      <div style="clear: both;"></div>
+	         </div>
+		      <hr />
+	         <div class ="date">last update: Wed Aug 19, 2015</div>
+	    <div class="footer">
+           <p><a href="Home.html">Home</a>|<a href="Research.html">Research</a>|<a href="Contact.html">Contact</a>|<a href="Links.html">Links</a>|<a href="Misc.html">Misc</a>|<a href="sg">Template</a></p>
+
+      </div>  
+	    <div style="clear: both;">&nbsp;</div>
+        </div> <!-- end content -->
+	<!-- in class postandside -->
+
+                 <!--in class postandside-->   
+         <!--this line is for compatibility issues --><div style="clear: both;">&#160;</div> <!--Displacement --> 
+     </div> <!--End of post and side -->
+
+     <!-- in class page2 -->
+     <div style="clear: both;">&nbsp;</div>
+  </div> <!--End of Page2 -->
+     <div style="clear: both;">&nbsp;</div>
+
+</div> <!-- End of page -->
+<!--this is end of the file -->
+<!-- ~~~ This content is generated using sg web template ~~-->
+<!-- ~~~ For more information visit: http://laplace.physics.ubc.ca/People/arman/sg ~~ -->
+</body>
+</html>

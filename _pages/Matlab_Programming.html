@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="description" />
+<meta name="keywords" content="keywords" />
+<meta name="author" content="author" />
+<link rel="stylesheet" type="text/css" href="pagestyle.css" />
+<title>Arman Akbarian's Homepage</title>
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+
+<body>
+<div class="page">
+  <div class="page2">
+     <div style="width:100%;height:1px;font-family: Tahoma; font-size: 1pt;"></div>
+     <div  class ="header">
+		
+	     <div class="title">
+
+			Arman Akbarian
+			<div class="subtitle">UNIVERSITY OF BRITISH COLUMBIA <br /> PHYSICS &amp; ASTRONOMY DEPT. </div>
+	</div> <!-- End of title -->
+		<div class="sidebar">
+         	<div class="sider">
+               <p><a href="Home.html">Home <img src="img/home.svg" width="11px" /></a>
+<a href="Research.html">Research <img src="img/beaker.svg" width="11px" /></a>
+<a href="Publications.html">Publications <img src="img/pencil.svg" width="11px" /></a>
+<a target="_blank" href="http://laplace.phas.ubc.ca/">Group Page <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/people.svg" width="11px" /></a>
+<a href="Contact.html">Contact <img src="img/envelope-closed.svg" width="11px" /></a>
+<a href="CV.html">CV <img src="img/person.svg" width="11px" /></a></p>
+
+<hr />
+
+<p><a href="Links.html">Links <img src="img/link.svg" width="11px" /></a>
+<a href="Learn-By-Examples.html">Programming <img src="img/code.svg" width="11px"/></a>
+<a target="_blank" href="FD_doc">FD Toolkit <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/graph.svg" width="11px" /></a>
+<a target="_blank" href="sg">Web Template <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/globe.svg" width="11px" /></a>
+<a href="http://rmanak.github.io/notes">Miscellany <img src="img/layers.svg" width="11px" /></a></p>
+
+             </div>
+         </div> <!--End of Sidebar -->
+
+
+     </div> <!-- end header -->
+	
+     <!--This line is for future use -->   <div style="text-align:center; padding-top:10px; padding-bottom:10px;"></div>
+	      
+     <!--This line is for compatibility issues --> <div style="width:100%;height:5px;font-family: Tahoma; font-size: 1pt;"></div>
+     <!--in class page2 -->
+     <div class="postandside">
+		        <div class="content">
+            <div class="post">
+              <pre>
+<span style="color: #0000ff;">function</span><span style="color: #000000;"> [rv1 rv2]= myfunction(fcn, v, s)</span>
+<span style="font-style: italic;color: #009900;">% fcn is the function passed in</span>
+<span style="font-style: italic;color: #009900;">%for loop:</span>
+<span style="color: #000000;">	</span><span style="color: #0000ff;">for</span><span style="color: #000000;"> i = </span><span style="color: #800080;">1</span><span style="color: #000000;">:length(v)</span>
+<span style="color: #000000;">	  rv1(i) = v(i) + i;</span>
+<span style="color: #000000;">	</span><span style="color: #0000ff;">end</span>
+
+<span style="color: #000000;">	k=</span><span style="color: #800080;">1</span><span style="color: #000000;">;</span>
+
+<span style="font-style: italic;color: #009900;">%while loop:</span>
+<span style="color: #000000;">	</span><span style="color: #0000ff;">while</span><span style="color: #000000;"> k&lt;</span><span style="color: #800080;">5</span>
+<span style="color: #000000;">		</span><span style="font-style: italic;color: #009900;">%formatted printing:</span>
+<span style="color: #000000;">		fprintf("k = </span><span style="font-style: italic;color: #009900;">%d\n",k)</span>
+<span style="color: #000000;">		k++;</span>
+<span style="color: #000000;">	</span><span style="color: #0000ff;">end</span>
+
+<span style="color: #000000;">	fprintf("Third argument is </span><span style="font-style: italic;color: #009900;">%f\n",s);</span>
+
+<span style="font-style: italic;color: #009900;">%if statement ( options: &gt;= &lt;= == ~=</span>
+<span style="color: #000000;">	</span><span style="color: #0000ff;">if</span><span style="color: #000000;"> k &gt; </span><span style="color: #800080;">2</span>
+<span style="color: #000000;">		fprintf("Inside </span><span style="color: #0000ff;">if</span><span style="color: #000000;"> statement...\n");</span>
+<span style="color: #000000;">	</span><span style="color: #0000ff;">end</span>
+<span style="color: #000000;">	</span>
+<span style="font-style: italic;color: #009900;">%applying function to whole array:</span>
+<span style="color: #000000;">	rv1 = fcn(v);</span>
+
+<span style="font-style: italic;color: #009900;">%operation element by element: (.* ./ .+ etc...)</span>
+<span style="color: #000000;">	rv2 = </span><span style="color: #800080;">2</span><span style="color: #000000;"> .^v;</span>
+
+<span style="font-style: italic;color: #009900;">%reading a variable interactively:</span>
+<span style="color: #000000;">	x = input("Enter a number:");</span>
+<span style="color: #000000;">	fprintf("</span><span style="color: #800080;">2</span><span style="color: #000000;"> x input = </span><span style="font-style: italic;color: #009900;">%f\n",2*x);</span>
+
+<span style="font-style: italic;color: #009900;">%opening a file for write:</span>
+<span style="color: #000000;">	fid = fopen(</span><span style="color: #b20000;">'mydata.dat'</span><span style="color: #000000;">, </span><span style="color: #b20000;">'w'</span><span style="color: #000000;">);</span>
+<span style="color: #000000;">	</span><span style="color: #0000ff;">if</span><span style="color: #000000;"> fid &lt; </span><span style="color: #800080;">0</span>
+<span style="color: #000000;">		fprintf(</span><span style="color: #b20000;">'Could not open  file to write'</span><span style="color: #000000;">);</span>
+<span style="color: #000000;">		</span><span style="color: #0000ff;">return</span><span style="color: #000000;">;</span>
+<span style="color: #000000;">	</span><span style="color: #0000ff;">end</span>
+
+<span style="color: #000000;">	</span><span style="color: #0000ff;">for</span><span style="color: #000000;"> i=</span><span style="color: #800080;">1</span><span style="color: #000000;">:</span><span style="color: #800080;">10</span>
+<span style="color: #000000;">		fprintf(fid,"</span><span style="font-style: italic;color: #009900;">%d %d %d\n", i,i^2,i^3);</span>
+<span style="color: #000000;">	</span><span style="color: #0000ff;">end</span>
+<span style="color: #000000;">	fclose(fid);</span>
+
+<span style="font-style: italic;color: #009900;">%opening a file for read:</span>
+<span style="color: #000000;">	fid = fopen(</span><span style="color: #b20000;">'mydata.dat'</span><span style="color: #000000;">,</span><span style="color: #b20000;">'r'</span><span style="color: #000000;">);</span>
+<span style="color: #000000;">	</span><span style="color: #0000ff;">for</span><span style="color: #000000;"> i=</span><span style="color: #800080;">1</span><span style="color: #000000;">:</span><span style="color: #800080;">3</span>
+<span style="color: #000000;">		fscanf(fid,</span><span style="color: #b20000;">'%d %d %d'</span><span style="color: #000000;">);</span>
+<span style="color: #000000;">	</span><span style="color: #0000ff;">end</span>
+<span style="color: #000000;">	fclose(fid)</span>
+
+<span style="font-style: italic;color: #009900;">%reading a matrix using load</span>
+<span style="color: #000000;">	B=load(</span><span style="color: #b20000;">'A.mat'</span><span style="color: #000000;">)</span>
+<span style="color: #000000;">	X=B(:,</span><span style="color: #800080;">1</span><span style="color: #000000;">);</span>
+<span style="color: #000000;">	Y=B(:,</span><span style="color: #800080;">2</span><span style="color: #000000;">);</span>
+<span style="color: #000000;">	fitY=zeros(length(Y),</span><span style="color: #800080;">1</span><span style="color: #000000;">);</span>
+
+<span style="font-style: italic;color: #009900;">%calling another function that computes the nth order polynomial fit to data:</span>
+<span style="color: #000000;">	params=nthpoly(</span><span style="color: #800080;">3</span><span style="color: #000000;">,</span><span style="color: #b20000;">'A.mat'</span><span style="color: #000000;">);</span>
+<span style="color: #000000;">	</span><span style="color: #0000ff;">for</span><span style="color: #000000;"> j=</span><span style="color: #800080;">1</span><span style="color: #000000;">:length(params)</span>
+<span style="color: #000000;">		fitY += params(j)* X .^ (j-</span><span style="color: #800080;">1</span><span style="color: #000000;">);</span>
+<span style="color: #000000;">	</span><span style="color: #0000ff;">end</span>
+
+<span style="font-style: italic;color: #009900;">%plotting in matlab/octave:</span>
+<span style="color: #000000;">	clf; hold on;</span>
+<span style="color: #000000;">	plot(X,Y, </span><span style="color: #b20000;">'.+r'</span><span style="color: #000000;">);</span>
+<span style="color: #000000;">	plot(X,fitY,</span><span style="color: #b20000;">'-c'</span><span style="color: #000000;">);</span>
+<span style="color: #000000;">	legend(</span><span style="color: #b20000;">'a+bx+cx2+dx3'</span><span style="color: #000000;">,</span><span style="color: #b20000;">'location'</span><span style="color: #000000;">,</span><span style="color: #b20000;">'north'</span><span style="color: #000000;">);</span>
+<span style="color: #000000;">	xlabel(</span><span style="color: #b20000;">'x'</span><span style="color: #000000;">);</span>
+<span style="color: #000000;">	ylabel(</span><span style="color: #b20000;">'y'</span><span style="color: #000000;">);</span>
+<span style="color: #000000;">	title(</span><span style="color: #b20000;">'Fit to third order polynomial'</span><span style="color: #000000;">);</span>
+
+<span style="font-style: italic;color: #009900;">%creating a hard copy in a .ps file:</span>
+<span style="color: #000000;">	print(</span><span style="color: #b20000;">'plot.ps'</span><span style="color: #000000;">,</span><span style="color: #b20000;">'-depsc'</span><span style="color: #000000;">);</span>
+<span style="color: #000000;">	</span>
+<span style="color: #0000ff;">end</span>
+</pre>
+		      <div style="clear: both;"></div>
+	         </div>
+		      <hr />
+	         <div class ="date">last update:   , </div>
+	    <div class="footer">
+           <p><a href="Home.html">Home</a>|<a href="Research.html">Research</a>|<a href="Contact.html">Contact</a>|<a href="Links.html">Links</a>|<a href="Misc.html">Misc</a>|<a href="sg">Template</a></p>
+
+      </div>  
+	    <div style="clear: both;">&nbsp;</div>
+        </div> <!-- end content -->
+	<!-- in class postandside -->
+
+                 <!--in class postandside-->   
+         <!--this line is for compatibility issues --><div style="clear: both;">&#160;</div> <!--Displacement --> 
+     </div> <!--End of post and side -->
+
+     <!-- in class page2 -->
+     <div style="clear: both;">&nbsp;</div>
+  </div> <!--End of Page2 -->
+     <div style="clear: both;">&nbsp;</div>
+
+</div> <!-- End of page -->
+<!--this is end of the file -->
+<!-- ~~~ This content is generated using sg web template ~~-->
+<!-- ~~~ For more information visit: http://laplace.physics.ubc.ca/People/arman/sg ~~ -->
+</body>
+</html>

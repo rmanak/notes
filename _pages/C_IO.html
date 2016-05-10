@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="description" />
+<meta name="keywords" content="keywords" />
+<meta name="author" content="author" />
+<link rel="stylesheet" type="text/css" href="pagestyle.css" />
+<title>Arman Akbarian's Homepage</title>
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+
+<body>
+<div class="page">
+  <div class="page2">
+     <div style="width:100%;height:1px;font-family: Tahoma; font-size: 1pt;"></div>
+     <div  class ="header">
+		
+	     <div class="title">
+
+			Arman Akbarian
+			<div class="subtitle">UNIVERSITY OF BRITISH COLUMBIA <br /> PHYSICS &amp; ASTRONOMY DEPT. </div>
+	</div> <!-- End of title -->
+		<div class="sidebar">
+         	<div class="sider">
+               <p><a href="Home.html">Home <img src="img/home.svg" width="11px" /></a>
+<a href="Research.html">Research <img src="img/beaker.svg" width="11px" /></a>
+<a href="Publications.html">Publications <img src="img/pencil.svg" width="11px" /></a>
+<a target="_blank" href="http://laplace.phas.ubc.ca/">Group Page <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/people.svg" width="11px" /></a>
+<a href="Contact.html">Contact <img src="img/envelope-closed.svg" width="11px" /></a>
+<a href="CV.html">CV <img src="img/person.svg" width="11px" /></a></p>
+
+<hr />
+
+<p><a href="Links.html">Links <img src="img/link.svg" width="11px" /></a>
+<a href="Learn-By-Examples.html">Programming <img src="img/code.svg" width="11px"/></a>
+<a target="_blank" href="FD_doc">FD Toolkit <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/graph.svg" width="11px" /></a>
+<a target="_blank" href="sg">Web Template <img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" /> <img src="img/globe.svg" width="11px" /></a>
+<a href="http://rmanak.github.io/notes">Miscellany <img src="img/layers.svg" width="11px" /></a></p>
+
+             </div>
+         </div> <!--End of Sidebar -->
+
+
+     </div> <!-- end header -->
+	
+     <!--This line is for future use -->   <div style="text-align:center; padding-top:10px; padding-bottom:10px;"></div>
+	      
+     <!--This line is for compatibility issues --> <div style="width:100%;height:5px;font-family: Tahoma; font-size: 1pt;"></div>
+     <!--in class page2 -->
+     <div class="postandside">
+		        <div class="content">
+            <div class="post">
+              <style type="text/css">
+<!--
+.Statement { color: #a52a2a; font-weight: bold; }
+.Special { color: #6a5acd; }
+.Comment { color: #0000ff; }
+.PreProc { color: #a020f0; }
+.Constant { color: #ff00ff; }
+.Type { color: #2e8b57; font-weight: bold; }
+-->
+</style>
+<pre>
+<span class="Comment">/*</span><span class="Comment"> AAK:</span>
+<span class="Comment"> * This is an example code to learn about </span>
+<span class="Comment"> * input/output facilities in C and working</span>
+<span class="Comment"> * with files </span>
+<span class="Comment"> * last update:</span>
+<span class="Comment"> * Sat Sep 15 17:09:23 PDT 2012</span>
+<span class="Comment"> </span><span class="Comment">*/</span>
+<span class="PreProc">#include </span><span class="Constant">&lt;stdio.h&gt;</span>
+<span class="PreProc">#include </span><span class="Constant">&lt;stdlib.h&gt;</span>
+
+<span class="Type">int</span> main (<span class="Type">int</span> argc, <span class="Type">char</span> *argv[]){
+   <span class="Type">char</span> *cpath;
+   <span class="Type">FILE</span> *TF; <span class="Comment">/*</span><span class="Comment"> To output to a text file </span><span class="Comment">*/</span>
+   <span class="Type">FILE</span> *BF; <span class="Comment">/*</span><span class="Comment"> To output to a binary file </span><span class="Comment">*/</span>
+   <span class="Type">double</span> x[<span class="Constant">10</span>];
+   <span class="Type">double</span> z[<span class="Constant">5</span>];
+   <span class="Type">int</span> n;
+   <span class="Type">int</span> file_pos;
+   <span class="Type">double</span> y;
+   <span class="Type">int</span> size;
+   <span class="Type">char</span> str[<span class="Constant">10</span>];
+   <span class="Type">int</span> i,rc;
+   <span class="Type">double</span> r;
+   <span class="Type">char</span> line[<span class="Constant">256</span>];
+
+
+   <span class="Comment">/*</span><span class="Comment"> This is how to get the envirounment variables:</span><span class="Comment">*/</span>
+   <span class="Comment">/*</span><span class="Comment"> Need to include stdlib.h header</span><span class="Comment">*/</span>
+
+   cpath = getenv(<span class="Constant">&quot;PATH&quot;</span>);
+   <span class="Statement">if</span> (cpath !=<span class="Constant">NULL</span>)
+   {
+      printf(<span class="Constant">&quot;The current path is: </span><span class="Special">%s</span><span class="Special">\n</span><span class="Constant">&quot;</span>,cpath);
+   }
+   cpath = getenv(<span class="Constant">&quot;MYHOME&quot;</span>);
+   <span class="Statement">if</span> (cpath !=<span class="Constant">NULL</span>) {
+      printf(<span class="Constant">&quot;MYHOME env is : </span><span class="Special">%s</span><span class="Special">\n</span><span class="Constant">&quot;</span>,cpath);
+   }
+   <span class="Statement">else</span> {
+      printf(<span class="Constant">&quot;MYHOME env is not defined!</span><span class="Special">\n</span><span class="Constant">&quot;</span>);
+   }
+
+   <span class="Comment">/*</span><span class="Comment"> argc is number of argument passe in (no arg &gt;&gt; argc=1)</span><span class="Comment">*/</span>
+   <span class="Comment">/*</span><span class="Comment"> since by default the name of the program also is an argument </span><span class="Comment">*/</span>
+
+   printf(<span class="Constant">&quot;</span><span class="Special">%d</span><span class="Constant"> arguments are passed into the program</span><span class="Special">\n</span><span class="Constant">&quot;</span>,argc-<span class="Constant">1</span>);
+
+   <span class="Comment">/*</span><span class="Comment"> argv is array of strings that stores the actual arguments</span><span class="Comment">*/</span>
+   <span class="Comment">/*</span><span class="Comment"> note that argv[0] is the name of the program </span><span class="Comment">*/</span>
+
+   printf(<span class="Constant">&quot;The arguments that are passed in are:</span><span class="Special">\n</span><span class="Constant">&quot;</span>);
+
+   <span class="Statement">for</span>(<span class="Type">int</span> i=<span class="Constant">1</span>;i&lt;argc;i++){
+      printf(<span class="Constant">&quot; </span><span class="Special">%s</span><span class="Constant"> &quot;</span>,argv[i]);
+   }
+   printf(<span class="Constant">&quot;</span><span class="Special">\n</span><span class="Constant">&quot;</span>);
+
+   <span class="Comment">/*</span>
+<span class="Comment">    in stdio.h: file *fopne(const char *fname, const char *opt)</span>
+<span class="Comment">    opt can be:</span>
+<span class="Comment">    r: open text file for reading</span>
+<span class="Comment">    w: create new file to write (or truncate to zero if exist)</span>
+<span class="Comment">    a: appends to the end of existing text file</span>
+<span class="Comment">    r+: open for updating (read/write)</span>
+<span class="Comment">    w+: create file for read/write</span>
+<span class="Comment">    a+: open file for reading/appending</span>
+<span class="Comment">    rb: open binary file for reading</span>
+<span class="Comment">    wb: open binary file for writing</span>
+<span class="Comment">    ab: open binary file for appending</span>
+<span class="Comment">    other options: wb+, ab+, rb+: similar</span>
+<span class="Comment">    </span><span class="Comment">*/</span>
+
+   <span class="Statement">for</span>(<span class="Type">int</span> i=<span class="Constant">0</span>;i&lt;<span class="Constant">10</span>;i++){ x[i]= (i+<span class="Constant">1</span>)*<span class="Constant">1.0000000101e+2</span>;}
+
+   TF = fopen(<span class="Constant">&quot;data.txt&quot;</span>,<span class="Constant">&quot;w&quot;</span>);
+   BF = fopen(<span class="Constant">&quot;data.dat&quot;</span>,<span class="Constant">&quot;wb&quot;</span>);
+   <span class="Statement">for</span>(<span class="Type">int</span> i=<span class="Constant">1</span>;i&lt;=<span class="Constant">10</span>;i++) {
+      <span class="Comment">/*</span><span class="Comment"> writing formatted text to text file: </span><span class="Comment">*/</span>
+      fprintf(TF,<span class="Constant">&quot;Data   </span><span class="Special">%d</span><span class="Constant">    </span><span class="Special">%2.14e</span><span class="Special">\n</span><span class="Constant">&quot;</span>,i,x[i-<span class="Constant">1</span>]);
+      <span class="Comment">/*</span><span class="Comment"> writing binary (double precision real) to binary file </span><span class="Comment">*/</span>
+      <span class="Comment">/*</span><span class="Comment"> format: fwrite(pointer to data, # of data to write, size of each data, file) </span><span class="Comment">*/</span>
+      fwrite(x, <span class="Constant">10</span>, <span class="Statement">sizeof</span>(<span class="Type">double</span>),BF); <span class="Comment">/*</span><span class="Comment"> outputs the whole array </span><span class="Comment">*/</span>
+   }
+   <span class="Comment">/*</span><span class="Comment"> closing the files </span><span class="Comment">*/</span>
+   fclose(TF);
+   fclose(BF);
+
+   BF = fopen(<span class="Constant">&quot;data.dat&quot;</span>,<span class="Constant">&quot;r&quot;</span>);
+   TF = fopen(<span class="Constant">&quot;data.txt&quot;</span>,<span class="Constant">&quot;r&quot;</span>);
+
+
+   <span class="Statement">if</span> ( (TF == <span class="Constant">NULL</span>) || (BF == <span class="Constant">NULL</span>) ) {
+      <span class="Comment">/*</span><span class="Comment"> sending the text to standard error: </span><span class="Comment">*/</span>
+      fputs(<span class="Constant">&quot;Can't open the files data.dat or data.txt&quot;</span>,<span class="Constant">stderr</span>);
+   } <span class="Statement">else</span> {
+      puts(<span class="Constant">&quot;Files opened!&quot;</span>); <span class="Comment">/*</span><span class="Comment"> no need for \n, output = standard output </span><span class="Comment">*/</span>
+      <span class="Comment">/*</span><span class="Comment"> or equvalently you can send to standard output, specified by &quot;stdout&quot; </span><span class="Comment">*/</span>
+      fputs(<span class="Constant">&quot;Files opened...</span><span class="Special">\n</span><span class="Constant">&quot;</span>,<span class="Constant">stdout</span>);
+   }
+
+   <span class="Comment">/*</span><span class="Comment"> reading from binary: </span><span class="Comment">*/</span>
+
+   n = fread(z,<span class="Statement">sizeof</span>(<span class="Type">double</span>),<span class="Constant">5</span>,BF);
+
+   printf(<span class="Constant">&quot;</span><span class="Special">%d</span><span class="Constant"> block was read from binary file</span><span class="Special">\n</span><span class="Constant">&quot;</span>,n);
+   printf(<span class="Constant">&quot;Values are: </span><span class="Special">%f</span><span class="Constant"> </span><span class="Special">%f</span><span class="Constant"> </span><span class="Special">%f</span><span class="Constant"> </span><span class="Special">%f</span><span class="Constant"> </span><span class="Special">%f</span><span class="Constant"> </span><span class="Special">\n</span><span class="Constant">&quot;</span>,z[<span class="Constant">0</span>],z[<span class="Constant">1</span>],z[<span class="Constant">2</span>],z[<span class="Constant">3</span>],z[<span class="Constant">4</span>]);
+
+   <span class="Comment">/*</span><span class="Comment"> The position of file indicator is different now </span><span class="Comment">*/</span>
+   n = fread(z,<span class="Statement">sizeof</span>(<span class="Type">double</span>),<span class="Constant">5</span>,BF);
+   printf(<span class="Constant">&quot;The rest of data is: </span><span class="Special">%f</span><span class="Constant"> </span><span class="Special">%f</span><span class="Constant"> </span><span class="Special">%f</span><span class="Constant"> </span><span class="Special">%f</span><span class="Constant"> </span><span class="Special">%f</span><span class="Constant"> </span><span class="Special">\n</span><span class="Constant">&quot;</span>,z[<span class="Constant">0</span>],z[<span class="Constant">1</span>],z[<span class="Constant">2</span>],z[<span class="Constant">3</span>],z[<span class="Constant">4</span>]);
+
+   <span class="Comment">/*</span><span class="Comment"> fseek changes the position of file indicator (where to read)</span>
+<span class="Comment">    * fseek(file *str, long int offset, int whence) </span>
+<span class="Comment">    * whence can be: int position default defined vars:</span>
+<span class="Comment">    * SEEK_SET: beginning of file</span>
+<span class="Comment">    * SEEK_END: end of file</span>
+<span class="Comment">    * SEEK_CUR: current position</span>
+<span class="Comment">    * The following starts from file position 2 i.e. x[2] in data </span><span class="Comment">*/</span>
+   file_pos = fseek(BF,<span class="Constant">3</span>*<span class="Statement">sizeof</span>(<span class="Type">double</span>),<span class="Constant">SEEK_SET</span>);
+
+   fread(&amp;y,<span class="Statement">sizeof</span>(<span class="Type">double</span>),<span class="Constant">1</span>,BF);
+   printf(<span class="Constant">&quot;4th element is : </span><span class="Special">%f</span><span class="Special">\n</span><span class="Constant">&quot;</span>,y);
+   <span class="Comment">/*</span><span class="Comment"> rewind also brings the indicator to the beginning of the file </span><span class="Comment">*/</span>
+   rewind(BF);
+
+   fread(&amp;y,<span class="Statement">sizeof</span>(<span class="Type">double</span>),<span class="Constant">1</span>,BF);
+   printf(<span class="Constant">&quot;First element is: </span><span class="Special">%f</span><span class="Special">\n</span><span class="Constant">&quot;</span>,y);
+   <span class="Comment">/*</span><span class="Comment"> and if we read now, it will start from beginning </span><span class="Comment">*/</span>
+   <span class="Comment">/*</span><span class="Comment">ftell returns the current position of indicator </span><span class="Comment">*/</span>
+
+   printf(<span class="Constant">&quot;The current position of file indicator: </span><span class="Special">%d</span><span class="Special">\n</span><span class="Constant">&quot;</span>,ftell(BF));
+
+   <span class="Comment">/*</span><span class="Comment">reading formatted text file </span><span class="Comment">*/</span>
+
+
+   printf(<span class="Constant">&quot;Read the following data from data.txt</span><span class="Special">\n</span><span class="Constant">&quot;</span>);
+   <span class="Statement">for</span>(i=<span class="Constant">0</span>;i&lt;=<span class="Constant">12</span>;i++){
+      rc = fscanf(TF,<span class="Constant">&quot;</span><span class="Special">%s</span><span class="Constant"> </span><span class="Special">%d</span><span class="Constant"> </span><span class="Special">%lf</span><span class="Constant">&quot;</span>,str,&amp;n,&amp;r);
+      printf(<span class="Constant">&quot;string = </span><span class="Special">%s</span><span class="Constant">, integer = </span><span class="Special">%d</span><span class="Constant">, real = </span><span class="Special">%2.14e</span><span class="Constant">, fscanf_return = </span><span class="Special">%d</span><span class="Special">\n</span><span class="Constant">&quot;</span>,str,n,r,rc);
+   }
+   <span class="Comment">/*</span><span class="Comment"> Note that when it reaches to end of file, it keeps returning the</span>
+<span class="Comment">    * same value while fscanf will return -1 if it can't read more </span><span class="Comment">*/</span>
+
+   fclose(TF);
+   fclose(BF);
+   <span class="Comment">/*</span><span class="Comment"> Another way of  reading double precision number from text file </span><span class="Comment">*/</span>
+
+   r = <span class="Constant">9999999999</span>;
+   TF = fopen(<span class="Constant">&quot;data2.txt&quot;</span>,<span class="Constant">&quot;r&quot;</span>);
+   <span class="Statement">while</span> (fgets(line,<span class="Constant">256</span>,TF)) {
+      sscanf(line,<span class="Constant">&quot;</span><span class="Special">%lf</span><span class="Constant">&quot;</span>,&amp;r);
+      printf(<span class="Constant">&quot;read </span><span class="Special">%1.14e</span><span class="Special">\n</span><span class="Constant">&quot;</span>,r);
+   }
+   fclose(TF);
+}
+
+</pre>
+</body>
+</html>
+
+		      <div style="clear: both;"></div>
+	         </div>
+		      <hr />
+	         <div class ="date">last update:   , </div>
+	    <div class="footer">
+           <p><a href="Home.html">Home</a>|<a href="Research.html">Research</a>|<a href="Contact.html">Contact</a>|<a href="Links.html">Links</a>|<a href="Misc.html">Misc</a>|<a href="sg">Template</a></p>
+
+      </div>  
+	    <div style="clear: both;">&nbsp;</div>
+        </div> <!-- end content -->
+	<!-- in class postandside -->
+
+                 <!--in class postandside-->   
+         <!--this line is for compatibility issues --><div style="clear: both;">&#160;</div> <!--Displacement --> 
+     </div> <!--End of post and side -->
+
+     <!-- in class page2 -->
+     <div style="clear: both;">&nbsp;</div>
+  </div> <!--End of Page2 -->
+     <div style="clear: both;">&nbsp;</div>
+
+</div> <!-- End of page -->
+<!--this is end of the file -->
+<!-- ~~~ This content is generated using sg web template ~~-->
+<!-- ~~~ For more information visit: http://laplace.physics.ubc.ca/People/arman/sg ~~ -->
+</body>
+</html>

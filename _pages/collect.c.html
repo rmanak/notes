@@ -1,0 +1,97 @@
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #000000;}
+* { font-size: 1em; }
+.Comment { color: #8080ff; font-weight: bold; }
+.Constant { color: #ff6060; }
+.Statement { color: #888800; }
+.Type { color: #00ff00; }
+-->
+</style>
+
+<script type='text/javascript'>
+<!--
+
+-->
+</script>
+<pre id='vimCodeElement'>
+<span class="Comment">/*</span><span class="Comment"> Collects all T datas from all CPUS to T_s on rank 0 </span><span class="Comment">*/</span>
+
+<span class="Type">void</span> Collect(<span class="Type">double</span> *T, <span class="Type">double</span> *T_s) {
+  <span class="Type">int</span> MAX_MPI_SEND_COUNT = <span class="Constant">15000</span>;
+  <span class="Type">int</span> rc;
+  <span class="Type">int</span> source, dest,tag;
+  MPI_Status stat;
+  <span class="Type">int</span> loc_shape[<span class="Constant">2</span>];
+  <span class="Type">double</span> loc_x,loc_z;
+  <span class="Type">int</span> i,j,shift_x,shift_z;
+  <span class="Type">int</span> loc_phys_bdy[<span class="Constant">4</span>];
+  <span class="Type">int</span> left_s,right_s,top_s,bottom_s;
+  <span class="Type">int</span> k,kk,ll;
+  <span class="Type">int</span> indx,indx_s,ii,jj;
+  <span class="Type">int</span> cpi;
+  source = my_rank;
+  dest = <span class="Constant">0</span>;
+  tag = my_rank + <span class="Constant">100</span>;
+  <span class="Comment">/*</span><span class="Comment">*************MPI SEND ************</span><span class="Comment">*/</span>
+  rc = MPI_Send(&amp;shape[<span class="Constant">0</span>],<span class="Constant">2</span>,MPI_INT,dest,tag,MPI_COMM_WORLD);
+  rc = MPI_Send(&amp;x[<span class="Constant">0</span>],<span class="Constant">1</span>,MPI_DOUBLE,dest,tag,MPI_COMM_WORLD);
+  rc = MPI_Send(&amp;z[<span class="Constant">0</span>],<span class="Constant">1</span>,MPI_DOUBLE,dest,tag,MPI_COMM_WORLD);
+  kk = shape[<span class="Constant">0</span>]*shape[<span class="Constant">1</span>]/MAX_MPI_SEND_COUNT;
+  <span class="Statement">for</span>(k=<span class="Constant">0</span>;k&lt;kk;k++){
+    rc = MPI_Send(&amp;T[k*MAX_MPI_SEND_COUNT],MAX_MPI_SEND_COUNT,MPI_DOUBLE,dest,tag,MPI_COMM_WORLD);
+    tag++;
+  }
+  ll = shape[<span class="Constant">0</span>]*shape[<span class="Constant">1</span>] % MAX_MPI_SEND_COUNT;
+  rc = MPI_Send(&amp;T[kk*MAX_MPI_SEND_COUNT],ll,MPI_DOUBLE,dest,tag,MPI_COMM_WORLD);
+
+
+  rc = MPI_Send(&amp;phys_bdy[<span class="Constant">0</span>],<span class="Constant">4</span>,MPI_INT,dest,tag,MPI_COMM_WORLD);
+  <span class="Comment">/*</span><span class="Comment">*************END OF MPI SEND ************</span><span class="Comment">*/</span>
+  <span class="Statement">if</span> (my_rank == <span class="Constant">0</span>) {
+      setzero(T_s,size_s);
+      <span class="Statement">for</span>(cpi=<span class="Constant">0</span>;cpi&lt;numprocs;cpi++) {
+        source = cpi;
+        tag = cpi+<span class="Constant">100</span>;
+        <span class="Comment">/*</span><span class="Comment">*********** MPI RECEIVE *********************</span><span class="Comment">*/</span>
+         rc = MPI_Recv(&amp;loc_shape[<span class="Constant">0</span>], <span class="Constant">2</span>, MPI_INT,source, tag,
+                  MPI_COMM_WORLD,&amp;stat);
+         rc = MPI_Recv(&amp;loc_x, <span class="Constant">1</span>, MPI_DOUBLE,source, tag,
+                    MPI_COMM_WORLD,&amp;stat);
+         rc = MPI_Recv(&amp;loc_z, <span class="Constant">1</span>, MPI_DOUBLE,source, tag,
+                    MPI_COMM_WORLD,&amp;stat);
+         kk = loc_shape[<span class="Constant">0</span>]*loc_shape[<span class="Constant">1</span>]/MAX_MPI_SEND_COUNT;
+         <span class="Statement">for</span>(k=<span class="Constant">0</span>;k&lt;kk;k++){
+           rc = MPI_Recv(&amp;loc_T[k*MAX_MPI_SEND_COUNT],MAX_MPI_SEND_COUNT,
+                  MPI_DOUBLE,source,tag, MPI_COMM_WORLD,&amp;stat);
+           tag++;
+         }
+         ll = loc_shape[<span class="Constant">0</span>]*loc_shape[<span class="Constant">1</span>] % MAX_MPI_SEND_COUNT;
+         rc = MPI_Recv(&amp;loc_T[kk*MAX_MPI_SEND_COUNT],MAX_MPI_SEND_COUNT,
+                  MPI_DOUBLE,source,tag, MPI_COMM_WORLD,&amp;stat);
+
+         rc = MPI_Recv(&amp;loc_phys_bdy[<span class="Constant">0</span>],<span class="Constant">4</span>,MPI_INT,source,tag,
+                MPI_COMM_WORLD,&amp;stat);
+        <span class="Comment">/*</span><span class="Comment">*********** END OF MPI RECEIVE *********************</span><span class="Comment">*/</span>
+        shift_x = (<span class="Type">int</span>)round( (loc_x - base_bbox[<span class="Constant">0</span>] ) / hx );
+        shift_z = (<span class="Type">int</span>)round( (loc_z - base_bbox[<span class="Constant">2</span>] ) / hz );
+
+        <span class="Comment">/*</span><span class="Comment">Injecting to _s structure </span><span class="Comment">*/</span>
+        <span class="Statement">for</span>(j=<span class="Constant">0</span>;j&lt;loc_shape[<span class="Constant">1</span>];j++) {
+          jj = j+shift_z;
+          <span class="Statement">for</span>(i=<span class="Constant">0</span>;i&lt;loc_shape[<span class="Constant">0</span>];i++) {
+             ii = i+shift_x;
+             indx = i+j*loc_shape[<span class="Constant">0</span>];
+             indx_s = ii+jj*Nx_s;
+             T_s[indx_s] = loc_T[indx];
+           }
+         }
+
+
+
+      } <span class="Comment">//End of for loop over all CPUS</span>
+  } <span class="Comment">//END of rank 0 tasks</span>
+}
+
+</pre>
+
