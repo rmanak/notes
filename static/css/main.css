@@ -98,10 +98,9 @@ strong {
 }
 
 p {
-  font-family: Helvetica, Arial, sans-serif;
-  /*font-family: "Source Sans Pro", Helvetica, Arial, sans-serif; */
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif; 
   -webkit-font-smoothing: antialiased;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.4;
   font-weight:500;
   color: #333;
@@ -115,6 +114,7 @@ p {
   max-width: 800px;
   text-align: center;
 }
+
 .container .text-muted {
   margin: 20px 0;
 }
@@ -236,11 +236,11 @@ img {
   padding-bottom: 15px;
 }
 
-.blogpost{
+.blogpost p {
   text-align: left;
   font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.4;
   font-weight:500;
   color: #333;
