@@ -3,10 +3,10 @@ title: Start Jekyll
 email: arman2@gmail.com
 description: >
   A guide to getting started with Jekyll.
-baseurl: "/jekyll"
-url: "http://rmanak.github.io"
-twitter_username: taniarascia
-github_username:  taniarascia
+baseurl: "/jekyll/"
+url: "http://rmanak.github.io/jekyll"
+twitter_username: arman2
+github_username:  rmanak
 # Build Settings
 sass:
   sass_dir: _sass
