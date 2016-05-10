@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <meta name="author" content="Arman Akbarian" />
+    <meta name="description" content="">
+    <link rel="favicon" href="/notes/static/img/favicon.ico">
+
+    
+      <title>Sale Forecasting</title>
+    
+	
+    <!-- Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
+    crossorigin="anonymous">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	<!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="/notes/static/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400bold,500" />
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="/notes/static/css/syntax.css" />
+
+
+   <!-- MathJax --> 
+  <script type="text/javascript" async
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <!-- Google Analytics -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', '', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </head>
+  <!-- Main Body-->
+  <body>
+  <!-- Wrap all page content here -->
+  <div id="wrap">
+    <!-- Navbar header -->
+    <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="http://rmanak.github.io/"><i class="fa fa-home fa-lg"></i></a>
+    </div>
+    <div id="navbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://rmanak.github.io/about.html">ABOUT</a></li>
+        <li><a href="http://rmanak.github.io/projects.html">PROJECTS</a></li>
+        <li><a target="_blank" href="http://rmanak.github.io/resume">RESUME</i></a></li>
+        <li><a href="http://rmanak.github.io/notes">NOTES</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <div class="container">
+	<div class="blog-post">
+		<h3>
+            <strong><a href="/notes/kaggle-rossaman-sale-forecasting.html">Sale Forecasting</a></strong>
+		</h3>
+	</div>
+	<div class="blog-title">
+		<h4>
+		December 11, 2015
+			&nbsp;&nbsp;
+			
+		</h4>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="blogpost">
+			  <h1 id="sale-forecasting">Sale Forecasting</h1>
+
+<p><em>(Rossmann Kaggle Data Science Challenge)</em></p>
+
+<p><strong>GitHub Repository:</strong></p>
+
+<p><a href="https://github.com/rmanak/store_sale/">https://github.com/rmanak/store_sale/</a></p>
+
+<p><strong>Team:</strong></p>
+
+<ul>
+  <li>Arman Akbarian</li>
+  <li>Ali Narimani</li>
+</ul>
+
+<h2 id="description">Description</h2>
+
+<p>The project is to predict the sale of 1115 stores for the next 2 month given
+the sale of the previous 31 month during 2013 - 2015. The sale data
+(<code class="highlighter-rouge">train.csv</code>) contains:</p>
+
+<h3 id="data-fields">Data Fields</h3>
+
+<ul>
+  <li><strong>Id</strong>: (Store,Date) unique ID</li>
+  <li><strong>Store</strong>: Store ID (int 1-1115)</li>
+  <li><strong>Sale</strong>: Sale at the given date for the given store</li>
+  <li><strong>Customers</strong>: Number of costumers that day</li>
+  <li><strong>Open</strong>: If the store is open or not (0,1)</li>
+  <li><strong>StateHoliday</strong>: if the date is one of 4 types of holidays, including None holidays</li>
+  <li><strong>SchoolHoliday</strong>: If the date is a school holiday</li>
+  <li><strong>Promo</strong>: If there is a promotion that day in the store</li>
+</ul>
+
+<p>The (<code class="highlighter-rouge">store.csv</code>) contains information about each store:</p>
+
+<ul>
+  <li><strong>StoreType</strong>: Some “type” for stores: 4 category</li>
+  <li><strong>Assortment</strong>: Store assortment, category of 3 types</li>
+  <li><strong>CompetitionDistance</strong>: Distance in meter to the nearest competitor</li>
+  <li><strong>CompetitionOpenSince</strong>: Date the competition opened</li>
+  <li><strong>Promo2</strong>: If store is participating in another seasonal promotion</li>
+  <li><strong>Promo2Since</strong>: Date the promo2 program started</li>
+  <li><strong>PromoInterval</strong>: The month labels that promo2 runs in the store if it participates</li>
+</ul>
+
+<h3 id="data-size">Data Size</h3>
+
+<p>The sale date is about \( 1.01 \times 10^6 \) training data point for all the 1115 point
+The test data (evaluation for competition) contains the next 2 month of
+(unknown to us) sale for some of the stores – about: \( 4.1 \times 10^4 \)</p>
+
+<ul>
+  <li><strong>Train</strong>: 1,017,209</li>
+  <li><strong>Test</strong> :  41,088 (out of the date range of the train set)</li>
+</ul>
+
+<h3 id="download-data">Download data</h3>
+<p>The data can be downloaded from <a href="https://www.kaggle.com/c/rossmann-store-sales/data">[here[&gt;]]</a></p>
+
+<hr />
+
+<h2 id="data-preprocessing-and-cleaning">Data preprocessing and cleaning</h2>
+
+<h3 id="merging-store-information">Merging Store Information</h3>
+<p>We first merge the store attributes with the training set, and calculate some date variables such
+as day of the month, year and month:</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="n">types</span> <span class="o">=</span> <span class="p">{</span><span class="s">'CompetitionOpenSinceYear'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+         <span class="s">'CompetitionOpenSinceMonth'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+         <span class="s">'CompetitionDistance'</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+         <span class="s">'StateHoliday'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">str</span><span class="p">),</span>
+         <span class="s">'Promo2SinceWeek'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+         <span class="s">'Promo2SinceYear'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+         <span class="s">'SchoolHoliday'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span>
+         <span class="s">'PromoInterval'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">str</span><span class="p">)}</span>
+
+<span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'~/kaggledata/rossman/train.csv'</span><span class="p">,</span>
+                    <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s">'Date'</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">types</span><span class="p">)</span>
+
+<span class="n">test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'~/kaggledata/rossman/test.csv'</span><span class="p">,</span>
+                   <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s">'Date'</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="n">types</span><span class="p">)</span>
+
+<span class="n">store</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'~/kaggledata/rossman/store.csv'</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">calcDates</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">df</span><span class="p">[</span><span class="s">'Month'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span>
+    <span class="n">df</span><span class="p">[</span><span class="s">'Year'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+    <span class="n">df</span><span class="p">[</span><span class="s">'Day'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span>
+    <span class="n">df</span><span class="p">[</span><span class="s">'WeekOfYear'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">weekofyear</span>
+    <span class="c"># Year-Month 2015-08 </span>
+    <span class="c"># will be used for monthly sale calculation:</span>
+    <span class="n">df</span><span class="p">[</span><span class="s">'YearMonth'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'Date'</span><span class="p">]</span><span class="o">.</span><span class="nb">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)[:</span><span class="mi">7</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">df</span>
+
+
+<span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">train</span><span class="p">,</span><span class="n">store</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="s">'Store'</span><span class="p">)</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">test</span><span class="p">,</span><span class="n">store</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="s">'Store'</span><span class="p">)</span>
+
+<span class="n">train</span> <span class="o">=</span> <span class="n">calcDates</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">calcDates</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+
+<span class="c">#train.head(10)</span>
+<span class="c">#test.head(10)</span>
+</code></pre>
+</div>
+
+<h3 id="cleaning-promo2-and-competition">Cleaning Promo2 and Competition</h3>
+
+<p><code class="highlighter-rouge">Promo2</code> variable is given as intervals. For example string of format <code class="highlighter-rouge">"Apr,May,Aug,Dec"</code> and
+also the date it starts. We convert this to a single binary variable that indicates if at that date
+Promo2 is active or not.</p>
+
+<p>We also build a binary feature that indicates if there exist a competition at a given date or not.
+The original version of the given data only indicates when the competition opened.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">cleanPromoCompetition</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">drop</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="c"># ========== Fixing promo2 ============</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">PromoInterval</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">monthAsString</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="s">'Jan'</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="s">'Feb'</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="s">'Mar'</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span><span class="s">'Apr'</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span><span class="s">'May'</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span><span class="s">'Jun'</span><span class="p">,</span>
+                     <span class="mi">7</span><span class="p">:</span><span class="s">'Jul'</span><span class="p">,</span> <span class="mi">8</span><span class="p">:</span><span class="s">'Aug'</span><span class="p">,</span> <span class="mi">9</span><span class="p">:</span><span class="s">'Sept'</span><span class="p">,</span> <span class="mi">10</span><span class="p">:</span><span class="s">'Oct'</span><span class="p">,</span> <span class="mi">11</span><span class="p">:</span><span class="s">'Nov'</span><span class="p">,</span> <span class="mi">12</span><span class="p">:</span><span class="s">'Dec'</span><span class="p">}</span>
+
+    <span class="c"># Using string format of month names to extract info from promo interval column                 </span>
+    <span class="n">df</span><span class="p">[</span><span class="s">'SMonth'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">Month</span><span class="o">.</span><span class="nb">map</span><span class="p">(</span><span class="n">monthAsString</span><span class="p">)</span>
+    <span class="c"># Fixing NaN values in promo interval when there is no promotion</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">PromoInterval</span><span class="o">==</span><span class="mi">0</span><span class="p">,</span><span class="s">'PromoInterval'</span><span class="p">]</span> <span class="o">=</span> <span class="s">''</span>
+
+    <span class="c"># New feature: </span>
+    <span class="c">#     IsPromo2Month: </span>
+    <span class="c">#     0 if month is not among PromoInterval</span>
+    <span class="c">#     1 if it is</span>
+
+
+    <span class="n">df</span><span class="p">[</span><span class="s">'IsPromo2Month'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">interval</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">PromoInterval</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">interval</span> <span class="o">!=</span> <span class="s">''</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">month</span> <span class="ow">in</span> <span class="n">interval</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">):</span>
+                <span class="n">condmatch</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">SMonth</span> <span class="o">==</span> <span class="n">month</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">PromoInterval</span> <span class="o">==</span> <span class="n">interval</span><span class="p">)</span>
+                <span class="c"># If promo started this year, Week of Year must be &gt; Promo2SinceWeek</span>
+                <span class="n">cond1</span> <span class="o">=</span> <span class="p">(</span><span class="n">condmatch</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Year</span> <span class="o">==</span> <span class="n">df</span><span class="o">.</span><span class="n">Promo2SinceYear</span><span class="p">)</span>
+                         <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">WeekOfYear</span> <span class="o">&gt;=</span> <span class="n">df</span><span class="o">.</span><span class="n">Promo2SinceWeek</span><span class="p">)</span> <span class="p">)</span>
+                <span class="c"># Or If promo started previous year, Week of Year doesn't matter</span>
+                <span class="n">cond2</span> <span class="o">=</span> <span class="n">condmatch</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Year</span> <span class="o">&gt;</span> <span class="n">df</span><span class="o">.</span><span class="n">Promo2SinceYear</span><span class="p">)</span>
+                <span class="n">fullcond</span> <span class="o">=</span> <span class="n">cond1</span> <span class="o">|</span> <span class="n">cond2</span>
+                <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">fullcond</span><span class="p">,</span> <span class="s">'IsPromo2Month'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+     <span class="c"># ======= Fixing Competition =============</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">CompetitionOpenSinceYear</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">CompetitionOpenSinceMonth</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="c"># New feature: </span>
+    <span class="c">#    Competition:</span>
+    <span class="c">#    1 if there exist a compettion at date = today</span>
+    <span class="c">#    0 otherwise</span>
+
+    <span class="n">df</span><span class="p">[</span><span class="s">'Competition'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">cond1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">Year</span> <span class="o">&gt;</span> <span class="n">df</span><span class="o">.</span><span class="n">CompetitionOpenSinceYear</span>
+    <span class="n">cond2</span> <span class="o">=</span> <span class="p">((</span><span class="n">df</span><span class="o">.</span><span class="n">Year</span> <span class="o">==</span> <span class="n">df</span><span class="o">.</span><span class="n">CompetitionOpenSinceYear</span><span class="p">)</span>
+             <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Month</span> <span class="o">&gt;=</span> <span class="n">df</span><span class="o">.</span><span class="n">CompetitionOpenSinceMonth</span><span class="p">))</span>
+    <span class="n">fullcond</span> <span class="o">=</span> <span class="n">cond1</span> <span class="o">|</span> <span class="n">cond2</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">fullcond</span><span class="p">,</span> <span class="s">'Competition'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">drop</span><span class="p">):</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s">'SMonth'</span><span class="p">,</span><span class="s">'PromoInterval'</span><span class="p">,</span><span class="s">'Promo2SinceYear'</span><span class="p">,</span><span class="s">'Promo2SinceWeek'</span><span class="p">],</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s">'CompetitionOpenSinceMonth'</span><span class="p">,</span><span class="s">'CompetitionOpenSinceYear'</span><span class="p">],</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df</span>
+
+<span class="n">train</span> <span class="o">=</span> <span class="n">cleanPromoCompetition</span><span class="p">(</span><span class="n">train</span><span class="p">,</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">cleanPromoCompetition</span><span class="p">(</span><span class="n">test</span><span class="p">,</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="finding-renovated-stores">Finding Renovated Stores</h3>
+
+<p>As indicated in the project description, some of the stores are gone through renovation process
+in late 2014 and re-opened in 2015. We find those stores and build a binary feature that turns on
+after renovation. This allows us to do a separate analysis of after renovation, since our exploratory
+data analysis indicates that sale sometimes drastically changes after renovation.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">rainOpen</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="o">.</span><span class="n">Open</span> <span class="o">==</span> <span class="mi">1</span><span class="p">][[</span><span class="s">'Store'</span><span class="p">,</span><span class="s">'YearMonth'</span><span class="p">,</span><span class="s">'Sales'</span><span class="p">]]</span>
+<span class="n">monthlySale</span>  <span class="o">=</span> <span class="n">trainOpen</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s">'Store'</span><span class="p">,</span><span class="s">'YearMonth'</span><span class="p">],</span><span class="n">as_index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+
+<span class="c">#====== Finding renovated stores ========</span>
+
+<span class="n">renovatedStores</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">store</span> <span class="ow">in</span> <span class="n">train</span><span class="o">.</span><span class="n">Store</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+    <span class="c"># Renovated stores are close before 2015 for more than 2 month</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">monthlySale</span><span class="p">[</span><span class="n">monthlySale</span><span class="o">.</span><span class="n">Store</span><span class="o">==</span><span class="n">store</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">29</span><span class="p">:</span>
+        <span class="n">renovatedStores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">store</span><span class="p">)</span>
+
+
+<span class="c">#print(renovatedStores)</span>
+
+<span class="k">def</span> <span class="nf">createRenovation</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">renovatedStores</span><span class="p">):</span>
+
+    <span class="c"># New features:</span>
+    <span class="c"># StoreRenovated: 1 if it is, 0 otherwise</span>
+    <span class="c"># DaysAfterRenovation: 0 if date is before renovation, 1 if it is after</span>
+    <span class="n">df</span><span class="p">[</span><span class="s">'StoreRenovated'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">df</span><span class="p">[</span><span class="s">'DaysAfterRenovation'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">store</span> <span class="ow">in</span> <span class="n">renovatedStores</span><span class="p">:</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Store</span> <span class="o">==</span> <span class="n">store</span><span class="p">,</span><span class="s">'StoreRenovated'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="c"># Renovated stores are back to open state in 2015</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="o">.</span><span class="n">Store</span> <span class="o">==</span> <span class="n">store</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Year</span> <span class="o">==</span> <span class="mi">2015</span><span class="p">),</span> <span class="s">'DaysAfterRenovation'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">df</span>
+
+
+<span class="n">train</span> <span class="o">=</span> <span class="n">createRenovation</span><span class="p">(</span><span class="n">train</span><span class="p">,</span><span class="n">renovatedStores</span><span class="p">)</span>
+<span class="n">test</span>  <span class="o">=</span> <span class="n">createRenovation</span><span class="p">(</span><span class="n">test</span><span class="p">,</span><span class="n">renovatedStores</span><span class="p">)</span>
+
+
+
+<span class="n">monthlySale</span><span class="p">[</span><span class="s">'MonthSale'</span><span class="p">]</span> <span class="o">=</span> <span class="n">monthlySale</span><span class="o">.</span><span class="n">Sales</span>
+<span class="n">monthlySale</span> <span class="o">=</span> <span class="n">monthlySale</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s">'Sales'</span><span class="p">],</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c"># New feature: MonthSale:</span>
+<span class="c"># Average of monthly sale for each store</span>
+<span class="c"># Adding monthly sale to train set:</span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">train</span><span class="p">,</span><span class="n">monthlySale</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s">'Store'</span><span class="p">,</span><span class="s">'YearMonth'</span><span class="p">])</span>
+
+
+<span class="c"># Small NaN Fix on test, only 1 case which is in fact open</span>
+<span class="n">test</span><span class="o">.</span><span class="n">Open</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+
+<span class="c">#train = train.sort_values(by = 'Date')</span>
+<span class="n">train</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">'~/kaggleout/rossman/trainCleaned.csv'</span><span class="p">)</span>
+<span class="n">test</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">'~/kaggleout/rossman/testCleaned.csv'</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="preprocessing-code">Preprocessing code</h3>
+
+<ul>
+  <li><a href="https://github.com/rmanak/store_sale/blob/master/preprocessing.py">[Full code]</a></li>
+</ul>
+
+<hr />
+
+<h2 id="seasonality--sale-trend-and-regression">Seasonality / Sale Trend and Regression</h2>
+
+<p>After exploring the data, we first look into the daily sale and build an “average” sale window for each 
+month using a regression model (spline fit). Note that we fit to the after renovated data separately, as 
+well as we fit to the days with promotions separately.</p>
+
+<p>Before looking at the R code, let’s take a look at some examples of sale trends of the 2 years for
+some of the stores: (magenta indicates days with promotion, cyan is without promotion)</p>
+
+<p>The curved “line dots” indicates the result of the spline regression. The tail black/grey color
+indicates the extrapolation of the trend to the test set that is outside the range date for
+the train set.</p>
+
+<p>The gap indicates renovation, the fit to the data after renovation is independent of previous sale
+before renovation.</p>
+
+<h3 id="yearly-trend">Yearly Trend</h3>
+
+<p><img src="img/Store_9_SaleTrend.png" alt="alt_tag" />
+<img src="img/Store_22_SaleTrend.png" alt="alt_tag" />
+<img src="img/Store_49_SaleTrend.png" alt="alt_tag" />
+<img src="img/Store_113_SaleTrend.png" alt="alt_tag" />
+<img src="img/Store_145_SaleTrend.png" alt="alt_tag" /></p>
+
+<p>Majority of stores follow a similar pattern, however we do have few irregular stores:
+<a href="img/Store_262_SaleTrend.png">!alt_tag</a></p>
+
+<p>Note that in the code we remove the month of december from regression since in several stores in is a
+point of anomoly.</p>
+
+<div class="language-R highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">readr</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">splines</span><span class="p">)</span>
+
+<span class="n">train</span> <span class="o">&lt;-</span> <span class="n">read_csv</span><span class="p">(</span><span class="s2">"~/kaggleout/rossman/trainCleaned.csv"</span><span class="p">)</span>
+<span class="n">test</span>  <span class="o">&lt;-</span> <span class="n">read_csv</span><span class="p">(</span><span class="s2">"~/kaggleout/rossman/testCleaned.csv"</span><span class="p">)</span>
+
+<span class="c1"># Dropping the index column:
+</span><span class="n">train</span> <span class="o">&lt;-</span> <span class="n">train</span><span class="p">[,</span><span class="o">-</span><span class="n">c</span><span class="p">(</span><span class="m">1</span><span class="p">)]</span>
+<span class="n">test</span> <span class="o">&lt;-</span> <span class="n">test</span><span class="p">[,</span><span class="o">-</span><span class="n">c</span><span class="p">(</span><span class="m">1</span><span class="p">)]</span>
+
+
+<span class="n">sapply</span><span class="p">(</span><span class="n">train</span><span class="p">,</span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="n">any</span><span class="p">(</span><span class="n">is.na</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<span class="n">sapply</span><span class="p">(</span><span class="n">test</span><span class="p">,</span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="n">any</span><span class="p">(</span><span class="n">is.na</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+
+
+<span class="c1"># There are few NAs in competition distance... imputing to the average value 
+</span><span class="n">avg_comp_distance</span> <span class="o">&lt;-</span> <span class="n">mean</span><span class="p">(</span><span class="n">train</span><span class="o">$</span><span class="n">CompetitionDistance</span><span class="p">,</span><span class="n">na.rm</span><span class="o">=</span><span class="n">TRUE</span><span class="p">)</span>
+<span class="n">na_idx</span> <span class="o">&lt;-</span> <span class="n">is.na</span><span class="p">(</span><span class="n">train</span><span class="o">$</span><span class="n">CompetitionDistance</span><span class="p">)</span>
+<span class="n">train</span><span class="o">$</span><span class="n">CompetitionDistance</span><span class="p">[</span><span class="n">na_idx</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">avg_comp_distance</span>
+<span class="n">na_idx</span> <span class="o">&lt;-</span> <span class="n">is.na</span><span class="p">(</span><span class="n">test</span><span class="o">$</span><span class="n">CompetitionDistance</span><span class="p">)</span>
+<span class="n">test</span><span class="o">$</span><span class="n">CompetitionDistance</span><span class="p">[</span><span class="n">na_idx</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">avg_comp_distance</span>
+
+<span class="c1"># Checking NA values, should return all false
+</span><span class="n">table</span><span class="p">(</span><span class="n">is.na</span><span class="p">(</span><span class="n">train</span><span class="p">))</span>
+<span class="n">table</span><span class="p">(</span><span class="n">is.na</span><span class="p">(</span><span class="n">test</span><span class="p">))</span>
+
+<span class="n">names</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+<span class="n">str</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+<span class="n">summary</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+
+<span class="n">names</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+<span class="n">str</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+<span class="n">summary</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+
+<span class="c1"># Dropping the days that stores are close
+</span><span class="n">train</span> <span class="o">&lt;-</span> <span class="n">train</span><span class="p">[</span> <span class="n">which</span><span class="p">(</span><span class="n">train</span><span class="o">$</span><span class="n">Open</span><span class="o">==</span><span class="m">1</span><span class="p">),]</span>
+<span class="n">train</span> <span class="o">&lt;-</span> <span class="n">train</span><span class="p">[</span> <span class="n">which</span><span class="p">(</span><span class="n">train</span><span class="o">$</span><span class="n">Sales</span><span class="o">!=</span><span class="m">0</span><span class="p">),]</span>
+
+<span class="c1"># Dropping Year-Month date:
+</span><span class="n">train</span><span class="o">$</span><span class="n">YearMonth</span> <span class="o">&lt;-</span> <span class="n">NULL</span>
+<span class="n">test</span><span class="o">$</span><span class="n">YearMonth</span> <span class="o">&lt;-</span> <span class="n">NULL</span>
+
+<span class="n">feature.names</span> <span class="o">&lt;-</span> <span class="n">names</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+<span class="n">cat</span><span class="p">(</span><span class="s2">"Feature Names:\n"</span><span class="p">)</span>
+<span class="n">feature.names</span>
+
+
+<span class="c1"># Converting string and characters to categorical variables
+</span><span class="k">for</span> <span class="p">(</span><span class="n">f</span> <span class="k">in</span> <span class="n">feature.names</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">class</span><span class="p">(</span><span class="n">train</span><span class="p">[[</span><span class="n">f</span><span class="p">]])</span><span class="o">==</span><span class="s2">"character"</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">levels</span> <span class="o">&lt;-</span> <span class="n">unique</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="n">train</span><span class="p">[[</span><span class="n">f</span><span class="p">]],</span> <span class="n">test</span><span class="p">[[</span><span class="n">f</span><span class="p">]]))</span>
+    <span class="n">train</span><span class="p">[[</span><span class="n">f</span><span class="p">]]</span> <span class="o">&lt;-</span> <span class="n">as.integer</span><span class="p">(</span><span class="n">factor</span><span class="p">(</span><span class="n">train</span><span class="p">[[</span><span class="n">f</span><span class="p">]],</span> <span class="n">levels</span><span class="o">=</span><span class="n">levels</span><span class="p">))</span>
+    <span class="n">test</span><span class="p">[[</span><span class="n">f</span><span class="p">]]</span>  <span class="o">&lt;-</span> <span class="n">as.integer</span><span class="p">(</span><span class="n">factor</span><span class="p">(</span><span class="n">test</span><span class="p">[[</span><span class="n">f</span><span class="p">]],</span>  <span class="n">levels</span><span class="o">=</span><span class="n">levels</span><span class="p">))</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># New feature: Year trend: 
+# Average trend in the sale over the 3 years using a spline fit
+</span><span class="n">train</span><span class="o">$</span><span class="n">YearTrend</span> <span class="o">&lt;-</span> <span class="m">0</span>
+<span class="n">test</span><span class="o">$</span><span class="n">YearTrend</span> <span class="o">&lt;-</span> <span class="m">0</span>
+
+<span class="c1"># Measuring time in the unit of month:
+</span><span class="n">train</span><span class="o">$</span><span class="n">TimeInMonth</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">train</span><span class="o">$</span><span class="n">Year</span> <span class="o">-</span> <span class="m">2013</span><span class="p">)</span><span class="o">*</span><span class="m">12</span> <span class="o">+</span> <span class="n">train</span><span class="o">$</span><span class="n">Month</span>
+<span class="n">test</span><span class="o">$</span><span class="n">TimeInMonth</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">test</span><span class="o">$</span><span class="n">Year</span> <span class="o">-</span> <span class="m">2013</span><span class="p">)</span><span class="o">*</span><span class="m">12</span> <span class="o">+</span> <span class="n">test</span><span class="o">$</span><span class="n">Month</span>
+
+<span class="c1">#----------------------------------------------------------------------
+# 6 Category of stores' sale trend
+# Store never renovated =&gt; 2 category: sale with promotion and without
+# Store *is* renovated =&gt; 4 category:
+#                             sale w / wihtout promo before renovation
+#                             sale w / without promo after renovation
+</span><span class="o">-----------------------------------------------------------------------</span>
+
+<span class="n">growthfitnopromo</span> <span class="o">&lt;-</span> <span class="n">NULL</span>
+<span class="n">growthfitwithpromo</span> <span class="o">&lt;-</span> <span class="n">NULL</span>
+<span class="n">growthfit0nopromo</span> <span class="o">&lt;-</span> <span class="n">NULL</span>
+<span class="n">growthfit0withpromo</span> <span class="o">&lt;-</span> <span class="n">NULL</span>
+<span class="n">growthfit1nopromo</span> <span class="o">&lt;-</span> <span class="n">NULL</span>
+<span class="n">growthfit1withpromo</span> <span class="o">&lt;-</span> <span class="n">NULL</span>
+
+<span class="n">setwd</span><span class="p">(</span><span class="s2">"~/kaggleout/rossman"</span><span class="p">)</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="n">unique</span><span class="p">(</span><span class="n">train</span><span class="o">$</span><span class="n">Store</span><span class="p">))</span> <span class="p">{</span>
+
+<span class="n">cat</span><span class="p">(</span><span class="s2">"fitting store i="</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="s2">"\n"</span><span class="p">)</span>
+
+<span class="c1"># Removing December from linear reg. since it is an outlier in most of the stores, 
+# The feature will be picked up by a decision tree model, aka. XGBoost 
+</span><span class="n">Store</span> <span class="o">&lt;-</span> <span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">train</span><span class="o">$</span><span class="n">Month</span> <span class="o">!=</span><span class="m">12</span><span class="p">,]</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">Store</span><span class="o">$</span><span class="n">StoreRenovated</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="o">==</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="c1">#=======Without Promo =============
+</span>  <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">as.integer</span><span class="p">(</span><span class="n">Store</span><span class="p">[</span><span class="n">Store</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">0</span><span class="p">,]</span><span class="o">$</span><span class="n">Date</span><span class="p">)</span>
+  <span class="n">y</span> <span class="o">&lt;-</span> <span class="n">Store</span><span class="p">[</span><span class="n">Store</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">0</span><span class="p">,]</span><span class="o">$</span><span class="n">Sales</span>
+
+  <span class="n">growthfitnopromo</span><span class="p">[[</span><span class="n">i</span><span class="p">]]</span> <span class="o">&lt;-</span> <span class="n">lm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">ns</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">df</span><span class="o">=</span><span class="m">2</span><span class="p">))</span>
+
+  <span class="n">plot</span><span class="p">(</span><span class="n">Store</span><span class="o">$</span><span class="n">Date</span><span class="p">,</span><span class="n">Store</span><span class="o">$</span><span class="n">Sales</span><span class="p">,</span><span class="n">pch</span><span class="o">=</span><span class="m">19</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="n">Store</span><span class="o">$</span><span class="n">Promo</span><span class="m">+5</span><span class="p">,</span>
+       <span class="n">xlab</span><span class="o">=</span><span class="s2">"date"</span><span class="p">,</span><span class="n">ylab</span><span class="o">=</span><span class="s2">"sale"</span><span class="p">,</span><span class="n">main</span> <span class="o">=</span> <span class="n">paste0</span><span class="p">(</span><span class="s2">"Store = "</span><span class="p">,</span><span class="n">as.character</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+
+  <span class="n">xx</span> <span class="o">&lt;-</span> <span class="n">as.integer</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">train</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">0</span><span class="p">,]</span><span class="o">$</span><span class="n">Date</span><span class="p">)</span>
+  <span class="n">yy</span> <span class="o">&lt;-</span> <span class="n">predict</span><span class="p">(</span><span class="n">growthfitnopromo</span><span class="p">[[</span><span class="n">i</span><span class="p">]],</span><span class="n">data.frame</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xx</span><span class="p">))</span>
+  <span class="n">points</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s2">"orange"</span><span class="p">)</span>
+  <span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">train</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">0</span><span class="p">,]</span><span class="o">$</span><span class="n">YearTrend</span> <span class="o">&lt;-</span> <span class="n">yy</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span><span class="k">in</span><span class="o">%</span> <span class="n">unique</span><span class="p">(</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">xx</span> <span class="o">&lt;-</span> <span class="n">as.integer</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">test</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">0</span><span class="p">,]</span><span class="o">$</span><span class="n">Date</span><span class="p">)</span>
+    <span class="n">yy</span> <span class="o">&lt;-</span> <span class="n">predict</span><span class="p">(</span><span class="n">growthfitnopromo</span><span class="p">[[</span><span class="n">i</span><span class="p">]],</span><span class="n">data.frame</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xx</span><span class="p">))</span>
+    <span class="n">test</span><span class="p">[</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">test</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">0</span><span class="p">,]</span><span class="o">$</span><span class="n">YearTrend</span> <span class="o">&lt;-</span> <span class="n">yy</span>
+  <span class="p">}</span>
+
+  <span class="c1">#======= With Promo =============
+</span>
+  <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">as.integer</span><span class="p">(</span><span class="n">Store</span><span class="p">[</span><span class="n">Store</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">1</span><span class="p">,]</span><span class="o">$</span><span class="n">Date</span><span class="p">)</span>
+  <span class="n">y</span> <span class="o">&lt;-</span> <span class="n">Store</span><span class="p">[</span><span class="n">Store</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">1</span><span class="p">,]</span><span class="o">$</span><span class="n">Sales</span>
+
+  <span class="n">growthfitwithpromo</span><span class="p">[[</span><span class="n">i</span><span class="p">]]</span> <span class="o">&lt;-</span> <span class="n">lm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">ns</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">df</span><span class="o">=</span><span class="m">2</span><span class="p">))</span>
+
+
+  <span class="n">xx</span> <span class="o">&lt;-</span> <span class="n">as.integer</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">train</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">1</span><span class="p">,]</span><span class="o">$</span><span class="n">Date</span><span class="p">)</span>
+  <span class="n">yy</span> <span class="o">&lt;-</span> <span class="n">predict</span><span class="p">(</span><span class="n">growthfitwithpromo</span><span class="p">[[</span><span class="n">i</span><span class="p">]],</span><span class="n">data.frame</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xx</span><span class="p">))</span>
+  <span class="n">points</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">)</span>
+  <span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">train</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">1</span><span class="p">,]</span><span class="o">$</span><span class="n">YearTrend</span> <span class="o">&lt;-</span> <span class="n">yy</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span><span class="k">in</span><span class="o">%</span> <span class="n">unique</span><span class="p">(</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">xx</span> <span class="o">&lt;-</span> <span class="n">as.integer</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">test</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">1</span><span class="p">,]</span><span class="o">$</span><span class="n">Date</span><span class="p">)</span>
+    <span class="n">yy</span> <span class="o">&lt;-</span> <span class="n">predict</span><span class="p">(</span><span class="n">growthfitwithpromo</span><span class="p">[[</span><span class="n">i</span><span class="p">]],</span><span class="n">data.frame</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xx</span><span class="p">))</span>
+    <span class="n">test</span><span class="p">[</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">test</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">1</span><span class="p">,]</span><span class="o">$</span><span class="n">YearTrend</span> <span class="o">&lt;-</span> <span class="n">yy</span>
+    <span class="n">points</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span><span class="p">,]</span><span class="o">$</span><span class="n">Date</span><span class="p">,</span><span class="n">test</span><span class="p">[</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span><span class="p">,]</span><span class="o">$</span><span class="n">YearTrend</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="m">24</span><span class="o">+</span><span class="n">test</span><span class="o">$</span><span class="n">Promo</span><span class="p">)</span>
+  <span class="p">}</span>
+
+<span class="p">}</span> <span class="c1"># End of store *not* renovated 
+</span><span class="k">else</span> <span class="p">{</span>
+
+    <span class="c1"># Fitting before renovation:
+</span>
+    <span class="c1">#=======Without Promo =============
+</span>    <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">as.integer</span><span class="p">(</span><span class="n">Store</span><span class="p">[</span><span class="n">Store</span><span class="o">$</span><span class="n">DaysAfterRenovation</span><span class="o">==</span><span class="m">0</span> <span class="o">&amp;</span><span class="n">Store</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">0</span><span class="p">,]</span><span class="o">$</span><span class="n">Date</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">&lt;-</span> <span class="n">Store</span><span class="p">[</span><span class="n">Store</span><span class="o">$</span><span class="n">DaysAfterRenovation</span><span class="o">==</span><span class="m">0</span><span class="o">&amp;</span><span class="n">Store</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">0</span><span class="p">,]</span><span class="o">$</span><span class="n">Sales</span>
+
+    <span class="n">growthfit0nopromo</span><span class="p">[[</span><span class="n">i</span><span class="p">]]</span> <span class="o">&lt;-</span> <span class="n">lm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">ns</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">df</span><span class="o">=</span><span class="m">2</span><span class="p">))</span>
+
+    <span class="n">plot</span><span class="p">(</span><span class="n">as.integer</span><span class="p">(</span><span class="n">Store</span><span class="o">$</span><span class="n">Date</span><span class="p">),</span><span class="n">Store</span><span class="o">$</span><span class="n">Sales</span><span class="p">,</span><span class="n">pch</span><span class="o">=</span><span class="m">19</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="n">Store</span><span class="o">$</span><span class="n">Promo</span><span class="m">+5</span><span class="p">,</span>
+         <span class="n">xlab</span><span class="o">=</span><span class="s2">"date"</span><span class="p">,</span><span class="n">ylab</span><span class="o">=</span><span class="s2">"sale"</span><span class="p">,</span><span class="n">main</span> <span class="o">=</span> <span class="n">paste0</span><span class="p">(</span><span class="s2">"Store = "</span><span class="p">,</span><span class="n">as.character</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+
+    <span class="n">xx</span> <span class="o">&lt;-</span> <span class="n">as.integer</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">train</span><span class="o">$</span><span class="n">DaysAfterRenovation</span><span class="o">==</span><span class="m">0</span> <span class="o">&amp;</span> <span class="n">train</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">0</span><span class="p">,]</span><span class="o">$</span><span class="n">Date</span><span class="p">)</span>
+    <span class="n">yy</span> <span class="o">&lt;-</span> <span class="n">predict</span><span class="p">(</span><span class="n">growthfit0nopromo</span><span class="p">[[</span><span class="n">i</span><span class="p">]],</span><span class="n">data.frame</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xx</span><span class="p">))</span>
+    <span class="n">points</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s2">"orange"</span><span class="p">)</span>
+
+    <span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">train</span><span class="o">$</span><span class="n">DaysAfterRenovation</span><span class="o">==</span><span class="m">0</span> <span class="o">&amp;</span><span class="n">train</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">0</span><span class="p">,]</span><span class="o">$</span><span class="n">YearTrend</span> <span class="o">&lt;-</span> <span class="n">yy</span>
+
+
+    <span class="c1">#=======With Promo =============
+</span>
+    <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">as.integer</span><span class="p">(</span><span class="n">Store</span><span class="p">[</span><span class="n">Store</span><span class="o">$</span><span class="n">DaysAfterRenovation</span><span class="o">==</span><span class="m">0</span> <span class="o">&amp;</span><span class="n">Store</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">1</span><span class="p">,]</span><span class="o">$</span><span class="n">Date</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">&lt;-</span> <span class="n">Store</span><span class="p">[</span><span class="n">Store</span><span class="o">$</span><span class="n">DaysAfterRenovation</span><span class="o">==</span><span class="m">0</span><span class="o">&amp;</span><span class="n">Store</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">1</span><span class="p">,]</span><span class="o">$</span><span class="n">Sales</span>
+
+    <span class="n">growthfit0withpromo</span><span class="p">[[</span><span class="n">i</span><span class="p">]]</span> <span class="o">&lt;-</span> <span class="n">lm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">ns</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">df</span><span class="o">=</span><span class="m">2</span><span class="p">))</span>
+
+    <span class="n">xx</span> <span class="o">&lt;-</span> <span class="n">as.integer</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">train</span><span class="o">$</span><span class="n">DaysAfterRenovation</span><span class="o">==</span><span class="m">0</span> <span class="o">&amp;</span> <span class="n">train</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">1</span><span class="p">,]</span><span class="o">$</span><span class="n">Date</span><span class="p">)</span>
+    <span class="n">yy</span> <span class="o">&lt;-</span> <span class="n">predict</span><span class="p">(</span><span class="n">growthfit0withpromo</span><span class="p">[[</span><span class="n">i</span><span class="p">]],</span><span class="n">data.frame</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xx</span><span class="p">))</span>
+    <span class="n">points</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">)</span>
+
+    <span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">train</span><span class="o">$</span><span class="n">DaysAfterRenovation</span><span class="o">==</span><span class="m">0</span> <span class="o">&amp;</span><span class="n">train</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">1</span><span class="p">,]</span><span class="o">$</span><span class="n">YearTrend</span> <span class="o">&lt;-</span> <span class="n">yy</span>
+
+
+    <span class="c1"># Fitting to after renovation: 
+</span>
+    <span class="c1">#=======Without Promo =============
+</span>    <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">as.integer</span><span class="p">(</span><span class="n">Store</span><span class="p">[</span><span class="n">Store</span><span class="o">$</span><span class="n">DaysAfterRenovation</span><span class="o">==</span><span class="m">1</span> <span class="o">&amp;</span> <span class="n">Store</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">0</span><span class="p">,]</span><span class="o">$</span><span class="n">Date</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">&lt;-</span> <span class="n">Store</span><span class="p">[</span><span class="n">Store</span><span class="o">$</span><span class="n">DaysAfterRenovation</span><span class="o">==</span><span class="m">1</span> <span class="o">&amp;</span> <span class="n">Store</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">0</span><span class="p">,]</span><span class="o">$</span><span class="n">Sales</span>
+
+    <span class="n">growthfit1nopromo</span><span class="p">[[</span><span class="n">i</span><span class="p">]]</span> <span class="o">&lt;-</span> <span class="n">lm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">ns</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">df</span><span class="o">=</span><span class="m">1</span><span class="p">))</span>
+
+
+    <span class="n">xx</span> <span class="o">&lt;-</span> <span class="n">as.integer</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">train</span><span class="o">$</span><span class="n">DaysAfterRenovation</span><span class="o">==</span><span class="m">1</span> <span class="o">&amp;</span> <span class="n">train</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">0</span><span class="p">,]</span><span class="o">$</span><span class="n">Date</span><span class="p">)</span>
+    <span class="n">yy</span> <span class="o">&lt;-</span> <span class="n">predict</span><span class="p">(</span><span class="n">growthfit1nopromo</span><span class="p">[[</span><span class="n">i</span><span class="p">]],</span><span class="n">data.frame</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xx</span><span class="p">))</span>
+    <span class="n">points</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s2">"yellow"</span><span class="p">)</span>
+    <span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">train</span><span class="o">$</span><span class="n">DaysAfterRenovation</span><span class="o">==</span><span class="m">1</span> <span class="o">&amp;</span><span class="n">train</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">0</span><span class="p">,]</span><span class="o">$</span><span class="n">YearTrend</span> <span class="o">&lt;-</span> <span class="n">yy</span>
+
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span><span class="k">in</span><span class="o">%</span> <span class="n">unique</span><span class="p">(</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="p">))</span> <span class="p">{</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="n">nrow</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">test</span><span class="o">$</span><span class="n">DaysAfterRenovation</span><span class="o">==</span><span class="m">0</span><span class="p">,])</span> <span class="o">!=</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
+         <span class="c1"># If this happens, there is a bug in data cleaning process
+</span>         <span class="n">stop</span><span class="p">(</span><span class="s2">"Something terrible happened!"</span><span class="p">)</span>
+      <span class="p">}</span>
+
+      <span class="n">xx</span> <span class="o">&lt;-</span> <span class="n">as.integer</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">test</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">0</span><span class="p">,]</span><span class="o">$</span><span class="n">Date</span><span class="p">)</span>
+      <span class="n">yy</span> <span class="o">&lt;-</span> <span class="n">predict</span><span class="p">(</span><span class="n">growthfit1nopromo</span><span class="p">[[</span><span class="n">i</span><span class="p">]],</span><span class="n">data.frame</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xx</span><span class="p">))</span>
+      <span class="n">test</span><span class="p">[</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">test</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">0</span><span class="p">,]</span><span class="o">$</span><span class="n">YearTrend</span> <span class="o">&lt;-</span> <span class="n">yy</span>
+    <span class="p">}</span>
+    <span class="c1">#=======With Promo =============
+</span>
+
+    <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">as.integer</span><span class="p">(</span><span class="n">Store</span><span class="p">[</span><span class="n">Store</span><span class="o">$</span><span class="n">DaysAfterRenovation</span><span class="o">==</span><span class="m">1</span> <span class="o">&amp;</span> <span class="n">Store</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">1</span><span class="p">,]</span><span class="o">$</span><span class="n">Date</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">&lt;-</span> <span class="n">Store</span><span class="p">[</span><span class="n">Store</span><span class="o">$</span><span class="n">DaysAfterRenovation</span><span class="o">==</span><span class="m">1</span> <span class="o">&amp;</span> <span class="n">Store</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">1</span><span class="p">,]</span><span class="o">$</span><span class="n">Sales</span>
+
+    <span class="n">growthfit1withpromo</span><span class="p">[[</span><span class="n">i</span><span class="p">]]</span> <span class="o">&lt;-</span> <span class="n">lm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">ns</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">df</span><span class="o">=</span><span class="m">1</span><span class="p">))</span>
+
+
+    <span class="n">xx</span> <span class="o">&lt;-</span> <span class="n">as.integer</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">train</span><span class="o">$</span><span class="n">DaysAfterRenovation</span><span class="o">==</span><span class="m">1</span> <span class="o">&amp;</span> <span class="n">train</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">1</span><span class="p">,]</span><span class="o">$</span><span class="n">Date</span><span class="p">)</span>
+    <span class="n">yy</span> <span class="o">&lt;-</span> <span class="n">predict</span><span class="p">(</span><span class="n">growthfit1withpromo</span><span class="p">[[</span><span class="n">i</span><span class="p">]],</span><span class="n">data.frame</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xx</span><span class="p">))</span>
+    <span class="n">points</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s2">"green"</span><span class="p">)</span>
+    <span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">train</span><span class="o">$</span><span class="n">DaysAfterRenovation</span><span class="o">==</span><span class="m">1</span> <span class="o">&amp;</span><span class="n">train</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">1</span><span class="p">,]</span><span class="o">$</span><span class="n">YearTrend</span> <span class="o">&lt;-</span> <span class="n">yy</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span><span class="k">in</span><span class="o">%</span> <span class="n">unique</span><span class="p">(</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="p">))</span> <span class="p">{</span>
+
+       <span class="n">xx</span> <span class="o">&lt;-</span> <span class="n">as.integer</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="o">&amp;</span>  <span class="n">test</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">1</span><span class="p">,]</span><span class="o">$</span><span class="n">Date</span><span class="p">)</span>
+       <span class="n">yy</span> <span class="o">&lt;-</span> <span class="n">predict</span><span class="p">(</span><span class="n">growthfit1withpromo</span><span class="p">[[</span><span class="n">i</span><span class="p">]],</span><span class="n">data.frame</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xx</span><span class="p">))</span>
+
+       <span class="n">test</span><span class="p">[</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">test</span><span class="o">$</span><span class="n">Promo</span><span class="o">==</span><span class="m">1</span><span class="p">,]</span><span class="o">$</span><span class="n">YearTrend</span> <span class="o">&lt;-</span> <span class="n">yy</span>
+
+       <span class="n">points</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span><span class="p">,]</span><span class="o">$</span><span class="n">Date</span><span class="p">,</span><span class="n">test</span><span class="p">[</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span><span class="p">,]</span><span class="o">$</span><span class="n">YearTrend</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="m">24</span><span class="o">+</span><span class="n">test</span><span class="o">$</span><span class="n">Promo</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="c1">#End of renovation = 1 
+</span><span class="n">fname</span><span class="o">&lt;-</span><span class="n">paste0</span><span class="p">(</span><span class="s2">"Store_"</span><span class="p">,</span><span class="n">as.character</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="s2">"_SaleTrend.png"</span><span class="p">)</span>
+<span class="n">dev.copy</span><span class="p">(</span><span class="n">png</span><span class="p">,</span><span class="n">file</span><span class="o">=</span><span class="n">fname</span><span class="p">);</span> <span class="n">dev.off</span><span class="p">()</span>
+<span class="p">}</span>
+
+
+<span class="n">listoffits</span> <span class="o">&lt;-</span> <span class="n">c</span><span class="p">(</span><span class="s2">"growthfitnopromo"</span><span class="p">,</span><span class="s2">"growthfitwithpromo"</span><span class="p">,</span><span class="s2">"growthfit0nopromo"</span><span class="p">,</span>
+                <span class="s2">"growthfit0withpromo"</span><span class="p">,</span><span class="s2">"growthfit1nopromo"</span><span class="p">,</span><span class="s2">"growthfit1withpromo"</span><span class="p">)</span>
+
+<span class="n">save</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="n">listoffits</span><span class="p">,</span><span class="n">file</span><span class="o">=</span><span class="s2">"~/all_fits_sep_pro_sep_renovation.RData"</span><span class="p">)</span>
+
+
+<span class="c1"># Subtracting the yearly trend of growth/decay of sale:
+</span><span class="n">train</span><span class="o">$</span><span class="n">Sales2</span> <span class="o">&lt;-</span> <span class="n">train</span><span class="o">$</span><span class="n">Sales</span>
+<span class="n">train</span><span class="o">$</span><span class="n">Sales</span> <span class="o">&lt;-</span> <span class="n">train</span><span class="o">$</span><span class="n">Sales</span> <span class="o">-</span> <span class="n">train</span><span class="o">$</span><span class="n">YearTrend</span>
+
+<span class="c1">#save(list=c("train"),file="~/train_set_with_Year_Trend.RData")
+#save(list=c("test"),file="~/test_set_with_Year_Trend.RData")
+</span>
+</code></pre>
+</div>
+
+<h3 id="monthly-trend">Monthly Trend</h3>
+
+<p>After removing the yearly trend of sale growth/decay. It makes more sense to bin the data to day of
+month, and we observe strong indication of a seasonality in month that sale is higher near the beginning
+and end of the month, and also slightly higher in the middle. We also extracted this signal.</p>
+
+<p>Let’s first take a look at some of the stores sale: (the blue dots indicate
+the spline fit)</p>
+
+<p><img src="img/Store_25_MonthTrend.png" alt="alt_tag" />
+<img src="img/Store_356_MonthTrend.png" alt="alt_tag" />
+<img src="img/Store_602_MonthTrend.png" alt="alt_tag" />
+<img src="img/Store_1112_MonthTrend.png" alt="alt_tag" /></p>
+
+<p>The implementation is below:</p>
+
+<div class="language-R highlighter-rouge"><pre class="highlight"><code><span class="c1"># Exploring the monthly trend:
+</span><span class="n">monthfit</span> <span class="o">&lt;-</span> <span class="n">NULL</span>
+<span class="n">train</span><span class="o">$</span><span class="n">MonthTrend</span> <span class="o">&lt;-</span> <span class="m">0</span>
+<span class="n">test</span><span class="o">$</span><span class="n">MonthTrend</span> <span class="o">&lt;-</span> <span class="m">0</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="n">unique</span><span class="p">(</span><span class="n">train</span><span class="o">$</span><span class="n">Store</span><span class="p">))</span> <span class="p">{</span>
+  <span class="n">cat</span><span class="p">(</span><span class="s2">"doing Store ="</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="s2">"\n"</span><span class="p">)</span>
+  <span class="n">Store</span> <span class="o">&lt;-</span> <span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="p">,]</span>
+  <span class="n">y</span> <span class="o">&lt;-</span> <span class="n">by</span><span class="p">(</span><span class="n">Store</span><span class="o">$</span><span class="n">Sales</span><span class="p">,</span> <span class="n">Store</span><span class="o">$</span><span class="n">Day</span><span class="p">,</span> <span class="n">mean</span><span class="p">)</span>
+  <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">as.integer</span><span class="p">(</span><span class="n">names</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+  <span class="n">monthfit</span><span class="p">[[</span><span class="n">i</span><span class="p">]]</span> <span class="o">&lt;-</span> <span class="n">lm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">ns</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">df</span><span class="o">=</span><span class="m">5</span><span class="p">))</span>
+  <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">pch</span><span class="o">=</span><span class="m">19</span><span class="p">,</span><span class="n">xlab</span><span class="o">=</span><span class="s2">"DayofMonth"</span><span class="p">,</span><span class="n">ylab</span><span class="o">=</span><span class="s2">"sale variation"</span><span class="p">,</span><span class="n">main</span> <span class="o">=</span> <span class="n">paste0</span><span class="p">(</span><span class="s2">"Store = "</span><span class="p">,</span><span class="n">as.character</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+
+  <span class="n">xx</span> <span class="o">&lt;-</span> <span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span><span class="p">,]</span><span class="o">$</span><span class="n">Day</span>
+  <span class="n">yy</span> <span class="o">&lt;-</span> <span class="n">predict</span><span class="p">(</span><span class="n">monthfit</span><span class="p">[[</span><span class="n">i</span><span class="p">]],</span> <span class="n">data.frame</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xx</span><span class="p">))</span>
+  <span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span><span class="p">,]</span><span class="o">$</span><span class="n">MonthTrend</span> <span class="o">&lt;-</span> <span class="n">yy</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span><span class="k">in</span><span class="o">%</span> <span class="n">unique</span><span class="p">(</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">xx</span> <span class="o">&lt;-</span> <span class="n">test</span><span class="p">[</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span><span class="p">,]</span><span class="o">$</span><span class="n">Day</span>
+    <span class="n">yy</span> <span class="o">&lt;-</span> <span class="n">predict</span><span class="p">(</span><span class="n">monthfit</span><span class="p">[[</span><span class="n">i</span><span class="p">]],</span><span class="n">data.frame</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xx</span><span class="p">))</span>
+    <span class="n">test</span><span class="p">[</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span><span class="p">,]</span><span class="o">$</span><span class="n">MonthTrend</span> <span class="o">&lt;-</span> <span class="n">yy</span>
+    <span class="n">points</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span><span class="p">,]</span><span class="o">$</span><span class="n">Day</span><span class="p">,</span><span class="n">test</span><span class="p">[</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span><span class="p">,]</span><span class="o">$</span><span class="n">MonthTrend</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">,</span><span class="n">pch</span><span class="o">=</span><span class="m">19</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="n">fname</span><span class="o">&lt;-</span><span class="n">paste0</span><span class="p">(</span><span class="s2">"Store_"</span><span class="p">,</span><span class="n">as.character</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="s2">"_MonthTrend.png"</span><span class="p">)</span>
+  <span class="n">dev.copy</span><span class="p">(</span><span class="n">png</span><span class="p">,</span><span class="n">file</span><span class="o">=</span><span class="n">fname</span><span class="p">);</span> <span class="n">dev.off</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="n">save</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="s2">"monthfit"</span><span class="p">),</span><span class="n">file</span><span class="o">=</span><span class="s2">"~/all_monthfits.RData"</span><span class="p">)</span>
+
+<span class="n">train</span><span class="o">$</span><span class="n">Sales3</span> <span class="o">&lt;-</span> <span class="n">train</span><span class="o">$</span><span class="n">Sales</span>
+<span class="n">train</span><span class="o">$</span><span class="n">Sales</span> <span class="o">&lt;-</span> <span class="n">train</span><span class="o">$</span><span class="n">Sales</span> <span class="o">-</span> <span class="n">train</span><span class="o">$</span><span class="n">MonthTrend</span>
+
+
+<span class="c1">#save(list=c("train"),file="~/train_set_with_Month_Trend.RData")
+#save(list=c("test"),file="~/test_set_with_Month_Trend.RData")
+</span>
+
+<span class="n">train</span><span class="o">$</span><span class="n">SaleSD</span> <span class="o">&lt;-</span> <span class="m">1</span>
+<span class="n">test</span><span class="o">$</span><span class="n">SaleSD</span> <span class="o">&lt;-</span> <span class="m">1</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="n">unique</span><span class="p">(</span><span class="n">train</span><span class="o">$</span><span class="n">Store</span><span class="p">))</span> <span class="p">{</span>
+  <span class="n">sd_sale</span> <span class="o">&lt;-</span> <span class="n">sd</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span> <span class="p">,]</span><span class="o">$</span><span class="n">Sales</span><span class="p">)</span>
+  <span class="n">cat</span><span class="p">(</span><span class="s2">"doing Store i="</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="s2">"sd="</span><span class="p">,</span><span class="n">sd_sale</span><span class="p">,</span><span class="s2">"\n"</span><span class="p">)</span>
+  <span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span><span class="p">,]</span><span class="o">$</span><span class="n">SaleSD</span> <span class="o">&lt;-</span> <span class="n">sd_sale</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span><span class="k">in</span><span class="o">%</span> <span class="n">unique</span><span class="p">(</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">test</span><span class="p">[</span><span class="n">test</span><span class="o">$</span><span class="n">Store</span><span class="o">==</span><span class="n">i</span><span class="p">,]</span><span class="o">$</span><span class="n">SaleSD</span> <span class="o">&lt;-</span> <span class="n">sd_sale</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">train</span><span class="o">$</span><span class="n">Sales4</span> <span class="o">&lt;-</span> <span class="n">train</span><span class="o">$</span><span class="n">Sales</span>
+<span class="c1"># Normalizing sale of stores by their standard deviation
+</span><span class="n">train</span><span class="o">$</span><span class="n">Sales</span> <span class="o">&lt;-</span> <span class="n">train</span><span class="o">$</span><span class="n">Sales</span> <span class="o">/</span> <span class="n">train</span><span class="o">$</span><span class="n">SaleSD</span>
+
+<span class="n">write_csv</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="s2">"~/kaggleout/rossman/train_normalized.csv"</span><span class="p">)</span>
+<span class="n">write_csv</span><span class="p">(</span><span class="n">test</span><span class="p">,</span><span class="s2">"~/kaggleout/rossman/test_normalized.csv"</span><span class="p">)</span>
+
+</code></pre>
+</div>
+
+<p>Finally we store the normalized data for the final step of the ML pipeline.</p>
+
+<h3 id="regression-code">Regression Code</h3>
+
+<ul>
+  <li><a href="https://github.com/rmanak/store_sale/blob/master/regression.R">[Ful code]</a></li>
+</ul>
+
+<hr />
+
+<h2 id="non-linear-features--xgb">Non-linear features / XGB</h2>
+
+<p>Finally to extract the nonlinear features such as dependency of the sale on day of week
+or its dependency on when promo2 is on as well as interaction terms such as 
+(end of month x Friday) we use a gradient boosting decision tree:</p>
+
+<p>So in summary our machine learning pipeline looks like the following:</p>
+
+<p><img src="img/ML.png" alt="alt_tag" /></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">import</span> <span class="nn">xgboost</span> <span class="kn">as</span> <span class="nn">xgb</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+
+<span class="n">types</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Store'</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+         <span class="s">'DayOfWeek'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+         <span class="s">'Sale'</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span>
+         <span class="s">'Promo'</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+         <span class="s">'SchoolHoliday'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+         <span class="s">'StateHoliday'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+         <span class="s">'StoreType'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+         <span class="s">'Assortment'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+         <span class="s">'CompetitionDistance'</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span>
+         <span class="s">'IsPromo2Month'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+         <span class="s">'Competition'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+         <span class="s">'StoreRenovated'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+         <span class="s">'DaysAfterRenovation'</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+         <span class="s">'MonthSale'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span>
+         <span class="s">'Month'</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+         <span class="s">'Day'</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"~/kaggleout/rossman/train_normalized.csv"</span><span class="p">,</span>
+                    <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s">'Date'</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">types</span><span class="p">)</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"~/kaggleout/rossman/test_normalized.csv"</span><span class="p">,</span>
+                   <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s">'Date'</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">types</span><span class="p">)</span>
+
+<span class="c"># Some new feature engineering:</span>
+<span class="k">def</span> <span class="nf">extendFeatures</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">df</span><span class="p">[</span><span class="s">'Friday'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">df</span><span class="p">[</span><span class="s">'EarlyInMonth'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">df</span><span class="p">[</span><span class="s">'LateInMonth'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">df</span><span class="p">[</span><span class="s">'December'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">df</span><span class="p">[</span><span class="s">'ChristmasTime'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">DayOfWeek</span> <span class="o">==</span> <span class="mi">5</span><span class="p">,</span><span class="s">'Friday'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Day</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">,</span> <span class="s">'EarlyInMonth'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Day</span> <span class="o">&gt;</span> <span class="mi">25</span><span class="p">,</span> <span class="s">'LateInMonth'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Month</span> <span class="o">==</span> <span class="mi">12</span><span class="p">,</span><span class="s">'December'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">isXmas</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Month</span> <span class="o">==</span> <span class="mi">12</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Day</span> <span class="o">&gt;</span> <span class="mi">23</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">isXmas</span><span class="p">,</span> <span class="s">'ChristmasTime'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">df</span>
+
+<span class="n">train</span> <span class="o">=</span> <span class="n">extendFeatures</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">extendFeatures</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+
+
+<span class="c"># print train.columns.values</span>
+
+
+<span class="c"># Keeping out the last two month for cross validation</span>
+<span class="n">cvtest</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="o">.</span><span class="n">Date</span> <span class="o">&gt;</span> <span class="s">'2015-06-30'</span><span class="p">]</span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="o">.</span><span class="n">Date</span> <span class="o">&lt;</span> <span class="s">'2015-07-01'</span><span class="p">]</span>
+
+
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Store'</span><span class="p">,</span> <span class="s">'DayOfWeek'</span><span class="p">,</span> <span class="s">'Promo'</span><span class="p">,</span>  <span class="s">'StateHoliday'</span><span class="p">,</span>
+            <span class="s">'SchoolHoliday'</span><span class="p">,</span> <span class="s">'StoreType'</span><span class="p">,</span> <span class="s">'Assortment'</span><span class="p">,</span>
+            <span class="s">'CompetitionDistance'</span><span class="p">,</span> <span class="s">'Month'</span><span class="p">,</span> <span class="s">'Year'</span><span class="p">,</span> <span class="s">'Day'</span><span class="p">,</span>
+            <span class="s">'IsPromo2Month'</span><span class="p">,</span> <span class="s">'Competition'</span><span class="p">,</span><span class="s">'StoreRenovated'</span><span class="p">,</span>
+            <span class="s">'DaysAfterRenovation'</span><span class="p">,</span><span class="s">'Friday'</span><span class="p">,</span><span class="s">'EarlyInMonth'</span><span class="p">,</span><span class="s">'LateInMonth'</span><span class="p">,</span>
+            <span class="s">'December'</span><span class="p">,</span><span class="s">'ChristmasTime'</span><span class="p">]</span>
+
+<span class="c">#XGboost params: (set for quick run, not high accuracy)</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">"objective"</span><span class="p">:</span> <span class="s">"reg:linear"</span><span class="p">,</span>
+          <span class="s">"booster"</span> <span class="p">:</span> <span class="s">"gbtree"</span><span class="p">,</span>
+          <span class="s">"eta"</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+          <span class="s">"max_depth"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+          <span class="s">"subsample"</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span>
+          <span class="s">"colsample_bytree"</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span>
+          <span class="s">"silent"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="s">"thread"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="s">"seed"</span><span class="p">:</span> <span class="mi">2015</span>
+          <span class="p">}</span>
+<span class="c"># For the final run should try 1000+ iteration at eta &lt; 0.02</span>
+<span class="n">num_boost_round</span> <span class="o">=</span> <span class="mi">200</span>
+
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_valid</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.012</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">Sales</span><span class="p">)</span>
+<span class="n">y_valid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X_valid</span><span class="o">.</span><span class="n">Sales</span><span class="p">)</span>
+<span class="n">dtrain</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">DMatrix</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">features</span><span class="p">],</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">dvalid</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">DMatrix</span><span class="p">(</span><span class="n">X_valid</span><span class="p">[</span><span class="n">features</span><span class="p">],</span> <span class="n">y_valid</span><span class="p">)</span>
+
+<span class="n">watchlist</span> <span class="o">=</span> <span class="p">[(</span><span class="n">dtrain</span><span class="p">,</span> <span class="s">'train'</span><span class="p">),</span> <span class="p">(</span><span class="n">dvalid</span><span class="p">,</span> <span class="s">'eval'</span><span class="p">)]</span>
+
+<span class="k">def</span> <span class="nf">rmse</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">yhat</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">yhat</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">rmse_xg</span><span class="p">(</span><span class="n">yhat</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">get_label</span><span class="p">())</span>
+    <span class="n">yhat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">yhat</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s">"rmse"</span><span class="p">,</span> <span class="n">rmse</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">yhat</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">rmspe</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">yhat</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span> <span class="p">((</span><span class="n">y</span><span class="o">-</span><span class="n">yhat</span><span class="p">)</span> <span class="o">/</span> <span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span> <span class="p">)</span>
+
+<span class="c"># Training the tree:</span>
+<span class="n">gbm</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">dtrain</span><span class="p">,</span> <span class="n">num_boost_round</span><span class="p">,</span> <span class="n">evals</span><span class="o">=</span><span class="n">watchlist</span><span class="p">,</span>
+                <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">feval</span><span class="o">=</span><span class="n">rmse_xg</span><span class="p">,</span> <span class="n">verbose_eval</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Make predictions on the cvtest set"</span><span class="p">)</span>
+<span class="n">dtest</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">DMatrix</span><span class="p">(</span><span class="n">cvtest</span><span class="p">[</span><span class="n">features</span><span class="p">])</span>
+<span class="n">test_preds</span> <span class="o">=</span> <span class="n">gbm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">dtest</span><span class="p">)</span>
+<span class="n">test_sales</span> <span class="o">=</span> <span class="p">(</span><span class="n">test_preds</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">cvtest</span><span class="o">.</span><span class="n">SaleSD</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">cvtest</span><span class="o">.</span><span class="n">MonthTrend</span><span class="p">)</span>
+              <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">cvtest</span><span class="o">.</span><span class="n">YearTrend</span><span class="p">))</span>
+
+<span class="n">error</span> <span class="o">=</span> <span class="n">rmspe</span><span class="p">(</span><span class="n">cvtest</span><span class="o">.</span><span class="n">Sales2</span><span class="p">,</span> <span class="n">test_sales</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'RMSPE: {:.6f}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">error</span><span class="p">))</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s">"/Users/arman"</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cvtest</span><span class="o">.</span><span class="n">Sales2</span><span class="p">,</span><span class="n">test_sales</span><span class="p">,</span><span class="s">'bo'</span><span class="p">,</span><span class="n">cvtest</span><span class="o">.</span><span class="n">Sales2</span><span class="p">,</span><span class="n">cvtest</span><span class="o">.</span><span class="n">Sales2</span><span class="p">,</span><span class="s">'k'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Cross validation for 1115 stores </span><span class="se">\n</span><span class="s"> for the last two month of train set'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Actual Sale'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Predicted Sale'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">"cv.png"</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+
+<span class="c"># Predicting for the test set:</span>
+<span class="n">dtest</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">DMatrix</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">features</span><span class="p">])</span>
+<span class="n">test_preds</span> <span class="o">=</span> <span class="n">gbm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">dtest</span><span class="p">)</span>
+<span class="n">test_sales</span> <span class="o">=</span> <span class="p">(</span><span class="n">test_preds</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">SaleSD</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">MonthTrend</span><span class="p">)</span>
+              <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">YearTrend</span><span class="p">))</span>
+
+<span class="n">submissionDF</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s">'Id'</span><span class="p">:</span> <span class="n">test</span><span class="p">[</span><span class="s">'Id'</span><span class="p">],</span> <span class="s">'Sales'</span><span class="p">:</span> <span class="n">test_sales</span><span class="p">})</span>
+<span class="n">submissionDF</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">"submission.csv"</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="code">code</h3>
+
+<ul>
+  <li><a href="https://github.com/rmanak/store_sale/blob/master/XGB.py">[Full code]</a></li>
+</ul>
+
+<h2 id="cross-validation">Cross Validation</h2>
+
+<p>Note that the code above performs a cross validation by holding the last two month of the train set out
+of the XGBoost. (Also XGBoost has it’s own built in CV monitoring). Following plot demonstrates the
+predicted sale vs actual sale for the cross validation set with RMSPE score of 0.14</p>
+
+<p><img src="img/cv.png" alt="alt_tag" /></p>
+
+			   <hr>
+			   <div class="related-posts">
+				   <h5>Related Posts</h5>
+				   
+						<div class="row">
+							 <div class="col-sm-4 col-md-4 col-lg-4">
+								 <h6 style="text-align: right">
+								 	November  6, 2015
+								 </h6>
+							 </div>
+							 <div class="col-sm-8 col-md-8 col-lg-8">
+								 <h6 style="text-align: left">
+								 	<strong><a href="/notes/some-cool-links.html">Some random cool links</a></strong>
+								 </h6>
+							 </div>
+						</div>
+					
+						<div class="row">
+							 <div class="col-sm-4 col-md-4 col-lg-4">
+								 <h6 style="text-align: right">
+								 	November  5, 2015
+								 </h6>
+							 </div>
+							 <div class="col-sm-8 col-md-8 col-lg-8">
+								 <h6 style="text-align: left">
+								 	<strong><a href="/notes/full-html-style.html">A Full and Comprehensive Style Test (HTML)</a></strong>
+								 </h6>
+							 </div>
+						</div>
+					
+						<div class="row">
+							 <div class="col-sm-4 col-md-4 col-lg-4">
+								 <h6 style="text-align: right">
+								 	November  4, 2015
+								 </h6>
+							 </div>
+							 <div class="col-sm-8 col-md-8 col-lg-8">
+								 <h6 style="text-align: left">
+								 	<strong><a href="/notes/markdown-cheatsheet.html">Markdown cheatsheet demo</a></strong>
+								 </h6>
+							 </div>
+						</div>
+					
+			   </div>
+			</div>
+		</div>
+	</div>
+	
+
+</div>
+
+
+  </div>
+  <!-- Footer -->
+  <footer>
+    <div id="footer">
+        <div class="container">
+            <p class="text-muted">© Arman Akbarian &#8226; Powered by <a href="http://jekyllrb.com/">Jekyll</a> + 
+            <a href="http://github.com/rmanak/simplehtml">SimpleHtml</a> 
+            &#8226; Hosted by
+            <a href="http://www.github.com/">GitHub</a> </p>
+        </div>
+    </div>
+</footer>
+<div class="footer"></div>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+    integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
+    crossorigin="anonymous"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="/notes/static/js/docs.min.js"></script>
+    <script src="/notes/static/js/main.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/notes/static/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
