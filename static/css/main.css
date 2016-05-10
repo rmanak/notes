@@ -2,7 +2,7 @@
 -------------------------------------------------- */
 @import url(https://fonts.googleapis.com/css?family=Raleway:700,400);
 @import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,300);
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:500,400,300);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:600,500,400,300);
 
 html,
 body {
@@ -28,7 +28,7 @@ h1, h2, h3, h4, h5 {
 }
 
 strong {
-    font-weight:500!important;
+    font-weight:600!important;
 }
 
 /* Navbar
