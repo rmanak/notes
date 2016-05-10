@@ -166,7 +166,7 @@ And finally directly including and highlighting a source code from source file:
 
 ```python
 
-{% include code/XGB.py %}
+{% include codes/XGB.py %}
 
 ```
 
