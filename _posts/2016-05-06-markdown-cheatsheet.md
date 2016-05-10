@@ -110,7 +110,7 @@ def run_some_function():
 
 Another way of highlighting
 
-```C
+```CPP
 #include<iostream>
 #include<vector>
 
