@@ -1,28 +1,35 @@
 highlighter: rouge
 markdown: kramdown
-kramdown:
-  input: GFM
-rdiscount:
-   extensions: [smart]
 permalink: /:title.html
-paginate: 6
+paginate: 5
 gems: [jekyll-paginate]
-port: 5000
+port: 4000
 safe: true
-url: http://rmanak.github.io/jekyll
-autor: Arman Akbarian
+url: http://rmanak.github.io/jekkly
+author: Arman Akbarian
 
-baseurl: /jekyll/
-title: Testing jekkly
+# edit this section with your information
+# biomadeira.github.io - all contents run on /vitae/
+# for a normal use at the base of the server change it to "/"
+baseurl: /jekkly/
+title: Arman Akbarian Resume
 name: Arman Akbarian
 email: arman2@gmail.com
-description: >
-  A guide to getting started with Jekyll.
-safe: true
-twitter_username: arman2
-github_username:  rmanak
-# Build Settings
-sass:
-  sass_dir: _sass
-include: ['_pages']
+email_full: mailto:arman2@gmail.com
+avator: profile.jpg
+website: rmanak.github.io
+linkedin: armanakbarian
+website_full: https://rmanak.github.io/
+github: rmanak
+#twitter: twitter
+tel: +1 778 320 5515
+tel_full: tel:+17783205515
+#google_maps: 'https://www.google.co.uk/maps/place/44+Perth+St,+Edinburgh,+Edinburgh+City+EH3+5BL'
+#address: Vancouver
+#postcode: V6T 1Z1
+city: Vancouver
+country: Canada
+#google_analytics: UA-69300817-1
 
+# needed for travis-ci build
+exclude: [vendor]
