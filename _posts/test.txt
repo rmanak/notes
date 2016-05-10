@@ -1,0 +1,30 @@
+# Test
+
+This is a new file
+
+Table of content goes below:
+
+[TOC]
+
+And more stuff
+
+## Section A
+
+content of section 1
+
+### Subsection A A 
+
+alksdj
+
+### Subsection A B
+
+## Section B
+
+asldkj
+
+<FILE="another_file.html">
+
+### Section C
+sldkj
+#### Subsection C A
+alskdj
