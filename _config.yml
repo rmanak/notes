@@ -11,7 +11,9 @@ author: Arman Akbarian
 # edit this section with your information
 # biomadeira.github.io - all contents run on /vitae/
 # for a normal use at the base of the server change it to "/"
-baseurl: /jekkly
+baseurl: /jekkly/
+dir: /jekkly
+hosturl: http://rmanak.github.io/
 title: Arman Akbarian Resume
 name: Arman Akbarian
 email: arman2@gmail.com
@@ -33,4 +35,4 @@ country: Canada
 
 # needed for travis-ci build
 exclude: [vendor]
-include: ['_pages']
+#include: ['_pages']

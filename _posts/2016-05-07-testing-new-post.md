@@ -1,0 +1,6 @@
+---
+layout: post
+title: Testing blog posts...
+---
+
+Testing blog feature... 
