@@ -3,11 +3,16 @@ layout: post
 title: Another markdown full cheatsheet demo (Markdown)
 ---
 
-> This is Markdown Cheatsheet Demo for **Sustain**, this Jekyll theme. Please check the [raw](https://raw.githubusercontent.com/rmanak/rmanak.github.io/master/_posts/2016-05-06-markdown-cheatsheet.md) content of this file for the markdown usage.
+> This is Markdown Cheatsheet Demo for **Sustain**, this Jekyll theme. 
+Please check the [raw](https://raw.githubusercontent.com/rmanak/rmanak.github.io/master/_posts/2016-05-06-markdown-cheatsheet.md) 
+content of this file for the markdown usage.
 
 ## Typography Elements in One
 
-Let's start with a informative paragraph. **This text is bolded.** But not this one! _How about italic text?_ Cool right? Ok, let's **_combine_** them together. Yeah, that's right! I have code to highlight, so `ThisIsMyCode()`. What a nice! Good people will hyperlink away, so [here we go](#) or [http://www.example.com](http://www.example.com).
+Let's start with a informative paragraph. **This text is bolded.** But not this one! _How about italic text?_ 
+Cool right? Ok, let's **_combine_** them together. Yeah, 
+that's right! I have code to highlight, so `ThisIsMyCode()`. 
+What a nice! Good people will hyperlink away, so [here we go](#) or [http://www.example.com](http://www.example.com).
 
 <div class="divider"></div>
 
@@ -29,9 +34,27 @@ Let's start with a informative paragraph. **This text is bolded.** But not this 
 
 ## Footnote
 
-Let's say you have text that you want to refer with a footnote, you can do that too! This is an example for the footnote number one [^1]. You can even add more footnotes, with link! [^2]
+Let's say you have text that you want to refer with a footnote, you can do that too! 
+This is an example for the footnote number one [^1]. You can even add more footnotes, with link! [^2]
 
 <div class="divider"></div>
+
+## LateX:
+
+This is an online latex: \\( ( \pi = 4 \sum_{i=0}^{\infty} \frac{(-1)^{i}}{2i+1} \;\;\; \& \;\;\; G_{\mu\nu} = 8\pi T_{\mu\nu}   \\)
+
+This is an equation:
+
+$$
+g_{\mu \nu} =  \left( \begin{array}{cccc}
+- \alpha^{2} & \beta &  0  & 0 \\
+\beta & a^{2} & 0 & 0 \\
+0 & 0 & r^{2}  & 0 \\
+0 & 0 & 0 & r^{2} \sin^{2} \theta
+\end{array} \right) \;\;\;
+\int_{-1}^{1} \frac{1}{\sqrt{1-x^{2}}} dx = \pi \;\;\;\;
+1 < 2 \;\;\; 3 > 2
+$$
 
 ## Blockquote
 
