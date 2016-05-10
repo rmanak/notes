@@ -131,6 +131,30 @@ catch(std::exception& e) {
 }
 ```
 
+{% highlight c++ %}
+
+#include<iostream>
+#include<vector>
+
+int main()
+/* Multiple
+   line comment
+ */
+try {
+    std::vector<int> vec{3,4,3,1};
+    int i{vec.at(4)};
+}
+//An exception handler, catches std::out_of_range
+catch(std::out_of_range& e) {
+    std::cerr<<"Accessing a non-existent element: "<<e.what()<<'\n';
+}
+catch(std::exception& e) {
+    std::cerr<<"Exception thrown: "<<e.what()<<'\n';
+}
+
+{% endhighlight %}
+
+
 With no language:
 
 ```
