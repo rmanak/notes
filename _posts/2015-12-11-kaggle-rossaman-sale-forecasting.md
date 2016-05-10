@@ -4,7 +4,13 @@ title: Sale Forecasting
 ---
 
 # Sale Forecasting 
+
 *(Rossmann Kaggle Data Science Challenge)*
+
+**GitHub Repository:**
+
+<https://github.com/rmanak/store_sale/>
+
 
 **Team:**
 
