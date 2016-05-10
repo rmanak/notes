@@ -89,15 +89,6 @@ var s = "JavaScript syntax highlighting";
 alert(s);
 {% endhighlight %}
 
-{% highlight python %}
-import sys  
-s = "Python syntax highlighting"
-print(s)  
-def run_some_function():
-    "Docs..."
-    return
-{% endhighlight %}
-
 {% highlight css %}
 /* css synthax highlighting */ 
 #container {
@@ -140,11 +131,11 @@ But let's throw in a <b>tag</b>.
 
 And finally directly including and highlighting a source code from source file:
 
-```python
+{% highlight python %}
 
 {% include codes/hello.py %}
 
-```
+{% endhighlight %}
 
 ***
 
