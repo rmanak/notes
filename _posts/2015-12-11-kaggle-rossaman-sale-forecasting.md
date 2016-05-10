@@ -185,7 +185,7 @@ after renovation. This allows us to do a separate analysis of after renovation, 
 data analysis indicates that sale sometimes drastically changes after renovation. 
 
 ```python
-rainOpen = train[train.Open == 1][['Store','YearMonth','Sales']]
+trainOpen = train[train.Open == 1][['Store','YearMonth','Sales']]
 monthlySale  = trainOpen.groupby(['Store','YearMonth'],as_index=False).mean()
 
 
