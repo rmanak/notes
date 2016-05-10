@@ -1,3 +1,8 @@
+---
+layout: post
+title: Sale Forecasting
+---
+
 # Sale Forecasting 
 *(Rossmann Kaggle Data Science Challenge)*
 
