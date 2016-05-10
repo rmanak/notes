@@ -5,14 +5,14 @@ paginate: 5
 gems: [jekyll-paginate]
 port: 4000
 safe: true
-url: http://rmanak.github.io/jekkly
+url: http://rmanak.github.io/notes
 author: Arman Akbarian
 
 # edit this section with your information
 # biomadeira.github.io - all contents run on /vitae/
 # for a normal use at the base of the server change it to "/"
-baseurl: /jekkly/
-dir: /jekkly
+baseurl: /notes
+dir: /notes
 hosturl: http://rmanak.github.io/
 title: Arman Akbarian Resume
 name: Arman Akbarian
