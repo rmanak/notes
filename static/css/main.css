@@ -98,7 +98,8 @@ strong {
 }
 
 p {
-  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
+  /*font-family: "Source Sans Pro", Helvetica, Arial, sans-serif; */
   -webkit-font-smoothing: antialiased;
   font-size: 15px;
   line-height: 1.4;
