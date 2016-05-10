@@ -1,2 +1,3 @@
-# jekkly
-setting up jekkly
+# Notes
+
+This is the repo for <http://rmanak.github.io/notes>
