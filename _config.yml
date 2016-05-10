@@ -1,11 +1,21 @@
 # Site Settings
-title: Start Jekyll
+highlighter: rouge
+markdown: kramdown
+kramdown:
+  input: GFM
+permalink: /:title.html
+paginate: 5
+gems: [jekyll-paginate]
+port: 5000
+safe: true
+
+baseurl: /jekyll/
+title: Testing jekkly
+name: Arman Akbarian
 email: arman2@gmail.com
 description: >
   A guide to getting started with Jekyll.
-baseurl: "/jekyll/"
 url: "http://rmanak.github.io/jekyll"
-port: 5000
 safe: true
 twitter_username: arman2
 github_username:  rmanak
@@ -13,5 +23,4 @@ github_username:  rmanak
 sass:
   sass_dir: _sass
 include: ['_pages']
-kramdown:
-  input: GFM
+
