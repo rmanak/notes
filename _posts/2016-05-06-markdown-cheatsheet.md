@@ -14,7 +14,6 @@ Cool right? Ok, let's **_combine_** them together. Yeah,
 that's right! I have code to highlight, so `ThisIsMyCode()`. 
 What a nice! Good people will hyperlink away, so [here we go](#) or [http://www.example.com](http://www.example.com).
 
-<i class="fa fa-facebook"></i>
 
 ## Headings H1 to H6
 
@@ -61,6 +60,15 @@ $$
 > Start by doing what's necessary; then do what's possible; and suddenly you are doing the impossible. --Francis of Assisi
 
 **NOTE:** This theme does NOT support nested blockquotes.
+
+## Awesome font icons: 
+
+Here are some icon's from [font awesome](https://fortawesome.github.io/Font-Awesome/icons/). They are pretty awesome! 
+
+<i class="fa fa-facebook"></i>
+<i class="fa fa-instagram"></i>
+<i class="fa fa-github"></i>
+
 
 <div class="divider"></div>
 
