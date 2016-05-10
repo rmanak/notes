@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Another markdown full cheatsheet demo (Markdown)
+title: Markdown cheatsheet demo
 ---
 
-> This is Markdown Cheatsheet Demo for **Sustain**, this Jekyll theme. 
+> This is Markdown Cheatsheet Demo. This page is hosted by GitHub and is using it's default markdown and code highlighter.
 Please check the [raw](https://raw.githubusercontent.com/rmanak/rmanak.github.io/master/_posts/2016-05-06-markdown-cheatsheet.md) 
 content of this file for the markdown usage.
 
@@ -14,7 +14,7 @@ Cool right? Ok, let's **_combine_** them together. Yeah,
 that's right! I have code to highlight, so `ThisIsMyCode()`. 
 What a nice! Good people will hyperlink away, so [here we go](#) or [http://www.example.com](http://www.example.com).
 
-<div class="divider"></div>
+<div class="fa fa-facebook"></div>
 
 ## Headings H1 to H6
 
@@ -41,7 +41,7 @@ This is an example for the footnote number one [^1]. You can even add more footn
 
 ## LateX:
 
-This is an online latex: \\( ( \pi = 4 \sum_{i=0}^{\infty} \frac{(-1)^{i}}{2i+1} \;\;\; \& \;\;\; G_{\mu\nu} = 8\pi T_{\mu\nu}   \\)
+This is an online latex: \\(  \pi = 4 \sum_{i=0}^{\infty} \frac{(-1)^{i}}{2i+1} \;\;\; \& \;\;\; G_{\mu\nu} = 8\pi T_{\mu\nu}   \\)
 
 This is an equation:
 
