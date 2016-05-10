@@ -136,6 +136,13 @@ No language indicated, so no syntax highlighting.
 But let's throw in a <b>tag</b>.
 ```
 
+
+And finally directly including and highlighting a source code from source file:
+
+```python
+{% include code/XGB.py %}
+```
+
 ***
 
 ## Table
