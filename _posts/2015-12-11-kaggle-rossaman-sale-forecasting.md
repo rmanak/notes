@@ -234,7 +234,7 @@ test.to_csv('~/kaggleout/rossman/testCleaned.csv')
 
 ### Preprocessing code
 
-* [[Full code]](preprocessing.py)
+* [[Full code]](https://github.com/rmanak/store_sale/blob/master/preprocessing.py)
 
 
 *** 
@@ -586,8 +586,7 @@ Finally we store the normalized data for the final step of the ML pipeline.
 
 ### Regression Code
 
-* [[Full code]](regression.R)
-
+* [[Ful code]](https://github.com/rmanak/store_sale/blob/master/regression.R)
 
 ****
 
@@ -734,7 +733,7 @@ submissionDF.to_csv("submission.csv",index=False)
 
 ### code
 
-* [[Full code]](XGB.py)
+* [[Full code]](https://github.com/rmanak/store_sale/blob/master/XGB.py)
 
 ## Cross Validation
 
