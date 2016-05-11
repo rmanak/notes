@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  A Full and Comprehensive Style Test (HTML)
+permalink: /full-html-style/
 ---
 
 > This is Markdown Cheatsheet Demo for **Sustain**, this Jekyll theme. Please check the [raw](https://raw.githubusercontent.com/rmanak/rmanak.github.io/master/_posts/2016-05-05-full-html-style.md) content of this file for the markdown usage.

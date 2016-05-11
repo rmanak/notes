@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Markdown cheatsheet demo
+permalink: /markdown-cheat-sheet/
 ---
 
 > This is Markdown Cheatsheet Demo. This page is hosted by GitHub and is using it's default markdown and code highlighter.

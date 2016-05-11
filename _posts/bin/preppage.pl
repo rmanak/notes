@@ -33,6 +33,9 @@ $fhc="KDLPQHFZVD";
 #Title hyper code:
 $thc = "OAJDLASKJDHGPDH";
 
+#Permanent link hyper code:
+$plhc = "IJDWONSADOHPDKLJASD";
+
 $template_file=$ARGV[0];
 $post_file=$ARGV[1];
 
@@ -156,6 +159,15 @@ $TEMPTXT=~ s/$ext_lnk_syn/$ext_lnk_op/sg;
 $TEMPTXT=~ s/$dl_syn/$dl_op/sg;
 $TEMPTXT=~ s/$toc_syn/$toc_op/sg;
 $TEMPTXT=~ s/$thc/$title/sg;
+
+$title=~ s/\s+/ /sg;
+
+$title = lc $title;
+
+$title=~ s/ /-/sg;
+
+$TEMPTXT=~ s/$plhc/$title/sg;
+
 
 $img_op1='<div style="max-width:350px; width:auto; padding:2px; height:auto; text-align:justify; border: solid #BBBBBB 1px;float:right; margin-left:8px;"><img style="display:block; height:auto; width:auto; max-width:320px; margin-left:auto; margin-right:auto;" src="';
 $img_op2='" alt="';
