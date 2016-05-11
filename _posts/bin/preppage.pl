@@ -169,7 +169,7 @@ $title=~ s/ /-/sg;
 $TEMPTXT=~ s/$plhc/$title/sg;
 
 
-$img_op1='<div style="max-width:350px; width:auto; padding:2px; height:auto; text-align:justify; border: solid #BBBBBB 1px;float:right; margin-left:8px;"><img style="display:block; height:auto; width:auto; max-width:320px; margin-left:auto; margin-right:auto;" src="';
+$img_op1='<div style="max-width:350px; width:100%; padding:2px; height:auto; text-align:justify; border: solid #BBBBBB 1px;float:right; margin-left:8px;"><img style="display:block; height:auto; width:100%; max-width:320px; margin-left:auto; margin-right:auto;" src="';
 $img_op2='" alt="';
 $img_op3='" border="0" /><hr />';
 $img_op3noline='" border="0" />';
@@ -178,7 +178,7 @@ $TEMPTXT=~ s/({{}}\(\()(.*?)(\)\))/$img_op1$2$img_op2$img_op3noline$img_op4/sg;
 $TEMPTXT=~ s/({{)(.*?)(}}\(\()(.*?)(\)\))/$img_op1$4$img_op2$img_op3$2$img_op4/sg;
 
 
-$imgc_op1='<div style="margin-left:auto; margin-right:auto; padding:3px; text-align:justify; border:solid #BBBBBB 1px; height:auto; width: auto; max-width:500px;"><img style="display:block; height:auto; width:auto; max-width:470px; margin-left:auto; margin-right:auto;" src="';
+$imgc_op1='<div style="margin-left:auto; margin-right:auto; padding:3px; text-align:justify; border:solid #BBBBBB 1px; height:auto; width: 100%; max-width:500px;"><img style="display:block; height:auto; width:100%; max-width:470px; margin-left:auto; margin-right:auto;" src="';
 $imgc_op2='" alt="';
 $imgc_op3='" border="0" /><hr />';
 $imgc_op3noline='" border="0" />';
@@ -186,7 +186,7 @@ $imgc_op4='</div>';
 $TEMPTXT=~ s/({{}}\[\[)(.*?)(\]\])/$imgc_op1$2$imgc_op2$imgc_op3noline$imgc_op4/sg;
 $TEMPTXT=~ s/({{)(.*?)(}}\[\[)(.*?)(\]\])/$imgc_op1$4$imgc_op2$imgc_op3$2$imgc_op4/sg;
 
-$r_op1='<div style="max-width:350px; width:auto; padding:2px; height:auto; text-align:justify; border: solid #BBBBBB 1px;float:right; margin-left:8px;">';
+$r_op1='<div style="max-width:350px; width:100%; padding:2px; height:auto; text-align:justify; border: solid #BBBBBB 1px;float:right; margin-left:8px;">';
 $r_op2='</div>';
 
 $TEMPTXT =~ s/(<R>)(.*?)(<\/R>)/$r_op1$2$r_op2/sg;
