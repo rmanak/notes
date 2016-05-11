@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Sale Forecasting
-permalink: sale-forecasting
+permalink: /sale-forecasting/
 ---
 
 # Sale Forecasting 
