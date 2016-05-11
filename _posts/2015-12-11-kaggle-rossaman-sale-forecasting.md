@@ -264,14 +264,14 @@ before renovation.
 
 ### Yearly Trend
 
-![alt_tag](img/Store_9_SaleTrend.png)
-![alt_tag](img/Store_22_SaleTrend.png)
-![alt_tag](img/Store_49_SaleTrend.png)
-![alt_tag](img/Store_113_SaleTrend.png)
-![alt_tag](img/Store_145_SaleTrend.png)
+![alt_tag](../img/Store_9_SaleTrend.png)
+![alt_tag](../img/Store_22_SaleTrend.png)
+![alt_tag](../img/Store_49_SaleTrend.png)
+![alt_tag](../img/Store_113_SaleTrend.png)
+![alt_tag](../img/Store_145_SaleTrend.png)
 
 Majority of stores follow a similar pattern, however we do have few irregular stores:
-[!alt_tag](img/Store_262_SaleTrend.png)
+[!alt_tag](../img/Store_262_SaleTrend.png)
 
 
 Note that in the code we remove the month of december from regression since in several stores in is a
@@ -525,10 +525,10 @@ Let's first take a look at some of the stores sale: (the blue dots indicate
 the spline fit) 
 
 
-![alt_tag](img/Store_25_MonthTrend.png)
-![alt_tag](img/Store_356_MonthTrend.png)
-![alt_tag](img/Store_602_MonthTrend.png)
-![alt_tag](img/Store_1112_MonthTrend.png)
+![alt_tag](../img/Store_25_MonthTrend.png)
+![alt_tag](../img/Store_356_MonthTrend.png)
+![alt_tag](../img/Store_602_MonthTrend.png)
+![alt_tag](../img/Store_1112_MonthTrend.png)
 
 The implementation is below:
 
@@ -605,7 +605,7 @@ or its dependency on when promo2 is on as well as interaction terms such as
 
 So in summary our machine learning pipeline looks like the following:
 
-![alt_tag](img/ML.png)
+![alt_tag](../img/ML.png)
 
 ```python
 import pandas as pd
@@ -749,4 +749,4 @@ of the XGBoost. (Also XGBoost has it's own built in CV monitoring). Following pl
 predicted sale vs actual sale for the cross validation set with RMSPE score of 0.14 
 
 
-![alt_tag](img/cv.png)
+![alt_tag](../img/cv.png)
