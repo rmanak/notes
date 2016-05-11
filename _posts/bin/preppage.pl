@@ -114,10 +114,10 @@ if ($description ne '') {
 }
 
 $dl_syn='\[dl\]';
-$dl_op='<img src="img/dl.svg" />';
+$dl_op='<img src="../img/dl.svg" />';
 
 $ext_lnk_syn='\[>\]';
-$ext_lnk_op='<img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" />';
+$ext_lnk_op='<img style="margin-left:1px;" src="../img/external-link.svg" alt="" align="bottom" />';
 
 $toc_syn='\[TOC\]';
 $toc_op='<div class="table_of_contents"></div>';
