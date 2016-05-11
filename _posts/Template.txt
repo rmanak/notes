@@ -556,4 +556,3 @@ You can include other html files or text in your source code using:
 &lt;FILE="myfile.html"&gt;
 </pre>
 
-{title:This is title}

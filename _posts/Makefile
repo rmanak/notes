@@ -23,8 +23,11 @@ all: $(pagefiles)
 	@grep 'table_of_contents' $*.html && python $(TOCGEN) -d. $*.html 2>&1 > /dev/null || echo ""
 	@echo $*.html created
 	/bin/cp $*.html `./bin/mydate2.py $*.txt`-$*.html
-	/bin/rm -f $*.w
+	/bin/rm -f $*.w $*.html
 	
 clean:
-	/bin/rm -f $(pagefiles)
+	@for fname in $(pagefiles); do \
+		/bin/rm -rf *$$fname ; \
+	done
+
 
