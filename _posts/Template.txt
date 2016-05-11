@@ -10,7 +10,7 @@ import numpy as np
 * <span style="font-size:70%">``*Easy* **HTML** [formatting](#)``</span>
 * *Easy* **HTML** [formatting](#)
 
-}}((img/linuxlogo.png))
+}}((../img/linuxlogo.png))
 
 {ref1: This is an example of a reference.}
 
@@ -252,9 +252,9 @@ Creating a literal hyperlink:
 ### Quick Images
 A quick way to insert an image is this:
 
-    ![Alt text](img/linuxlogo.png)
+    ![Alt text](../img/linuxlogo.png)
 
-![Alt text](img/linuxlogo.png)
+![Alt text](../img/linuxlogo.png)
 
 ### Code
 
@@ -307,11 +307,11 @@ You can insert a right floating image with the syntax:
 
 <pre>
 &#123;&#123;This is the caption of the image. 
-A plot of a function in Python!}}((img/surface.png))
+A plot of a function in Python!}}((../img/surface.png))
 </pre>
 
 {{This is the caption of the image.
-A plot of a function in Python!}}((img/surface.png))
+A plot of a function in Python!}}((../img/surface.png))
 
 An example is the image you are seeing on the right.
 
@@ -360,20 +360,20 @@ use syntac:
 
 <pre>&#123;&#123;Images with center floating are
 a bit larger allowing for more content in the
-caption.}}[[img/HTML.jpg]]</pre>
+caption.}}[[../img/HTML.jpg]]</pre>
 
 which produces:
 
 {{Images with center floating are
 a bit larger allowing for more content in the
-caption.}}[[img/HTML.jpg]]
+caption.}}[[../img/HTML.jpg]]
 
 Images (centered or right floating) can be inserted without caption as well,
 by simply leaving the caption part completely empty:
 
-<pre>&#123;&#123;}}[[img/HTML.jpg]]</pre>
+<pre>&#123;&#123;}}[[../img/HTML.jpg]]</pre>
 
-{{}}[[img/HTML.jpg]]
+{{}}[[../img/HTML.jpg]]
 
 
 ### Right Floating Object
