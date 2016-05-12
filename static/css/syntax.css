@@ -4,10 +4,10 @@
  */
 
 .hll { background-color: #f8f8f8; border: 1px solid #ccc; padding: 6px 10px; border-radius: 3px; }
-.c { color: #999988; font-style: italic; }
+.c { color: #999; font-style: italic; }
 .err { color: #a61717; background-color: #e3d2d2; }
-.k { font-weight: bold; color: #985A4A;}
-.o { font-weight: bold; color: #983484; }
+.k { font-weight: bold; color: #7E6198;}
+.o { font-weight: bold; color: #333; }
 .cm { color: #999988; font-style: italic; }
 .cp { color: #999999; font-weight: bold; }
 .c1 { color: #999988; font-style: italic; }
@@ -26,7 +26,7 @@
 .gt { color: #aa0000; }
 .kc { font-weight: bold; }
 .kd { font-weight: bold; }
-.kn { font-weight: bold; }
+.kn { font-weight: bold; color: #408498; }
 .kp { font-weight: bold; }
 .kr { font-weight: bold; }
 .kt { color: #445588; font-weight: bold; }
@@ -39,7 +39,7 @@
 .no { color: teal; }
 .ni { color: purple; }
 .ne { color: #990000; font-weight: bold; }
-.nf { color: #990000; font-weight: bold; }
+.nf { color: #4594BB; font-weight: bold; }
 .nn { color: #555555; }
 .nt { color: navy; }
 .nv { color: teal; }
@@ -47,7 +47,7 @@
 .w { color: #bbbbbb; }
 .mf { color: #009999; }
 .mh { color: #009999; }
-.mi { color: #009999; }
+.mi { color: #4FB518; }
 .mo { color: #009999; }
 .sb { color: #dd1144; }
 .sc { color: #dd1144; }
@@ -60,7 +60,7 @@
 .sr { color: #009926; }
 .s1 { color: #dd1144; }
 .ss { color: #990073; }
-.bp { color:#64A4DA; }
+.bp { color:#4FB518; }
 .vc { color: teal; }
 .vg { color: teal; }
 .vi { color: teal; }
