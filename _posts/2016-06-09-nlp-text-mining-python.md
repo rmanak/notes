@@ -12,6 +12,10 @@ This tutorial is an overview of available tools in python for text mining
 and natural language processing. We will also go through some recent technologies
 such as deep learning in NLP and word embedding. 
 
+At the end, there is a tutorial on sentiment analysis of IMDB reviews which will have about 96% accuracy (AUC) 
+using the very simple concepts we discuss here. You can directly jump to the Ipython notebook of the sentiment analysis:
+[popcorn.ipynb](https://github.com/rmanak/nlp_tutorials/blob/master/popcorn.ipynb)
+
 ## Vector space representation of documents
 
 A very simple approach is to use each word as an *atomic* type and as a a basis for a vector space:
