@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/local/bin/python2
 """PROGRAM : pyhat.py
 FUNCTION: Add a table of contents to HTML files. 
 
