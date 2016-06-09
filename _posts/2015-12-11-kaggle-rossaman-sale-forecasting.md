@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Sale Forecasting
-permalink: /sale-forecasting/
+title: Sale Forecasting & Time Series Analysis in Python and R
+permalink: /sale-forecasting-time-series-analysis/
 ---
 
 # Sale Forecasting 
