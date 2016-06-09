@@ -143,6 +143,7 @@ Stemming is the process of finding the root of the word, ``nltk`` provides 3 dif
 ``porter``, ``snowball`` and ``wordnetlemmatizer``
 
 Let's first wrap them all into a single class:
+
 ```python
 import nltk.stem
 from nltk.stem import WordNetLemmatizer
@@ -165,6 +166,7 @@ class Stemmer(object):
 ```
 
 Now we can define 3 different stemmer objects:
+
 ```python
 stemmer1 = Stemmer('porter').stemmer
 stemmer2 = Stemmer('snowball').stemmer
