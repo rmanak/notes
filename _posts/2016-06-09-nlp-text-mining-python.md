@@ -203,6 +203,7 @@ Stemmed with lemmatize: ['apply', 'cars', 'write', 'do', 'paint']
 There are several ways to split sentences and document to words, one is simply to use the white space character!
 
 * **White space**: (easiest and fastest approach) 
+
 ```python
 print('This is a sentence.'.split())
 ```
@@ -228,6 +229,7 @@ people hot-tempered,'..."""
 There are several issues for example what to do with "hot-tempered" or "82%" or "U.S.A".
 
 Let's try the white space using python's regexp package: ``re``
+
 ```python
 import re
 
@@ -260,6 +262,7 @@ Output:
 ```
 
 Let's try sklearn's default tokenizer pattern:
+
 ```python
 print(re.findall(r"\b\w\w+\b",raw))
 ```
