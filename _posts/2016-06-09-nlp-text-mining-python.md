@@ -542,11 +542,19 @@ model.most_similar(positive=['men','car'],negative=['man']);
 
 ### All of the python codes in this section are in the [intro.py](https://github.com/rmanak/nlp_tutorials/blob/master/intro.py) script.
 
-## Example: Kaggle competition.
+## Example: Sentiment Analysis (Kaggle competition)
 
 Now we use the Kaggle competition: <https://www.kaggle.com/c/word2vec-nlp-tutorial/> as an example to demonstrate what we've learned so far.
 
 See the notebook [popcorn.ipynb](https://github.com/rmanak/nlp_tutorials/blob/master/popcorn.ipynb)
+
+## Credit
+
+Pretty much everything (diagrams particularly) was stolen from some awesome 
+blog posts, open source repositories etc. So I do not take any credit for
+anything here! I will hopefully update this repository with proper 
+citations. Meanwhile, please see the following links for the references 
+and other resources to learn from.
 
 
 
