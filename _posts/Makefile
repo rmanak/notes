@@ -9,7 +9,7 @@ INCF = ./bin/inc_file.pl
 TOCGEN = ./bin/pyhat.py 
 
 
-SOURCES = Template.txt nlp-text-mining-python.txt
+SOURCES = Template.txt 
 
 pagefiles=$(SOURCES:.txt=.html)
 
