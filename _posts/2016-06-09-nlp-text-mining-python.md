@@ -97,8 +97,8 @@ There are several issues with this approach when you consider the entire English
 2. In a given document we shouldn't count repeating words too much.
 3. When words are used as atomic types for the basis of the vector space, they have no semantic relations 
 (the similarity between them is zero, since they are prependicular to each other). However, in reality
-we know that words can be similar, or almost identical synonyms. 
-4. And of course syntaictic structure is completely lost.
+we know that words can be similar in meaning, or even almost identical synonyms. 
+4. And of course syntactic structure is completely lost.
 
 ### Solution to 1 and 2: TF-IDF
 
@@ -305,7 +305,8 @@ Output:
 'that', 'makes', 'people', 'hot', 'tempered']
 ```
 
-Or we can try a fairly complicated pattern that can capture all sort of non-alphabetical characters attached to the words:
+Or we can try a fairly complicated pattern that can capture 
+all sort of non-alphabetical characters attached to the words:
 
 ```python
 print(re.findall(r"(?:[A-Z]\.)+|\w+(?:[']\w+)*|\$?\d+(?:\.\d+)?%?", raw))
@@ -398,22 +399,41 @@ Apple Apple Banana Orange  (bigrams) ===>>> [Apple_Apple , Apple_Banana , Banana
 
 Here is an implementation from Chenglong Chen's github [[+]](https://github.com/ChenglongChen/Kaggle_CrowdFlower/blob/master/Code/Feat/ngram.py):
 
-## Word embedding
+*Note*: The number of unique n-grams grows rapidly with the size of the 
+corpus and going beyong 3-grams is quite hard on a standard PC with ~ 10 GB RAM.
 
-So far we assumed that words are atomic type, i.e. has no meaning! While that's not the case! How can we 
-create a vector space that vectors actually represent meaning? 
+## Word embedding & Co-occurance Matrix
 
-Another problem with VSM is that it has too many features! (Typical corpus of english words will have 50K unique words!)
+So far we assumed that words are atomic type, i.e. has no semantic relation,
+while that's not the case in reality! How can we 
+create a vector space for words that vectors actually represent meaning? 
+
+Another problem with VSM (one-hot representation of documents)
+is that each document will have many features in their vectors and will be highly sparse. 
+(Typical corpus of english words will have ~ 50K unique words, therefore each document is a 1 x 50K vector)
 
 ### SVD based model
-The idea is to consider the word-document matrix or co-occurrence matrix and perform an
-SVD and use the enough number of principle components that describes the matrix. Then
-the components are the lower dimensional representation of the words. These models existed,
-but were too slow. Google's word2vec uses an iterative approach.
+One way to approach the problem is to assume a word's "meaning" is encoded on which document it appears.
+In addition, words that occur in the same document must have some semantic relation.
+Consider the word-document matrix, where element `A[i,j]` represent count of the word `w_j` in 
+document `d_i`. (Each row of the matrix is one document in one-hot encoding as we discussed above)
+Then we can perform SVD and use the enough number of principle components that captures most of the variance in
+the word-document matrix. Then 
+the latent space components are the lower dimensional representation of the words and the documents.
+These "classical" model existed for a long time but a full matrix factorization on a large corpus
+is computationally (and memory-wise) intensive. Recent work in distributed representation of words
+(Google's word2vec) uses an iterative approach that is fast and incremental (learning can be resumed).
 
+*Note*: Looking at how much development happened in Deep learning since 2013, I guess word2vec doesn't count as
+"recent development" anymore! 
+
+*Note*: If you think this method is similar to topic modeling 
+and [LSA](https://en.wikipedia.org/wiki/Latent_semantic_analysis), it is exactly that!
+
+### Continuous representation, Window-based co-occurance matrix.
 ### Continuous bag of words model (CBOW)
 
-Introduced in [[+]](http://arxiv.org/pdf/1301.3781.pdf), the model is based on the fact that using
+Introduced  [[+]](http://arxiv.org/pdf/1301.3781.pdf), the model is based on the fact that using
 the words context (surrounding words) one should be able to predict the word.
 
 ![alttag](../img/CBOW.png)
