@@ -9,16 +9,25 @@ permalink: /text-mining-nlp-python/
 **Github Repo: <https://github.com/rmanak/nlp_tutorials>**
 
 This tutorial is an overview of available tools in python for text mining
-and natural language processing. We will also go through some recent technologies
-such as deep learning in NLP and word embedding. 
+and natural language processing. I will also briefly mention recent advances in 
+applications of deep learning in NLP, particularly word embedding.
 
-At the end, there is a tutorial on sentiment analysis of IMDB reviews which will have about 96% accuracy (AUC) 
-using the very simple concepts we discuss here. You can directly jump to the Ipython notebook of the sentiment analysis:
-[popcorn.ipynb](https://github.com/rmanak/nlp_tutorials/blob/master/popcorn.ipynb)
+At the end of this post, there is a tutorial on sentiment analysis of IMDB reviews. It will demonstrate the
+applications of all the material we discuss here in an end-to-end machine learning pipeline fashion.
+The sentiment analysis example will have about 96% accuracy (AUC), and you should be able to upload the results
+to this Kaggle competition <https://www.kaggle.com/c/word2vec-nlp-tutorial/> to evaluate it.
+
+You may directly jump to the Ipython notebook of the sentiment analysis, if you are familiar with the
+basics of text processing and vector space models. 
+
+The notebook is here ->> [popcorn.ipynb](https://github.com/rmanak/nlp_tutorials/blob/master/popcorn.ipynb)
+
+All of the codes in this post are in [this](https://www.kaggle.com/c/word2vec-nlp-tutorial/) github repo.
 
 ## Vector space representation of documents
 
-A very simple approach is to use each word as an *atomic* type and as a a basis for a vector space:
+A very simple approach to represent documents as numerical value is to use each word 
+as an *atomic* type and as a basis for a vector space:
 
 ![alttag](../img/vsm.png)
 
@@ -31,7 +40,7 @@ Banana ==>> [0,1,0]
 Orange ==>> [0,0,1]
 ```
 
-Then a *"sentence"* or a *"document"* becomes the linear combination of these vectors where the number of
+Then a *"sentence"* or a *"document"* is simply the linear combination of these vectors where the number of
 the counts of appearance of the words is the coefficient along that dimension.
 For example in the image above:
 
@@ -80,28 +89,38 @@ And we get:
 
 ### The problems with this VSM
 
-There are several issues with this approach when we consider the entire English dictionary, Let's consider the following two:
+There are several issues with this approach when you consider the entire English dictionary. For example:
 
-1. There are words that are just common, so they appear in lots of documents.
-2. In a given document we shouldn't value repeating words too much.
+1. There are words that are just very common, so they appear in lots of documents. ("the", "and", "or" etc..)
+2. In a given document we shouldn't count repeating words too much.
+3. When words are used as atomic types for the basis of the vector space, they have no semantic relations 
+(the similarity between them is zero, since they are prependicular to each other). However, in reality
+we know that words can be similar, or almost identical synonyms. 
+4. And of course syntaictic structure is completely lost.
 
-### Solution: TF-IDF
+### Solution to 1 and 2: TF-IDF
 
-Term Frequency Inverse Document Frequency (TF-IDF) is a very good solution for the problems above.
+Term Frequency Inverse Document Frequency (TF-IDF) is a very good solution for the problems 1 and 2 above.
 
 #### IDF: (Inverse document frequency)
-Penalize the total count of a word in a document by the number of its appearance in all of the documents. The higher this number
-the less valuable the word is (aka common words)!
+The idea is to penalize the total count of a word in a document 
+by the number of its appearance in all of the documents. The higher this number
+the less valuable the word is -- it contains less information that can identify the document.
+In the extreme case, where the word appears in large fraction of the documents, usually it is even better to completely eliminate the count.
+This is known as *stopwords*, or *corpus specific stopwords*.
 
 A good heuristic is **``log((1+M)/k)``** where **``M``** is the number of the documents and **``k``** is the number 
-of the documents that the word appears in.
+of the documents that the word appears in. See the following diagram from 
+[Text Retrieval and Search Engines course on Coursera](https://www.coursera.org/learn/text-retrieval/)
 
 ![alttag](../img/IDF.png)
 
 #### TF: Term frequency
-Another problem is that in a document how many times shall we count a word? Two extremes are to count them as many time as they appear,
+Another problem is how many times shall we count a word in a document? Two extremes are to count them as many time as they appear,
 or just count them once and ignore the other appearance of the word. As you can guess something in between is a good solution! 
-The nonlinear transformation of this count is called **``TF``** function, there are many heuristics for it, the state of the art is **``BM25``**.
+The nonlinear transformation of this count is called **``TF``** function, there are many heuristics for it, one known to work very well
+with search engines is [BM25](https://en.wikipedia.org/wiki/Okapi_BM25).
+Take a look at the following diagram from [TRSE Coursera lectures](https://www.coursera.org/learn/text-retrieval/)
 ![alttag](../img/TF.png)
 
 #### TF-IDF Example:
@@ -369,7 +388,7 @@ Apple Apple Banana Orange  (bigrams) ===>>> [Apple_Apple , Apple_Banana , Banana
 
 Here is an implementation from Chenglong Chen's github [[+]](https://github.com/ChenglongChen/Kaggle_CrowdFlower/blob/master/Code/Feat/ngram.py):
 
-## Let's Dig "Deep"er! aka. Google's word2vec 
+## Word embedding
 
 So far we assumed that words are atomic type, i.e. has no meaning! While that's not the case! How can we 
 create a vector space that vectors actually represent meaning? 
