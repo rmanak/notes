@@ -24,6 +24,8 @@ The notebook is here ->> [popcorn.ipynb](https://github.com/rmanak/nlp_tutorials
 
 All of the codes in this post are in [this](https://www.kaggle.com/c/word2vec-nlp-tutorial/) github repo.
 
+I also try to link to some amazing free online resources to learn NLP along this post.
+
 ## Vector space representation of documents
 
 A very simple approach to represent documents as numerical value is to use each word 
@@ -149,7 +151,7 @@ and we get:
 ```
 
 
-*Note:* that both count vectorizer and tf-idf vectorizer are very smart with their memory management, and save the returned matrix in scipy sparse matrix.
+*Note:* Both count vectorizer and tf-idf vectorizer are very smart with their memory management, and save the returned matrix in scipy sparse matrix.
 When ``.toarray()`` is performed they return the actual matrix which can be too large to keep in memory!
 
 ### How to prepare the text?
@@ -158,7 +160,8 @@ There are still several issues that we ignored in the examples above including:
 
 1. Words can have different versions: "car", "cars", "apply", "applied" etc...
 2. How to split the sentence to a list of words?
-3. What about the words that are incredibly common in English and has no meaning? For example "the" "that" etc...
+3. What about the words that are incredibly common in English and have almost no meaning (no information)? 
+For example "the" "that" etc...
 
 #### Stemming
 
@@ -196,7 +199,7 @@ stemmer2 = Stemmer('snowball').stemmer
 stemmer3 = Stemmer('lemmatize').stemmer
 ```
 
-And their performance is shown below: (Note that lemmatize needs the type of word 'v' to perform well, and is much slower than the others)
+And their performance is shown below: 
 
 ```python
 some_words=['applied', 'cars', 'written', 'done', 'painting']
@@ -221,6 +224,9 @@ Stemmed with snowball: ['appli', 'car', 'written', 'done', 'paint']
 Stemmed with lemmatize: ['apply', 'cars', 'write', 'do', 'paint']
 ```
 
+*Note*: Technically lemmatization is not the same as stemming and as you can see, the lemmatizer needs the POS(part of speech) of the word, 'v' (for verb), to work, 
+and even though it is much slower than the others, it returns an actual english word. See [this article about stemming and lemmatization](http://nlp.stanford.edu/IR-book/html/htmledition/stemming-and-lemmatization-1.html)
+                                       
 #### Tokenization (splitting the document to words)
 
 There are several ways to split sentences and document to words, one is simply to use the white space character!
@@ -240,7 +246,7 @@ Output:
 
 * **using regexp**: (better for complicated combination of characters)
 
-For example consider the following text:
+For example consider the following text -- from a wonderful book: [Natural Language Processing in Python](http://www.nltk.org/book/)
 
 ```python
 raw = """'When I'M a Duchess,' she said to herself, (not in a very hopeful tone
@@ -299,7 +305,7 @@ Output:
 'that', 'makes', 'people', 'hot', 'tempered']
 ```
 
-Or we can go crazy:
+Or we can try a fairly complicated pattern that can capture all sort of non-alphabetical characters attached to the words:
 
 ```python
 print(re.findall(r"(?:[A-Z]\.)+|\w+(?:[']\w+)*|\$?\d+(?:\.\d+)?%?", raw))
@@ -315,9 +321,11 @@ Output:
 'hot', 'tempered']
 ```
 
+For an extended discussion about text processing see [Chapter 3 of NLTK book](http://www.nltk.org/book/ch03.html)
+
 #### Highly frequent words (stopwords)
 
-Here they are:
+Here they are in NLTK library:
 
 ```python
 from nltk.corpus import stopwords
@@ -345,11 +353,11 @@ Output:
 , 'mustn', 'needn', 'shan', 'shouldn', 'wasn', 'weren', 'won', 'wouldn']
 ```
 
-#### And of course making everything lower case!
+And of course if lowercasing the alphabet in the words doesn't change its meaning, it should be done, since "ORANGE" and "orange" are the same
+until they are not! (Apple as a name of a corporation, "US" as name of a country etc..)
 
-
-#### Having a dictionary in python can come handy!
-wordnet can be used as a dictionary, particularly to extract synonyms of the words:
+#### Wordnet
+Wordnet is a large lexical database that groups English words and can be used to find relations between them. Simply it can used as a dictionary:
 
 ```python
 from nltk.corpus import wordnet as wn
@@ -375,7 +383,9 @@ Definition: a motor vehicle with four wheels; usually propelled by an internal c
 Example: ['he needs a car to get to work']
 ```
 
-#### What about the locality in the text?
+*Note*: Words can belong to different category. Another simpler python dictionary API is [PyDictionary](https://pypi.python.org/pypi/PyDictionary/1.3.4)
+
+#### Capturing surrounding words
 
 One way to capture some of the locality features from text is to use n-grams (n > 1). n-grams are basically
 imaginary words that are made of a window of n words:
