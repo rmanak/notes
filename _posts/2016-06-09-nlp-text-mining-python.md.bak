@@ -96,7 +96,7 @@ There are several issues with this approach when you consider the entire English
 1. There are words that are just very common, so they appear in lots of documents. ("the", "and", "or" etc..)
 2. In a given document we shouldn't count repeating words too much.
 3. When words are used as atomic types for the basis of the vector space, they have no semantic relations 
-(the similarity between them is zero, since they are perpendicular to each other). However, in reality
+(the similarity between them is zero, since they are prependicular to each other). However, in reality
 we know that words can be similar in meaning, or even almost identical synonyms. 
 4. And of course syntactic structure is completely lost.
 
@@ -151,7 +151,7 @@ and we get:
 ```
 
 
-*Note:* Both count vectorizer and tf-idf vectorizer are very smart with their memory management, and save the returned matrix in SciPy sparse matrix.
+*Note:* Both count vectorizer and tf-idf vectorizer are very smart with their memory management, and save the returned matrix in scipy sparse matrix.
 When ``.toarray()`` is performed they return the actual matrix which can be too large to keep in memory!
 
 ### How to prepare the text?
@@ -400,7 +400,7 @@ Apple Apple Banana Orange  (bigrams) ===>>> [Apple_Apple , Apple_Banana , Banana
 Here is an implementation from Chenglong Chen's github [[+]](https://github.com/ChenglongChen/Kaggle_CrowdFlower/blob/master/Code/Feat/ngram.py):
 
 *Note*: The number of unique n-grams grows rapidly with the size of the 
-corpus and going beyond 3-grams is quite hard on a standard PC with ~ 10 GB RAM.
+corpus and going beyong 3-grams is quite hard on a standard PC with ~ 10 GB RAM.
 
-*Note2*: n-grams are implemented in sklearn's' [TF-IDF vectorizer](http://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html)
+*Note2*: n-grams are implemented in sklearns' [TF-IDF vectorizer](http://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html)
 
