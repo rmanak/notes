@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Text Mining and Natural Language Processing in Python (Part 1)
+title: Text Mining & NLP in Python (Part 1)
 permalink: /text-mining-nlp-python/
 ---
 
