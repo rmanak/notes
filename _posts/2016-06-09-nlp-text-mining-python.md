@@ -22,7 +22,7 @@ basics of text processing and vector space models.
 
 The notebook is here ->> [popcorn.ipynb](https://github.com/rmanak/nlp_tutorials/blob/master/popcorn.ipynb)
 
-All of the codes in this post are in [this](https://www.kaggle.com/c/word2vec-nlp-tutorial/) github repo.
+All of the codes in this post are in [this github repo.](https://github.com/rmanak/nlp_tutorials/)
 
 I also try to link to some amazing free online resources to learn NLP along this post.
 
