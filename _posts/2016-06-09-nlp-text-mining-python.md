@@ -14,7 +14,7 @@ applications of deep learning in NLP, particularly word embedding.
 
 At the end of this post, there is a tutorial on sentiment analysis of IMDB reviews. It will demonstrate the
 applications of all the material we discuss here in an end-to-end machine learning pipeline fashion.
-The sentiment analysis example will have about 96% accuracy (AUC), and you should be able to upload the results
+The sentiment analysis example will have about 96% AUC score [[1](https://en.wikipedia.org/wiki/Receiver_operating_characteristic), [2](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html)], and you should be able to upload the results
 to this Kaggle competition <https://www.kaggle.com/c/word2vec-nlp-tutorial/> to evaluate it.
 
 You may directly jump to the Ipython notebook of the sentiment analysis, if you are familiar with the
