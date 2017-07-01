@@ -4,7 +4,9 @@ title: Text Mining & NLP in Python (Part 1)
 permalink: /text-mining-nlp-python/
 ---
 
-# Introduction to Text Mining and Natural Language Processing in Python (Part 1)
+# Introduction to Text Mining and Natural Language Processing in Python
+
+## Part 1: Text Processing with NLTK and Vector Space Models 
 
 **Github Repo: <https://github.com/rmanak/nlp_tutorials>**
 
@@ -26,7 +28,7 @@ All of the codes in this post are in [this github repo.](https://github.com/rman
 
 I also try to link to some amazing free online resources to learn NLP along this post.
 
-## Vector space representation of documents
+### Vector space representation of documents
 
 A very simple approach to represent documents as numerical value is to use each word 
 as an *atomic* type and as a basis for a vector space:
@@ -89,7 +91,7 @@ And we get:
 
 **Notice that in this model documents/sentences lose their order and syntactic structure!**
 
-### The problems with this VSM
+#### The problems with this VSM
 
 There are several issues with this approach when you consider the entire English dictionary. For example:
 
@@ -100,7 +102,7 @@ There are several issues with this approach when you consider the entire English
 we know that words can be similar in meaning, or even almost identical synonyms. 
 4. And of course syntactic structure is completely lost.
 
-### Solution to 1 and 2: TF-IDF
+#### Solution to 1 and 2: TF-IDF
 
 Term Frequency Inverse Document Frequency (TF-IDF) is a very good solution for the problems 1 and 2 above.
 
