@@ -9,7 +9,7 @@ INCF = ./bin/inc_file.pl
 TOCGEN = ./bin/pyhat.py
 
 
-SOURCES = Template.txt
+SOURCES = Template.txt test_template.txt
 
 pagefiles=$(SOURCES:.txt=.html)
 
