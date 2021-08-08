@@ -85,18 +85,33 @@ it handles the HTML contents.
 
 <div>
 {% highlight python %}
-from pylab import *
+import tensorflow as tf
+import numpy as np
 
-t = arange(0.0, 2.0, 0.01)
-s = sin(2*pi*t)
-plot(t, s)
+print("Hello world!")
 
-xlabel('time (s)')
-ylabel('voltage (mV)')
-title('About as simple as it gets, folks')
-grid(True)
-savefig("test.png")
-show()
+int_var = 23.2
+print(f"var is {int_var}")
+
+for _ in range(10):
+    if 2 > 1:
+        print('wow!')
+    else:
+        raise ValueError("no way!")
+
+
+class MyClass():
+    def __init__(self, name):
+        self.name = name
+
+    @property
+    def name(self):
+       return self.name
+
+    @name.setter
+    def name(self, val):
+        self.name = val
+
 {% endhighlight %}
 </div>
 
