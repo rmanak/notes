@@ -5,7 +5,7 @@ paginate: 5
 gems: [jekyll-paginate]
 port: 4000
 safe: true
-url: http://rmanak.github.io/notes
+url: https://rmanak.github.io/notes
 author: Arman Akbarian
 
 # edit this section with your information
@@ -13,7 +13,7 @@ author: Arman Akbarian
 # for a normal use at the base of the server change it to "/"
 baseurl: /notes/
 dir: /notes
-hosturl: http://rmanak.github.io/
+hosturl: https://rmanak.github.io/
 title: Notes
 name: Arman Akbarian
 email: arman2@gmail.com
@@ -23,14 +23,9 @@ website: rmanak.github.io
 linkedin: armanakbarian
 #website_full: https://rmanak.github.io/
 github: rmanak
-#twitter: twitter
-tel: +1 778 320 5515
-tel_full: tel:+17783205515
-#google_maps: 'https://www.google.co.uk/maps/place/44+Perth+St,+Edinburgh,+Edinburgh+City+EH3+5BL'
-#address: Vancouver
-#postcode: V6T 1Z1
-city: Vancouver
-country: Canada
+twitter: aarman
+city: San Francisco
+country: United States
 #google_analytics: UA-69300817-1
 
 # needed for travis-ci build
