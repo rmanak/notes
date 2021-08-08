@@ -2,7 +2,7 @@
 
 * Table of Content<sup>[[v]](#table_of_contents_1)</sup>
 * References%%ref1%%
-* \\( \LaTeX \\) 
+* \\( \LaTeX \\)
 * Code highlighting:
 * {% highlight python %}
 import numpy as np
@@ -14,11 +14,11 @@ import numpy as np
 
 {ref1: This is an example of a reference.}
 
-# Combining Jekyll and SimpleHtml 
+# Combining Jekyll and SimpleHtml
 
 ## Features
 
-This template 
+This template
 is a [modified] collection of available tools on the web for creating readable
 HTML pages, and enables the users to edit the content using a
 text editor. It is perhaps
@@ -115,13 +115,13 @@ changing the equation inside.
 
 This template is using
 Markdown[[+]](http://daringfireball.net/projects/markdown/) (a Perl script) to
-convert the text files into formatted HTML files. 
+convert the text files into formatted HTML files.
 The syntax of Markdown is described in details
 [on the software's webpage[>]](http://daringfireball.net/projects/markdown/syntax).
 You can try Markdown formatting with live preview
 [here](https://stackedit.io/)[>].
 It can also be
-simply understood from the following examples of the *source codes* 
+simply understood from the following examples of the *source codes*
 throughout this document.
 
 ### First Markdown Example
@@ -134,13 +134,13 @@ is the previous text you just read:
 
 	This template is using
 	Markdown[[+]](http://daringfireball.net/projects/markdown/) (a Perl script) to
-	convert the text files into formatted HTML files. 
+	convert the text files into formatted HTML files.
 	The syntax of Markdown is described in details
 	[on the software's webpage[>]](http://daringfireball.net/projects/markdown/syntax).
 	You can try Markdown formatting with live preview
 	[here](https://stackedit.io/)[>].
 	It can also be
-	simply understood from the following examples of the *source codes* 
+	simply understood from the following examples of the *source codes*
 	throughout this document.
 	### First Markdown Example
 
@@ -150,7 +150,7 @@ is the previous text you just read:
 
 
 ### Paragraphs
-Paragraphs in Markdown are separated with an empty line, 
+Paragraphs in Markdown are separated with an empty line,
 for instance:
 
 	This is paragraph1.
@@ -306,7 +306,7 @@ that is a JavaScript, and underscore is used extensively in latex syntax.
 You can insert a right floating image with the syntax:
 
 <pre>
-&#123;&#123;This is the caption of the image. 
+&#123;&#123;This is the caption of the image.
 A plot of a function in Python!}}((../img/surface.png))
 </pre>
 
@@ -381,7 +381,7 @@ by simply leaving the caption part completely empty:
 <R><span style="font-size:50px;"> \\( G_{\mu\nu} = 8 \pi T_{\mu\nu} \\)  </span></R>
 
 You can also insert any html content in a right floating box by
-putting it between ``<R></R>``. 
+putting it between ``<R></R>``.
 For instance the
 image of the equation you are seeing on the right hand side is
 in part an html code and in part a latex syntax that is being
@@ -464,20 +464,20 @@ Below is the source file of the example above:
  use strict;
  use warnings;
  use IO::Handle;
- 
+
  #Perl comment
 
  my ( $remaining, $total );
- 
+
  $remaining = $total = shift(@ARGV);
- 
+
  STDOUT->autoflush(1);
- 
+
  while ( $remaining ) {
   printf ( "Remaining %s/%s \r", $remaining--, $total );
   sleep 1;
  }
- 
+
  print "\n";
 &#123;% endhighlight %}
 </pre>
