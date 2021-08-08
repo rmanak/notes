@@ -1,0 +1,109 @@
+# Header
+
+[TOC]
+
+## Test Latex
+
+Trying \\( \LaTex \\) and now an equation \\( x^2 + y^2 = \Sum_{i=1}^{i=N} \frac{1}/{i} \\)
+
+<div>
+$$
+g_{\mu \nu} =  \left( \begin{array}{cccc}
+- \alpha^{2} & \beta &  0  & 0 \\
+\beta & a^{2} & 0 & 0 \\
+0 & 0 & r^{2}  & 0 \\
+0 & 0 & 0 & r^{2} \sin^{2} \theta
+\end{array} \right) \;\;\;\;
+\int_{-1}^{1} \frac{1}{\sqrt{1-x^{2}}} dx = \pi \;\;\;\;
+1 < 2 \;\;\; 3 > 2
+$$
+</div>
+
+## Test Footnotes
+
+This is a reference%%ref1%% testing.
+
+{ref1: This should be reference 1 blah blah}
+
+## Test floating images
+
+{{This is the caption of the image.
+A plot of a function in Python!}}((../img/surface.png))
+
+This is a new paragraph to fill up some space. So I will keep typing
+until I created a long paragraph. So far I don't think it is long enough.
+Let me find something from Wikipedia and copy paste it here.
+A paragraph (from the Greek paragraphos, "to write beside" or "written
+beside") is a self-contained unit of a discourse in writing dealing with a
+particular point or idea. A paragraph consists of one or more sentences.
+Though not required by the syntax of any language, paragraphs are usually an
+expected part of formal writing, used to organize longer prose.
+The oldest classical Greek and Latin writing had little or no spaces between
+words or other ones, and could be written in boustrophedon (alternating
+directions). Over time, text direction (left to right) became standardized,
+and word dividers and terminal punctuation became common.
+The first way to divide sentences into groups was the original paragraphos,
+similar to an underscore at the beginning of the new group.[3] The Greek
+paragraphos evolved into the pilcrow), which in English manuscripts in the
+Middle Ages can be seen inserted inline between sentences. The hedera leaf
+ has also been used in the same way.
+There should be an image on the right side of this text.
+An empty line separates the paragraphs.
+
+## Test Center Floating Image
+
+{{Images with center floating are
+a bit larger allowing for more content in the
+caption.}}[[../img/HTML.jpg]]
+
+Images (centered or right floating) can be inserted without caption as well,
+by simply leaving the caption part completely empty:
+
+
+{{}}[[../img/HTML.jpg]]
+
+
+## Test Right Floating Object
+
+<R><span style="font-size:50px;"> \\( G_{\mu\nu} = 8 \pi T_{\mu\nu} \\)  </span></R>
+
+You can also insert any html content in a right floating box by
+putting it between ``<R></R>``.
+For instance the
+image of the equation you are seeing on the right hand side is
+in part an html code and in part a latex syntax that is being
+converted using MathJax script. The code
+that generates it is this:
+
+``<R><span style="font-size:50px;">\\(G_{\mu\nu}=8\pi T_{\mu\nu}\\)</span></R>``
+
+Also you can insert any valid HTML content
+in the plain text file. See Makrdown's page %% refmk %% to learn more about how
+it handles the HTML contents.
+
+## Test code highligher
+
+<div>
+{% highlight python %}
+from pylab import *
+
+t = arange(0.0, 2.0, 0.01)
+s = sin(2*pi*t)
+plot(t, s)
+
+xlabel('time (s)')
+ylabel('voltage (mV)')
+title('About as simple as it gets, folks')
+grid(True)
+savefig("test.png")
+show()
+{% endhighlight %}
+</div>
+
+## Test Including File
+
+You can include other html files or text in your source code using:
+
+<pre>
+&lt;FILE="myfile.html"&gt;
+</pre>
