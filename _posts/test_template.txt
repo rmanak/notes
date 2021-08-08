@@ -4,7 +4,7 @@
 
 ## Test Latex
 
-Trying \\( \LaTex \\) and now an equation \\( x^2 + y^2 = \Sum_{i=1}^{i=N} \frac{1}/{i} \\)
+Trying an inline equation \\( x^2 + y^2 = \sum_{i=1}^{i=N} \frac{1}/{i} \\)
 
 <div>
 $$
