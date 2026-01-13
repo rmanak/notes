@@ -14,7 +14,7 @@ ifndef PYTHON_EXECUTABLE
 $(error Python executable not found. Please install Python or add it to your PATH.)
 endif
 
-SOURCES = Template.txt test_template.txt
+SOURCES = test_template.txt
 
 pagefiles=$(SOURCES:.txt=.html)
 
