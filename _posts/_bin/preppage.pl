@@ -14,7 +14,7 @@ sub file_to_text {
 }
 
 $num_args=$#ARGV +1;
-if ($num_args != 4) {
+if ($num_args != 2) {
 	die "\n  Usage: xxx file\n\n";
 }
 
@@ -30,10 +30,14 @@ $shc="KJDSADPFP";
 #footbar hyper code:
 $fhc="KDLPQHFZVD";
 
+#Title hyper code:
+$thc = "OAJDLASKJDHGPDH";
+
+#Permanent link hyper code:
+$plhc = "IJDWONSADOHPDKLJASD";
+
 $template_file=$ARGV[0];
-$side_file=$ARGV[1];
-$foot_file=$ARGV[2];
-$post_file=$ARGV[3];
+$post_file=$ARGV[1];
 
 $txtsuffix = '.txt';
 $post_filetmp = `basename -s .w $post_file`;
@@ -42,8 +46,8 @@ $post_filet =  $post_filetmp . $txtsuffix;
 
 $TEMPTXT=&file_to_text($template_file);
 $POSTTXT=&file_to_text($post_file);
-$SIDETXT=&file_to_text($side_file);
-$FOOTBARTXT=&file_to_text($foot_file);
+$SIDETXT="";
+$FOOTBARTXT="";
 
 #creating date:
 # fix for unix using mydate.py
@@ -110,10 +114,10 @@ if ($description ne '') {
 }
 
 $dl_syn='\[dl\]';
-$dl_op='<img src="img/dl.svg" />';
+$dl_op='<img src="../img/dl.svg" />';
 
 $ext_lnk_syn='\[>\]';
-$ext_lnk_op='<img style="margin-left:1px;" src="img/external-link.svg" alt="" align="bottom" />';
+$ext_lnk_op='<img style="margin-left:1px;" src="../img/external-link.svg" alt="" align="bottom" />';
 
 $toc_syn='\[TOC\]';
 $toc_op='<div class="table_of_contents"></div>';
@@ -154,8 +158,18 @@ $TEMPTXT=~ s/$fhc/$FOOTBARTXT/sg;
 $TEMPTXT=~ s/$ext_lnk_syn/$ext_lnk_op/sg;
 $TEMPTXT=~ s/$dl_syn/$dl_op/sg;
 $TEMPTXT=~ s/$toc_syn/$toc_op/sg;
+$TEMPTXT=~ s/$thc/$title/sg;
 
-$img_op1='<div style="max-width:350px; width:auto; padding:2px; height:auto; text-align:justify; border: solid #BBBBBB 1px;float:right; margin-left:8px;"><img style="display:block; height:auto; width:auto; max-width:320px; margin-left:auto; margin-right:auto;" src="';
+$title=~ s/\s+/ /sg;
+
+$title = lc $title;
+
+$title=~ s/ /-/sg;
+
+$TEMPTXT=~ s/$plhc/$title/sg;
+
+
+$img_op1='<div style="max-width:350px; width:100%; padding:2px; height:auto; text-align:justify; border: solid #BBBBBB 1px;float:right; margin-left:8px;"><img style="display:block; height:auto; width:100%; max-width:320px; margin-left:auto; margin-right:auto;" src="';
 $img_op2='" alt="';
 $img_op3='" border="0" /><hr />';
 $img_op3noline='" border="0" />';
@@ -164,7 +178,7 @@ $TEMPTXT=~ s/({{}}\(\()(.*?)(\)\))/$img_op1$2$img_op2$img_op3noline$img_op4/sg;
 $TEMPTXT=~ s/({{)(.*?)(}}\(\()(.*?)(\)\))/$img_op1$4$img_op2$img_op3$2$img_op4/sg;
 
 
-$imgc_op1='<div style="margin-left:auto; margin-right:auto; padding:3px; text-align:justify; border:solid #BBBBBB 1px; height:auto; width: auto; max-width:500px;"><img style="display:block; height:auto; width:auto; max-width:470px; margin-left:auto; margin-right:auto;" src="';
+$imgc_op1='<div style="margin-left:auto; margin-right:auto; padding:3px; text-align:justify; border:solid #BBBBBB 1px; height:auto; width: 100%; max-width:500px;"><img style="display:block; height:auto; width:100%; max-width:470px; margin-left:auto; margin-right:auto;" src="';
 $imgc_op2='" alt="';
 $imgc_op3='" border="0" /><hr />';
 $imgc_op3noline='" border="0" />';
@@ -172,7 +186,7 @@ $imgc_op4='</div>';
 $TEMPTXT=~ s/({{}}\[\[)(.*?)(\]\])/$imgc_op1$2$imgc_op2$imgc_op3noline$imgc_op4/sg;
 $TEMPTXT=~ s/({{)(.*?)(}}\[\[)(.*?)(\]\])/$imgc_op1$4$imgc_op2$imgc_op3$2$imgc_op4/sg;
 
-$r_op1='<div style="max-width:350px; width:auto; padding:2px; height:auto; text-align:justify; border: solid #BBBBBB 1px;float:right; margin-left:8px;">';
+$r_op1='<div style="max-width:350px; width:100%; padding:2px; height:auto; text-align:justify; border: solid #BBBBBB 1px;float:right; margin-left:8px;">';
 $r_op2='</div>';
 
 $TEMPTXT =~ s/(<R>)(.*?)(<\/R>)/$r_op1$2$r_op2/sg;

@@ -3,13 +3,14 @@ REVISION HISTORY
  4 2004-11-10 renamed program to "pyhat.py"
 --------------------------------------------------------------------"""
 
-from html.parser import HTMLParser
+from HTMLParser import HTMLParser
 import getopt
 import sys
 import os
 import time
 import string
-from pyhatConstants import *
+import cgi
+from   pyhatConstants import *
 
 #----------------------------------------------------------
 #
@@ -83,16 +84,16 @@ class InfileParser(HTMLParser):
 	def getConstructedDocument(self):
 		s = ""
 		if optionVerbose:
-			print(("\n" * 6) + "Components in my document:\n")
+			print ("\n"*6)+ "Components in my document:\n"
 			dividerLine = "~"*70 + "\n"
 		i = 0
 		for component in self.myDocument:
 			i += 1
 			if optionVerbose:
 				if component.myDocumentState == STATE_Toc:
-					print("\n", dividerLine + "Omitting Toc\n" + dividerLine + "\n")
+					print "\n", dividerLine + "Omitting Toc\n" + dividerLine + "\n"
 				elif component.myDocumentState == STATE_Target:
-					print("\n", dividerLine + "Omitting Target\n" + dividerLine + "\n")
+					print "\n", dividerLine + "Omitting Target\n" + dividerLine + "\n"
 				else:
 					print ("\n"
 					+ dividerLine
@@ -277,13 +278,11 @@ class InfileParser(HTMLParser):
 
 	def ShowEventString(self, argString):
 		if optionVerbose:
-			print(
+			print (
 				str(self.getpos()[0]).rjust(5)
 				+ ":"
-				+ str(self.getpos()[1]).ljust(3),
-				self.myState,
-				argString,
-			)
+				+ str(self.getpos()[1]).ljust(3)
+				), self.myState, argString
 		return
 
 
@@ -456,7 +455,7 @@ class InfileParser(HTMLParser):
 		fromLineNumber = toLineNumber - ERROR_LINES_TO_PRINT
 		fromLineNumber = max(fromLineNumber, 1)
 		someLines = self.myInputText.split("\n")
-		for i in range(fromLineNumber - 1, toLineNumber):
+		for i in xrange(fromLineNumber-1, toLineNumber):
 			result +=  "(" + str(i+1) + ") " + someLines[i]
 		# point to the exact column where the error was discovered
 		columnPosition = argErrorPosition[1]
