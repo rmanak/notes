@@ -68,7 +68,7 @@ by simply leaving the caption part completely empty:
 <R><span style="font-size:50px;"> \\( G_{\mu\nu} = 8 \pi T_{\mu\nu} \\)  </span></R>
 
 You can also insert any html content in a right floating box by
-putting it between ``<R></R>``.
+putting it between `<R></R>`.
 For instance the
 image of the equation you are seeing on the right hand side is
 in part an html code and in part a latex syntax that is being
