@@ -18,6 +18,10 @@ import numpy as np
 
 [TOC]
 
+## Raw "Augmented" Markdown Of This Page
+
+Raw markdown file for this page is here: <https://github.com/rmanak/notes/blob/gh-pages/_posts/test_template.txt>
+
 ## Test Latex
 
 Trying an inline equation \\( x^2 + y^2 = \sum_{i=1}^{i=N} \frac{1}{i} \\)
