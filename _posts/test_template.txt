@@ -18,6 +18,13 @@ import numpy as np
 
 ## Features
 
+This is bunch of python code put together to slighly improve on top of markdown
+for better scientific article writing. Most of the heavy lifting is done by
+Jekyll. This adds simply way of creating citation that appears at the end with anchor links,
+adds table of content with section numbering and anchor links, and adds some quick ways
+of inserting images with captions or other objects with easy placement of them via
+right or center float. 
+
 - Allows for writing in \\( \LaTeX \\) via mathjax (via Jekyll)
 - creates table of content with anchor links and section numbering
 - code highlighting supported by standard Jekyll
