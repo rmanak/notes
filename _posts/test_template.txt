@@ -26,7 +26,9 @@ import numpy as np
 - allows for including other HTML files 
 - quicker than markdown literal links 
 
+***
 [TOC]
+***
 
 ## Raw "Augmented" Markdown Of This Page
 
