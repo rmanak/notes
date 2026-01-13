@@ -388,7 +388,7 @@ in part an html code and in part a latex syntax that is being
 converted using MathJax script. The code
 that generates it is this:
 
-``<R><span style="font-size:50px;">\\(G_{\mu\nu}=8\pi T_{\mu\nu}\\)</span></R>``
+`<R><span style="font-size:50px;">\\(G_{\mu\nu}=8\pi T_{\mu\nu}\\)</span></R>`
 
 Also you can insert any valid HTML content
 in the plain text file. See Makrdown's page %% refmk %% to learn more about how
