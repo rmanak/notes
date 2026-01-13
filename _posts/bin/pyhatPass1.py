@@ -477,7 +477,7 @@ def runPass1OnDocument(argDocument, argOptionQuiet=False, argOptionVerbose=False
 	
 	# Parse aDocument to remove the existing
 	# TableOfContents and target tags, if any are present.
-	aParser = InfileParser()        # create a parser object
+	aParser = InfileParser(convert_charrefs=False)        # create a parser object
 	aParser.initialize(argDocument) # set initial values in the parser
 	aParser.feed(argDocument)       # parse the document and create a new document
 

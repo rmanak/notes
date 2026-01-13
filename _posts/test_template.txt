@@ -119,6 +119,8 @@ class MyClass():
 
 You can include other html files or text in your source code using:
 
+<div>
 <pre>
-xxxx&lt;FILE="myfile.html"&gt;
+\&lt;FILE="myfile.html"\&gt;
 </pre>
+</div>

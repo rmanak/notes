@@ -658,7 +658,7 @@ def runPass2OnDocument(argDocument
 	optionRemoveHeadingWord1 = argOptionRemoveHeadingWord1
 	optionDeepestHeading = argOptionDeepestHeading
 	
-	aParser = WorkfileParser()
+	aParser = WorkfileParser(convert_charrefs=False)
 	aParser.initialize(argDocument)
 	aParser.feed(argDocument)  # parse the document
 
