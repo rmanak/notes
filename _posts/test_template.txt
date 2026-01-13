@@ -68,14 +68,14 @@ by simply leaving the caption part completely empty:
 <R><span style="font-size:50px;"> \\( G_{\mu\nu} = 8 \pi T_{\mu\nu} \\)  </span></R>
 
 You can also insert any html content in a right floating box by
-putting it between `&lt;R></R>`.
+putting it between `<R></R>`.
 For instance the
 image of the equation you are seeing on the right hand side is
 in part an html code and in part a latex syntax that is being
 converted using MathJax script. The code
 that generates it is this:
 
-<pre>&lt;R>&lt;span style="font-size:50px;">\\(G_{\mu\nu}=8\pi T_{\mu\nu}\\)</span></R></pre>
+<pre>&lt;R>&lt;span style="font-size:50px;">\\(G_{\mu\nu}=8\pi T_{\mu\nu}\\)&lt;/span>&lt;/R></pre>
 
 Also you can insert any valid HTML content
 in the plain text file. See Makrdown's page %% refmk %% to learn more about how
