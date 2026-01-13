@@ -16,6 +16,16 @@ import numpy as np
 
 # Quick demo of SimpleHtml
 
+## Features
+
+- Allows for writing in \\( \LaTex \\) via mathjax (via Jekyll)
+- creates table of content with anchor links and section numbering
+- code highlighting supported by standard Jekyll
+- inline references for citation that appears at the end of the doc
+- few additions to markdown allowing for quick/easy image insertion and caption creation
+- allows for including other HTML files 
+- quicker than markdown literal links 
+
 [TOC]
 
 ## Raw "Augmented" Markdown Of This Page
