@@ -1,3 +1,19 @@
+{{
+
+* Table of Content<sup>[[v]](#table_of_contents_1)</sup>
+* References%%ref1%%
+* \\( \LaTeX \\)
+* Code highlighting:
+* {% highlight python %}
+import numpy as np
+  {% endhighlight %}
+* <span style="font-size:70%">``*Easy* **HTML** [formatting](#)``</span>
+* *Easy* **HTML** [formatting](#)
+
+}}((../img/linuxlogo.png))
+
+{ref1: This is an example of a reference.}
+
 # Quick demo of SimpleHtml
 
 [TOC]
